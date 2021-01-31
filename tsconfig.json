@@ -12,6 +12,7 @@
     "noImplicitAny": true,
     "strict": true,
     "sourceRoot": "./src",
+    "baseUrl": "baseUrl",
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
@@ -26,7 +27,7 @@
     "incremental": false
   },
   "include": [
-    "src/**/*.ts"
+    "/*.ts"
   ],
   "exclude": [
     "node_modules",

@@ -43,7 +43,7 @@
   },
   "scripts": {
     "start":"node server.js",
-    "postinstall": "yarn tsc && yarn build",
+    "postinstall": "yarn build",
     "review": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
