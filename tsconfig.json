@@ -5,14 +5,14 @@
       "dom.iterable",
       "esnext"
     ],
+    "outDir": "./dist",
+    "rootDir": "./src",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "strict": true,
-    "sourceRoot": "./src",
-    "baseUrl": "baseUrl",
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
@@ -23,8 +23,10 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "target": "es5",
-    "noEmit": false,
+    "noEmit": true,
     "incremental": false
   },
-    "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

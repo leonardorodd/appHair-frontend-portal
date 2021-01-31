@@ -7,12 +7,6 @@
 
 # testing
 /coverage
-# review
-src/*
-public/*
-build/static/css/*.map
-build/static/js/*.map
-view raw
 
 # misc
 .DS_Store
