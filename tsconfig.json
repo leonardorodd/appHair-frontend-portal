@@ -23,13 +23,8 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "target": "es5",
-    "noEmit": true,
+    "noEmit": false,
     "incremental": false
   },
-  "include": [
-    "/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-  ]
+    "include": ["src"]
 }
