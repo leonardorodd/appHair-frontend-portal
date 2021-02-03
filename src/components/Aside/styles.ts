@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { darken } from 'polished';
 
 export const Container = styled.div`
+    overflow-y: hidden;
     grid-column: 1;
     grid-row: 1 / span 2;
     /*     background-color: ${props => props.theme.color.secondary};
@@ -14,49 +14,33 @@ export const Container = styled.div`
 
 export const Header = styled.header`
     padding: 70px;
-    height: 70px;
+    height: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
 `;
 
 export const LogImg = styled.img`
-    width: 150px;
-    height: 60px;
+    width: 180px;
+    height: 120px;
+    margin-right: 10px;
 `;
 export const MenuContainer = styled.nav`
-    display: flex;
+    /*  display: flex;
     flex-direction: column;
     margin-top: 30px;
 
     .highlight {
         background-color: ${darken(0.03, '#313130')};
-        color: #fff;
-    }
-`;
-export const MenuItemLink = styled(Link)`
-    /*     color: ${props => props.theme.color.info};
- */
-    color: var(--base-quaternary-color);
-    text-decoration: none;
-    padding: 15px;
-    display: flex;
-    align-items: center;
+        color: var(--base-secondary-color);
 
-    &:hover {
-        background-color: ${darken(0.03, '#313130')};
-        color: #fff;
-    }
-
-    > svg {
-        width: 20px;
-        height: 20px;
-        margin-right: 10px;
-    }
-`;
-
-export const Title = styled.h3`
-    display: flex;
-    margin-left: 10px;
-    color: ${props => props.theme.color.white};
+        &::after {
+            content: '';
+            width: 4px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            background-color: var(--base-secondary-color);
+        }
+    } */
 `;

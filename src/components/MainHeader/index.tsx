@@ -3,6 +3,7 @@ import { BsPeopleCircle } from 'react-icons/bs';
 import Toggle from '../Toggle';
 import { Container, Profile, Welcome } from './styles';
 import Dropdown from '../Dropdown';
+import ProfilePhoto from '../../assets/images/profile.jpg';
 
 const MainHeader: React.FC = () => {
     const profileMenu = [
@@ -29,8 +30,10 @@ const MainHeader: React.FC = () => {
              */}
             <div />
             <Profile>
-                <BsPeopleCircle size={25} />
+                {/*                 <BsPeopleCircle size={25} />
+                 */}
                 <Dropdown title="Anderson Tartari" options={profileMenu} />
+                <img src={ProfilePhoto} alt="profile" />
             </Profile>
             {/* <Profile>
                 <Welcome>Olá, Anderson.</Welcome>

@@ -5,6 +5,7 @@ import { SubmitHandler, FormHandles } from '@unform/core';
 import Input from '../../../components/UnformFields/Input';
 import Select from '../../../components/UnformFields/Select';
 import DatePicker from '../../../components/UnformFields/DatePicker';
+import AvatarInput from '../../../components/UnformFields/AvatarInput';
 import { cpfMask, cnpjMask, phoneMask, cepMask } from '../../../utils/masks';
 
 import { Container, CreateClientModal, CreateClientForm } from './styles';
@@ -115,46 +116,9 @@ const CreateClient: React.FC = () => {
                         onSubmit={handleCreateClientSubmit}
                         ref={formRef}
                     >
-                        <Input name="nome" label="Nome Completo" />
-                        <div id="rowOne">
-                            <DatePicker
-                                label="Data de nascimento"
-                                name="dataDeNascimento"
-                                dateFormat="dd/MM/yyyy"
-                            />
-                            {/* <Input
-                                name="dataDeNascimento"
-                                label="Data de nascimento"
-                            /> */}
-                            <Input
-                                name="numeroCPFouCNPJ"
-                                label="CPF/CNPJ"
-                                value={
-                                    tipoPessoa.length > 14
-                                        ? cnpjMask(tipoPessoa)
-                                        : cpfMask(tipoPessoa)
-                                }
-                                onChange={e => setTipoPessoa(e.target.value)}
-                            />
-                            <Input
-                                name="celular"
-                                label="Celular"
-                                onChange={e => setPhoneNumber(e.target.value)}
-                                value={phoneMask(phoneNumber)}
-                            />
-                        </div>
-                        <div id="rowTwo">
-                            <Input name="email" label="E-mail" />
-                            <Select
-                                label="Sexo"
-                                name="sexo"
-                                classNamePrefix="react-select"
-                                defaultValue={affiliationOptions[0]}
-                                options={affiliationOptions}
-                                isSearchable={false}
-                                blurInputOnSelect
-                                openMenuOnFocus
-                            />
+                        <div id="rowNome">
+                            <Input name="nome" label="Nome Completo" />
+                            <AvatarInput />
                         </div>
                         <button
                             type="button"
@@ -207,6 +171,53 @@ const CreateClient: React.FC = () => {
                                 </div>
                             </>
                         )}
+                        <div id="rowFourElements">
+                            <Input
+                                name="Whatsapp"
+                                label="Whatsapp"
+                                onChange={e => setPhoneNumber(e.target.value)}
+                                value={phoneMask(phoneNumber)}
+                            />
+                            <Input name="Instagram" label="Instagram" />
+                            <Input name="Twitter" label="Twitter" />
+                            <Input name="Facebook" label="Facebook" />
+                        </div>
+
+                        <div id="rowOne">
+                            <DatePicker
+                                label="Data de nascimento"
+                                name="dataDeNascimento"
+                            />
+                            <Input
+                                name="numeroCPFouCNPJ"
+                                label="CPF/CNPJ"
+                                value={
+                                    tipoPessoa.length > 14
+                                        ? cnpjMask(tipoPessoa)
+                                        : cpfMask(tipoPessoa)
+                                }
+                                onChange={e => setTipoPessoa(e.target.value)}
+                            />
+                            <Input
+                                name="RG"
+                                label="RG"
+                                onChange={e => setCepNumber(e.target.value)}
+                                value={cepMask(cepNumber)}
+                            />
+                        </div>
+                        <div id="rowTwo">
+                            <Input name="email" label="E-mail" />
+                            <Select
+                                label="Sexo"
+                                name="sexo"
+                                classNamePrefix="react-select"
+                                defaultValue={affiliationOptions[0]}
+                                options={affiliationOptions}
+                                isSearchable={false}
+                                blurInputOnSelect
+                                openMenuOnFocus
+                            />
+                        </div>
                     </CreateClientForm>
                 </CreateClientModal.Body>
                 <CreateClientModal.Footer>

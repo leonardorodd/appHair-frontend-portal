@@ -5,11 +5,13 @@ interface ITagProps {
 }
 
 export const Container = styled.li`
-    background-color: ${props => props.theme.color.tertiary};
+    /*     background-color: ${props => props.theme.color.tertiary};
+ */
+    background-color: var(--base-quaternary-color);
     list-style: none;
     border-radius: 5px;
-    margin: 10px;
-    padding: 12px 10px;
+    margin-bottom: 3px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;

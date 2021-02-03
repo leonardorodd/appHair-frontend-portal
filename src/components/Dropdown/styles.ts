@@ -1,15 +1,22 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    margin-right: -25px;
+
     .dropbtn {
         border: none;
         background: none;
         font-weight: bold;
-        color: var(--base-quaternary-color);
+        color: var(--primary-text-color);
         box-sizing: border-box;
+        border-radius: 0px;
 
         svg {
             margin-left: 5px;
+        }
+
+        &:hover {
+            color: var(--base-tertiary-color);
         }
     }
 
@@ -32,17 +39,11 @@ export const Container = styled.div`
     }
 
     .dropdown-content a:hover {
-        color: var(--base-secondary-color);
+        color: var(--base-tertiary-color);
         background: #f8f8f8;
     }
 
     .dropdown:hover .dropdown-content {
         display: block;
     }
-
-    /* .dropbtn {
-        &:hover {
-            color: var(--base-fibre-color);
-        }
-    } */
 `;

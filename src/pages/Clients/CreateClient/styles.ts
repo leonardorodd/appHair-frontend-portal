@@ -13,14 +13,51 @@ export const CreateClientForm = styled(Form)`
         background: none;
         color: var(--primary-text-color);
         width: 150px;
+        margin-left: -10px;
     }
 
     #rowOne,
     #rowTwo,
     #rowTree,
-    #rowFour {
+    #rowFour,
+    #rowFourElements {
         display: flex;
         flex-direction: row;
+    }
+
+    #rowNome {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        > :first-child {
+            width: 80%;
+        }
+        > div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        > :last-child {
+            width: 20%;
+            margin-left: 10px;
+        }
+    }
+
+    #rowFourElements {
+        > div {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        > :nth-child(2) {
+            margin: 0px 20px 0px 20px;
+        }
+
+        > :nth-child(3) {
+            margin-right: 20px;
+        }
     }
 
     #rowOne,
@@ -91,6 +128,6 @@ export const CreateClientModal = styled(Modal)`
 
     .modal-header {
         padding: 5px;
-        background: var(--base-secondary-color);
+        background: var(--base-tertiary-color);
     }
 `;

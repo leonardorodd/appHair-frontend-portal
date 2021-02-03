@@ -4,15 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default createGlobalStyle`
     :root {
-        --base-primary-color: #313130;
-        --base-secondary-color: #FA5B0F;
-        --base-tertiary-color: #ffd449;
+        --base-primary-color: #222;
+        --base-secondary-color:#dfaa4a;
+        --base-tertiary-color: #fd5c0e;
+        --base-background-color: #f8f8f8;
         --base-quaternary-color: #FFFF;
-        --primary-border-color: #ddd;
-        --primary-text-color: #667;
-        --secondary-text-color: #7e7e7e;
-        --tertiary-text-color: #848D95;
-
+        --primary-border-color: #eee;
+        --secondary-border-color: #ddd;
+        --primary-text-color: #7e7e7e;
+        --secondary-text-color: #414141;
+        --tertiary-text-color: #292929;
     }
 
     * {
@@ -67,7 +68,7 @@ export default createGlobalStyle`
             transition: background 0.3s;
 
             color: #fff;
-            background: var(--base-secondary-color);
+            background: var(--base-tertiary-color);
 
     }
 

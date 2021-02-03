@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    padding: 15px;
     border-radius: 10px;
     color: var(--primary-text-color);
 `;
@@ -13,11 +12,10 @@ export const ClientListHeader = styled.li`
         font-size: 16px;
     }
 
-    border-bottom: 3px solid var(--primary-border-color);
-
+    border-bottom: 2px solid var(--primary-border-color);
     list-style: none;
     margin: 10px;
-    padding: 12px 10px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,25 +23,24 @@ export const ClientListHeader = styled.li`
 
 export const ClientSearchContainer = styled.div`
     > h1 {
-        font-size: 18px;
-        color: var(--base-secondary-color);
+        font-size: 25px;
+        color: var(--base-tertiary-color);
     }
 
     > h1::after {
         content: '';
         display: block;
         width: 55px;
-        border-bottom: 3px solid var(--base-secondary-color);
+        border-bottom: 3px solid var(--base-tertiary-color);
     }
 
     > div {
         margin-top: 20px;
-        padding: 30px;
+        padding: 30px 0px;
         display: flex;
         justify-content: space-between;
 
         > div {
-            margin-left: 10px;
             display: flex;
 
             > input {
