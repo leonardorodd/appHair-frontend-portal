@@ -2,29 +2,51 @@ import React, { useEffect } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 
-import { MenuItemLink, Container } from './styles';
+import { MenuItemLink, Container, SubMenuItemLink } from './styles';
 
-interface IMenuItemProps {
-    link: string;
+export interface IMenuItemProps {
+    link?: string;
+    grouppedItem?: boolean;
     icon: React.FC<IconBaseProps>;
     title: string;
+    subItens?: Array<IMenuItemProps>;
 }
 
-const MenuItem: React.FC<IMenuItemProps> = ({ link, icon: Icon, title }) => {
+const MenuItem: React.FC<IMenuItemProps> = ({
+    link,
+    icon: Icon,
+    title,
+    subItens,
+    grouppedItem,
+}) => {
     return (
         <Container>
-            <MenuItemLink to={link} className="item">
+            <MenuItemLink to={link || ''} className="item">
                 <div>
                     <Icon />
                     {title}
                 </div>
-                <MdKeyboardArrowRight />
+                {grouppedItem && <MdKeyboardArrowRight />}
             </MenuItemLink>
-            <div className="panel">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
+            <div className="itemContent">
+                {subItens?.length !== 0 ? (
+                    subItens?.map(subItem => (
+                        <SubMenuItemLink
+                            key={subItem.title}
+                            to={subItem.link || ''}
+                        >
+                            <subItem.icon />
+                            {subItem.title}
+                        </SubMenuItemLink>
+                    ))
+                ) : (
+                    <>
+                        <p>sss</p>
+                        <p>sss</p>
+                        <p>sss</p>
+                        <p>sss</p>
+                    </>
+                )}
             </div>
         </Container>
     );

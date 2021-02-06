@@ -9,8 +9,15 @@ import {
     ClientListHeader,
 } from './styles';
 
+type IClientListProps = {
+    nome: string;
+    telefone: string;
+    ultimoServico: string;
+    ticketMedio: string;
+};
+
 const Clients: React.FC = () => {
-    const clients = [
+    const clients: Array<IClientListProps> = [
         {
             nome: 'Kamillah',
             telefone: '35589885',
@@ -106,22 +113,26 @@ const Clients: React.FC = () => {
                     <h3>Último Serviço</h3>
                     <h3>Ticket Médio</h3>
                 </ClientListHeader>
-                {clientsList.map(client =>
-                    Object.values(client).some(key =>
-                        key
-                            .toLocaleUpperCase()
-                            .startsWith(searchTerm.toLocaleUpperCase()),
-                    ) ? (
-                        <ClientCard
-                            key={client.nome}
-                            nome={client.nome}
-                            telefone={client.telefone}
-                            ultimoServico={client.ultimoServico}
-                            ticketMedio={`R$ ${client.ticketMedio}`}
-                        />
-                    ) : (
-                        []
-                    ),
+                {clientsList.length > 0 ? (
+                    clientsList.map(client =>
+                        Object.values(client).some(value =>
+                            value
+                                .toLocaleUpperCase()
+                                .startsWith(searchTerm.toLocaleUpperCase()),
+                        ) ? (
+                            <ClientCard
+                                key={client.nome}
+                                nome={client.nome}
+                                telefone={client.telefone}
+                                ultimoServico={client.ultimoServico}
+                                ticketMedio={`R$ ${client.ticketMedio}`}
+                            />
+                        ) : (
+                            []
+                        ),
+                    )
+                ) : (
+                    <h1>sem clientes</h1>
                 )}
             </ClientList>
         </Container>

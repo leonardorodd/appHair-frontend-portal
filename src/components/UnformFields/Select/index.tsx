@@ -42,6 +42,7 @@ const Select: React.FC<Props> = ({ name, label, ...rest }) => {
             {label && <label htmlFor={fieldName}>{label}</label>}
 
             <ReactSelect
+                id={fieldName}
                 defaultValue={defaultValue}
                 ref={selectRef}
                 classNamePrefix="react-select"

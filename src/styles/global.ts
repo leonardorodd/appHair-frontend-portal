@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 export default createGlobalStyle`
     :root {

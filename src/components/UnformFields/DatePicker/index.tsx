@@ -34,6 +34,7 @@ const DatePicker: React.FC<Props> = ({ name, label, ...rest }) => {
         <Container>
             {label && <label htmlFor={fieldName}>{label}</label>}
             <ReactDatePicker
+                id={fieldName}
                 ref={datepickerRef}
                 selected={date}
                 onChange={setDate}

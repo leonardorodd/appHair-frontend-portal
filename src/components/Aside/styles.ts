@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 export const Container = styled.div`
+    height: 100vh;
     overflow-y: hidden;
     grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     grid-row: 1 / span 2;
     /*     background-color: ${props => props.theme.color.secondary};
  */
@@ -13,11 +17,38 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
-    padding: 70px;
-    height: 180px;
+    height: 200px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    input {
+        width: 100%;
+    }
+`;
+
+export const Footer = styled.a`
+    color: var(--primary-text-color);
+    text-decoration: none;
+    border-top: 3px solid var(--base-secondary-color);
+    padding: 15px;
+    background: ${darken(0.03, '#313130')};
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    justify-content: flex-start;
+
+    > svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+    }
+
+    &:hover {
+        background-color: ${darken(0.03, '#313130')};
+        color: var(--base-secondary-color);
+    }
 `;
 
 export const LogImg = styled.img`
@@ -26,6 +57,9 @@ export const LogImg = styled.img`
     margin-right: 10px;
 `;
 export const MenuContainer = styled.nav`
+    height: 400px;
+    /*     background: blue;
+ */
     /*  display: flex;
     flex-direction: column;
     margin-top: 30px;

@@ -6,7 +6,13 @@ import Input from '../../../components/UnformFields/Input';
 import Select from '../../../components/UnformFields/Select';
 import DatePicker from '../../../components/UnformFields/DatePicker';
 import AvatarInput from '../../../components/UnformFields/AvatarInput';
-import { cpfMask, cnpjMask, phoneMask, cepMask } from '../../../utils/masks';
+import {
+    cpfMask,
+    cnpjMask,
+    phoneMask,
+    cepMask,
+    rgMask,
+} from '../../../utils/masks';
 
 import { Container, CreateClientModal, CreateClientForm } from './styles';
 import '../../../styles/customreactselect.css';
@@ -19,6 +25,7 @@ const CreateClient: React.FC = () => {
     const [tipoPessoa, setTipoPessoa] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [cepNumber, setCepNumber] = useState('');
+    const [rgNumber, setRgNumber] = useState('');
 
     const affiliationOptions = [
         { value: 1, label: 'Masculino' },
@@ -118,7 +125,10 @@ const CreateClient: React.FC = () => {
                     >
                         <div id="rowNome">
                             <Input name="nome" label="Nome Completo" />
-                            <AvatarInput />
+                            <AvatarInput
+                                name="avatarImage"
+                                label="Foto do cliente"
+                            />
                         </div>
                         <button
                             type="button"
@@ -201,8 +211,8 @@ const CreateClient: React.FC = () => {
                             <Input
                                 name="RG"
                                 label="RG"
-                                onChange={e => setCepNumber(e.target.value)}
-                                value={cepMask(cepNumber)}
+                                onChange={e => setRgNumber(e.target.value)}
+                                value={rgMask(rgNumber)}
                             />
                         </div>
                         <div id="rowTwo">
