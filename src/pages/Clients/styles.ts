@@ -2,20 +2,30 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     border-radius: 10px;
+    padding: 40px;
     color: var(--primary-text-color);
+    background: var(--base-quaternary-color);
 `;
 
 export const ClientList = styled.div``;
 
 export const ClientListHeader = styled.li`
-    > h3 {
-        font-size: 16px;
+    > div {
+        display: flex;
+        align-items: center;
+        width: 26.75%;
+    }
+
+    > :last-child {
+        width: 5%;
+        justify-content: center;
+        align-items: center;
     }
 
     border-bottom: 2px solid var(--primary-border-color);
     list-style: none;
     margin: 10px;
-    padding: 15px;
+    padding: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;

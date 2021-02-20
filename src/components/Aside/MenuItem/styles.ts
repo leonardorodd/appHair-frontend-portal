@@ -76,11 +76,12 @@ export const MenuItemLink = styled(Link)`
         transition: transform 0.4s;
         width: 15px;
         height: 15px;
+        margin-right: 5px;
     }
 
     > div > svg {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
         margin-right: 10px;
     }
 
@@ -107,8 +108,8 @@ export const SubMenuItemLink = styled(Link)`
     }
 
     > svg {
-        width: 19px;
-        height: 19px;
+        width: 18px;
+        height: 18px;
         margin-right: 10px;
     }
 `;

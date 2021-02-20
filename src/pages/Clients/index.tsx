@@ -1,7 +1,11 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/jsx-curly-newline */
 /* eslint-disable react/jsx-indent */
 import React, { useState } from 'react';
 import ClientCard from '../../components/ClientCard';
-import AddClientModal from './CreateClient';
+import { convertToBrasilianDateFormat } from '../../utils/dateUtils';
+import AddClientModal, { IFormData } from './CreateClient';
+
 import {
     Container,
     ClientSearchContainer,
@@ -9,84 +13,134 @@ import {
     ClientListHeader,
 } from './styles';
 
-type IClientListProps = {
-    nome: string;
-    telefone: string;
-    ultimoServico: string;
-    ticketMedio: string;
-};
-
 const Clients: React.FC = () => {
-    const clients: Array<IClientListProps> = [
+    const initialData = [
         {
-            nome: 'Kamillah',
-            telefone: '35589885',
-            ultimoServico: '10/11/2020',
-            ticketMedio: '250',
+            nome: 'Matheus da Silva',
+            dataDeNascimento: '10/10/1995',
+            sexo: 'Masculino',
+            email: 'matheus@hotmail.com',
+            numeroCPFouCNPJ: '702.415.258.85',
+            RG: '61.24.258',
+            avatarImage: '',
+            endereco: {
+                cep: '74.425.580',
+                logradouro: 'Rua Fulano',
+                numero: 's/n',
+                bairro: 'Ciclano',
+                complemento: 'quadra 10 lote 20',
+                cidade: 'Goiânia',
+                estado: 'Goiás',
+            },
+            whatsapp: '(64)992855445',
+            instagram: '',
+            twitter: '',
+            facebook: '',
+            porcentagemDescontoProdutos: '',
+            porcentagemDescontoServicos: '',
+            indocadoPor: '',
+            idArtista1: '',
+            idArtista2: '',
+            coloracaoCabelo: 'castanho',
+            tipoDePele: 'morena',
+            tipoDeUnha: '',
         },
         {
-            nome: 'Gabriel',
-            telefone: '35589885',
-            ultimoServico: '10/11/2020',
-            ticketMedio: '250',
+            nome: 'Matheus da Silva',
+            dataDeNascimento: '10/10/1995',
+            sexo: 'Masculino',
+            email: 'matheus@hotmail.com',
+            numeroCPFouCNPJ: '702.415.258.85',
+            RG: '61.24.258',
+            avatarImage: '',
+            endereco: {
+                cep: '74.425.580',
+                logradouro: 'Rua Fulano',
+                numero: 's/n',
+                bairro: 'Ciclano',
+                complemento: 'quadra 10 lote 20',
+                cidade: 'Goiânia',
+                estado: 'Goiás',
+            },
+            whatsapp: '(64)992855445',
+            instagram: '',
+            twitter: '',
+            facebook: '',
+            porcentagemDescontoProdutos: '',
+            porcentagemDescontoServicos: '',
+            indocadoPor: '',
+            idArtista1: '',
+            idArtista2: '',
+            coloracaoCabelo: 'castanho',
+            tipoDePele: 'morena',
+            tipoDeUnha: '',
         },
         {
-            nome: 'Marcos',
-            telefone: '35589885',
-            ultimoServico: '10/11/2020',
-            ticketMedio: '250',
+            nome: 'Matheus da Silva',
+            dataDeNascimento: '10/10/1995',
+            sexo: 'Masculino',
+            email: 'matheus@hotmail.com',
+            numeroCPFouCNPJ: '702.415.258.85',
+            RG: '61.24.258',
+            avatarImage: '',
+            endereco: {
+                cep: '74.425.580',
+                logradouro: 'Rua Fulano',
+                numero: 's/n',
+                bairro: 'Ciclano',
+                complemento: 'quadra 10 lote 20',
+                cidade: 'Goiânia',
+                estado: 'Goiás',
+            },
+            whatsapp: '(64)992855445',
+            instagram: '',
+            twitter: '',
+            facebook: '',
+            porcentagemDescontoProdutos: '',
+            porcentagemDescontoServicos: '',
+            indocadoPor: '',
+            idArtista1: '',
+            idArtista2: '',
+            coloracaoCabelo: 'castanho',
+            tipoDePele: 'morena',
+            tipoDeUnha: '',
         },
         {
-            nome: 'Manuela',
-            telefone: '35589885',
-            ultimoServico: '10/11/2020',
-            ticketMedio: '150',
-        },
-        {
-            nome: 'Camila',
-            telefone: '35589885',
-            ultimoServico: '10/11/2020',
-            ticketMedio: '250',
-        },
-        {
-            nome: 'Paulo',
-            telefone: '35589885',
-            ultimoServico: '10/11/2020',
-            ticketMedio: '250',
-        },
-        {
-            nome: 'Joana',
-            telefone: '35589885',
-            ultimoServico: '10/11/2020',
-            ticketMedio: '250',
-        },
-        {
-            nome: 'Maria',
-            telefone: '35589885',
-            ultimoServico: '10/11/2020',
-            ticketMedio: '250',
-        },
-        {
-            nome: 'Kleber',
-            telefone: '35589885',
-            ultimoServico: '10/11/2020',
-            ticketMedio: '250',
-        },
-        {
-            nome: 'Marta',
-            telefone: '35589885',
-            ultimoServico: '10/11/2020',
-            ticketMedio: '250',
-        },
-        {
-            nome: 'Leonardo',
-            telefone: '35589885',
-            ultimoServico: '10/11/2020',
-            ticketMedio: '250',
+            nome: 'Matheus da Silva',
+            dataDeNascimento: '10/10/1995',
+            sexo: 'Masculino',
+            email: 'matheus@hotmail.com',
+            numeroCPFouCNPJ: '702.415.258.85',
+            RG: '61.24.258',
+            avatarImage: '',
+            endereco: {
+                cep: '74.425.580',
+                logradouro: 'Rua Fulano',
+                numero: 's/n',
+                bairro: 'Ciclano',
+                complemento: 'quadra 10 lote 20',
+                cidade: 'Goiânia',
+                estado: 'Goiás',
+            },
+            whatsapp: '(64)992855445',
+            instagram: '',
+            twitter: '',
+            facebook: '',
+            porcentagemDescontoProdutos: '',
+            porcentagemDescontoServicos: '',
+            indocadoPor: '',
+            idArtista1: '',
+            idArtista2: '',
+            coloracaoCabelo: 'castanho',
+            tipoDePele: 'morena',
+            tipoDeUnha: '',
         },
     ];
+
     const [searchTerm, setSearchTerm] = useState('');
-    const [clientsList, setClientsList] = useState(clients);
+    const [clientsList, setClientsList] = useState<Array<IFormData>>(
+        initialData,
+    );
 
     function searchClient(e: React.ChangeEvent<HTMLInputElement>) {
         setSearchTerm(e.target.value);
@@ -97,7 +151,12 @@ const Clients: React.FC = () => {
             <ClientSearchContainer>
                 <h1>Clientes</h1>
                 <div>
-                    <AddClientModal />
+                    <AddClientModal
+                        saveClient={clientData => {
+                            /*                             console.log(clientData);
+                             */ setClientsList([...clientsList, clientData]);
+                        }}
+                    />
                     <div>
                         <input onChange={searchClient} />
                         <button className="searchButton " type="button">
@@ -108,29 +167,47 @@ const Clients: React.FC = () => {
             </ClientSearchContainer>
             <ClientList>
                 <ClientListHeader>
-                    <h3>Nome</h3>
-                    <h3>Telefone</h3>
-                    <h3>Último Serviço</h3>
-                    <h3>Ticket Médio</h3>
+                    <div>
+                        <span>Nome</span>
+                    </div>
+                    <div>
+                        <span>Telefone</span>
+                    </div>
+                    <div>
+                        <span>Sexo</span>
+                    </div>
+                    <div>
+                        <span>Data de Nascimento</span>
+                    </div>
+                    <div>
+                        <span>Ações</span>
+                    </div>
                 </ClientListHeader>
                 {clientsList.length > 0 ? (
-                    clientsList.map(client =>
-                        Object.values(client).some(value =>
+                    clientsList.map((client, index) => (
+                        /* Object.values(client).some(value =>
                             value
                                 .toLocaleUpperCase()
                                 .startsWith(searchTerm.toLocaleUpperCase()),
-                        ) ? (
-                            <ClientCard
-                                key={client.nome}
-                                nome={client.nome}
-                                telefone={client.telefone}
-                                ultimoServico={client.ultimoServico}
-                                ticketMedio={`R$ ${client.ticketMedio}`}
-                            />
-                        ) : (
-                            []
-                        ),
-                    )
+                        ) ? ( */
+                        <ClientCard
+                            clientIndex={index}
+                            key={index}
+                            nome={client.nome}
+                            telefone={client.whatsapp}
+                            sexo={client.sexo}
+                            deleteClient={() => {
+                                const updatedClientList = clientsList.filter(
+                                    (_, clientIndex) => clientIndex !== index,
+                                );
+
+                                setClientsList(updatedClientList);
+                            }}
+                            dataDeNascimento={convertToBrasilianDateFormat(
+                                new Date(client.dataDeNascimento),
+                            )}
+                        />
+                    ))
                 ) : (
                     <h1>sem clientes</h1>
                 )}

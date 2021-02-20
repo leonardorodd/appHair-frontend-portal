@@ -42,4 +42,25 @@ function rgMask(value: string): string {
         .replace(/(-\d{1})\d+?$/, '$1');
 }
 
-export { cpfMask, cnpjMask, phoneMask, cepMask, rgMask };
+function capitalizeString(value: string): string {
+    return value
+        .toLocaleLowerCase()
+        .replace(
+            new RegExp(/\b([a-z]{2,})(?<!)/g),
+            word => word.charAt(0).toUpperCase() + word.slice(1),
+        );
+}
+
+function downcaseString(value: string): string {
+    return value.toLocaleLowerCase();
+}
+
+export {
+    cpfMask,
+    cnpjMask,
+    phoneMask,
+    cepMask,
+    rgMask,
+    capitalizeString,
+    downcaseString,
+};

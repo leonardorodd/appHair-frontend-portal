@@ -66,10 +66,21 @@ const Aside: React.FC = () => {
                     link: '/clients',
                     subItens: [
                         {
-                            title: 'Agenda',
+                            title: 'buceta',
                             icon: MdEventNote,
                             link: '#',
-                            subItens: [],
+                            subItens: [
+                                {
+                                    title: 'teste',
+                                    icon: RiTruckFill,
+                                    link: '/#',
+                                },
+                            ],
+                        },
+                        {
+                            title: 'teste',
+                            icon: MdEventNote,
+                            link: '#',
                         },
                     ],
                 },
@@ -101,16 +112,14 @@ const Aside: React.FC = () => {
         setSearchTerm(e.target.value.toLocaleUpperCase());
     }
 
-    function searchSubItens(subItens: IMenuItemProps) {
-        if (subItens.subItens) {
-            return subItens.subItens.some(subItem =>
-                subItem.title.toLocaleUpperCase().startsWith(searchTerm),
-            );
-
-            // eslint-disable-next-line no-else-return
-        } else {
-            return false;
-        }
+    function searchSubItens(currentItem: IMenuItemProps) {
+        currentItem.subItens?.some(
+            subItem =>
+                subItem.title.toLocaleUpperCase().startsWith(searchTerm) ||
+                subItem.subItens?.some(sub =>
+                    sub.title.toLocaleUpperCase().startsWith(searchTerm),
+                ),
+        );
     }
 
     useEffect(() => {
@@ -127,10 +136,12 @@ const Aside: React.FC = () => {
             ) as HTMLCollectionOf<HTMLElement>,
         );
 
-        console.log('aa');
+        console.log(menuItemList.length);
 
         menuItemList.forEach(item => {
             item.addEventListener('click', () => {
+                console.log('sdsd');
+
                 menuItemList.forEach(ele => {
                     const panel = ele.nextElementSibling as Element;
 
@@ -141,23 +152,6 @@ const Aside: React.FC = () => {
                         ele.classList.add('closeAnimation');
                     }
                 });
-                /*  if (item.classList.contains('active')) {
-                    panel.removeAttribute('style');
-                    item.classList.remove('active');
-                    item.classList.remove('openAnimation');
-                    item.classList.add('closeAnimation');
-                } else {
-                    panel.setAttribute('style', 'max-height:500px');
-                    item.classList.add('active');
-                    item.classList.remove('closeAnimation');
-                    item.classList.add('openAnimation');
-                } */
-                /*   panel.setAttribute('style', 'max-height:500px');
-                item.classList.add('active');
-                item.classList.remove('closeAnimation');
-                item.classList.add('openAnimation'); */
-                /*  const panel = item.nextElementSibling as Element;
-                 */
 
                 const panel = item.nextElementSibling as Element;
 
@@ -181,7 +175,8 @@ const Aside: React.FC = () => {
             <div>
                 <Header>
                     <LogImg src={Logo} alt="Logo" />
-                    <input onChange={searchItem} />
+                    {/*                     <input onChange={searchItem} />
+                     */}
                 </Header>
                 <PerfectScrollbar>
                     {/*  <MenuContainer>
@@ -201,12 +196,12 @@ const Aside: React.FC = () => {
                             item.title
                                 .toLocaleUpperCase()
                                 .startsWith(searchTerm) ||
-                            (item.subItens && searchSubItens(item)) ? (
-                                /* item.subItens.some(subItem =>
+                            (item.subItens &&
+                                item.subItens.some(subItem =>
                                     subItem.title
                                         .toLocaleUpperCase()
                                         .startsWith(searchTerm),
-                                ) */
+                                )) ? (
                                 <MenuItemLink
                                     key={item.title}
                                     title={item.title}

@@ -1,16 +1,15 @@
 export default {
     title: 'dark',
     color: {
-        primary: '#1B1F38',
-        secondary: '#252A48',
-        tertiary: '#313862',
-
-        white: '#FFF',
-        black: '#0000',
-        gray: '#BFBFBF',
-
-        success: '#4E41F0',
-        info: '#F7931B',
-        warning: '#E44C4E',
+        basePrimaryColor: '#222',
+        baseSecondaryColor: '#dfaa4a',
+        baseTertiaryColor: '#fd5c0e',
+        baseBackgroundColor: '#f8f8f8',
+        baseQuaternaryColor: '#FFFF',
+        primaryBorderColor: '#eee',
+        secondaryBorderColor: '#ddd',
+        primaryTextColor: '#7e7e7e',
+        secondaryTextColor: '#414141',
+        tertiaryTextColor: '#292929',
     },
 };

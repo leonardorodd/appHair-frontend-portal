@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-
+import { darken } from 'polished';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
@@ -23,6 +23,11 @@ export default createGlobalStyle`
         box-sizing: border-box;
         outline: 0;
     }
+
+   /*  @font-face {
+        font-family: 'sans-serif';
+        src: local('Gidole-Regular'), url(../assets/fonts/Gidole-Regular.otf) format('otf');
+    } */
 
     a {
         text-decoration:none !important;
@@ -49,28 +54,84 @@ export default createGlobalStyle`
 
     button {
         cursor: pointer;
+        background: none;
+        border: none;
+        border-radius: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        font-size: 11px;
+        height: 35px;
+        transition: background 0.3s;
+        color: var(--base-quaternary-color);
+        background: var(--base-tertiary-color);
 
-         &:disabled {
+        &:hover {
+            background: ${darken(0.04, '#fd5c0e')};
+        }
+
+        &:disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
+    }
 
-            background: none;
+    .baseModalStyle {
+
+        .modal-content {
             border: none;
-            border-radius: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 12px;
+        }
+
+        .modal-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 200px;
-            height: 35px;
-            transition: background 0.3s;
-
-            color: #fff;
+            height: 50px;
             background: var(--base-tertiary-color);
+            color: #fff;
 
+            span {
+                color: #fff;
+            }
+        }
+
+        .modal-body {
+            color: var(--primary-text-color);
+            padding: 0px;
+        }
+
+        .modal-title {
+
+            p {
+                display: inline;
+                margin-left: 6px;
+                font-size: 18px;
+            }
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            border-top: 0px;
+
+            > :first-child {
+                background: none;
+                color: var(--primary-text-color);
+
+                 &:hover {
+                    color: var(--base-tertiary-color);
+                }
+            }
+
+            button {
+                width: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
     }
 
 `;

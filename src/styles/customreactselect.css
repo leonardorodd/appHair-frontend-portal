@@ -1,16 +1,36 @@
 .react-select__control {
-  border: 1px solid var(--primary-border-color) !important;
+  border-radius: 0px !important;
+  border: none !important;
   box-shadow: none !important;
   cursor: pointer !important;
-  height: 42px !important;
+  border-bottom: 1px solid var(--primary-border-color) !important;
+}
+
+.css-1okebmr-indicatorSeparator{
+    background: none !important;
+}
+
+.css-1gtu0rj-indicatorContainer {
+    color: var(--base-tertiary-color) !important;
+}
+
+.css-yk16xz-control {
+    height: 35px !important;
+    min-height: 35px !important;
+}
+
+.css-1pahdxg-control {
+    min-height: 35px !important;
 }
 
 .css-26l3qy-menu {
-  z-index: 5 !important;
+    min-height: 35px !important;
+    z-index: 5 !important;
 }
 
 .react-select__control--is-focused {
-  border: 1px solid var(--base-secondary-color) !important;
+  height: 35px !important;
+  border-bottom: 1px solid var(--base-tertiary-color) !important;
 }
 
 .react-select__single-value {
@@ -18,18 +38,15 @@
 }
 
 .react-select__option--is-focused {
-    color: var(--base-secondary-color) !important;
+    color: var(--base-tertiary-color) !important;
     background: #f8f8f8 !important;
 }
 
 .react-select__option--is-selected {
-  background: var(--base-secondary-color) !important;
+  background: var(--base-tertiary-color) !important;
   color: #fff !important;
 }
 
-/* .react-select__menu {
-    background: var(--base-secondary-color) !important;
-} */
 
 .hTaQZk textarea,
 .hTaQZk input {
@@ -37,7 +54,7 @@
 }
 
 .react-select__value-container {
-  height: 38px !important;
+  height: 35px !important;
 }
 
 .react-select__value-container--error {

@@ -13,25 +13,59 @@ export const Container = styled.li`
     margin-bottom: 3px;
     padding: 15px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     transition: all 0.3s;
 
-    position: relative;
-
     &:hover {
-        opacity: 0.7;
-        transform: translateX(10px);
+        /*         transform: translateX(5px);
+ */
     }
-
-    cursor: pointer;
 
     > div {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding-left: 10px;
+        align-items: center;
+        width: 26.75%;
     }
+
+    > :last-child {
+        width: 5%;
+        justify-content: space-between;
+        align-items: center;
+
+        svg {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            &:hover {
+                color: var(--base-tertiary-color);
+            }
+        }
+    }
+
+    /* > :first-child {
+        width: 95%;
+
+        > div {
+            width: 25%;
+        }
+    }
+    > :last-child {
+        width: 5%;
+        justify-content: space-between;
+
+        svg {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            &:hover {
+                color: var(--base-tertiary-color);
+            }
+        }
+    }
+
+    > span {
+        width: 25%;
+    } */
 `;
 
 export const Tag = styled.div<ITagProps>`

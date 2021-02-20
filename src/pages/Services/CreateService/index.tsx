@@ -10,7 +10,7 @@ const CreateClient: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const [showAddressContainer, setShowAddressContainer] = useState(false);
 
-    interface address {
+    interface IAddress {
         cep: string;
         logradouro: string;
         numero: string;
@@ -20,7 +20,7 @@ const CreateClient: React.FC = () => {
         estado: string;
     }
 
-    interface FormData {
+    interface IFormData {
         numeroCPFouCNPJ: string;
         razaoSocial: string;
         contato: string;
@@ -28,7 +28,7 @@ const CreateClient: React.FC = () => {
         email: string;
         celular: string;
         observacoes: string;
-        endereco: address;
+        endereco: IAddress;
     }
 
     function handleClose() {
@@ -39,7 +39,7 @@ const CreateClient: React.FC = () => {
         setShow(true);
     }
 
-    const handleCreateClientSubmit: SubmitHandler<FormData> = data => {
+    const handleCreateClientSubmit: SubmitHandler<IFormData> = data => {
         console.log(data);
     };
 

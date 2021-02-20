@@ -1,26 +1,43 @@
 import React from 'react';
+import { MdDelete, MdEdit } from 'react-icons/md';
 
 import { Container } from './styles';
 
 interface IClientCardProps {
     nome: string;
     telefone: string;
-    ultimoServico: string;
-    ticketMedio: string;
+    sexo: string;
+    dataDeNascimento: string;
+    clientIndex: number;
+    deleteClient: (index: number) => void;
 }
 
 const ClientCard: React.FC<IClientCardProps> = ({
     nome,
     telefone,
-    ultimoServico,
-    ticketMedio,
+    sexo,
+    dataDeNascimento,
+    clientIndex,
+    deleteClient,
 }) => {
     return (
         <Container>
-            <span>{nome}</span>
-            <span>{telefone}</span>
-            <span>{ultimoServico}</span>
-            <span>{ticketMedio}</span>
+            <div>
+                <span>{nome}</span>
+            </div>
+            <div>
+                <span>{telefone}</span>
+            </div>
+            <div>
+                <span>{sexo}</span>
+            </div>
+            <div>
+                <span>{dataDeNascimento}</span>
+            </div>
+            <div>
+                <MdEdit />
+                <MdDelete onClick={() => deleteClient(clientIndex)} />
+            </div>
         </Container>
     );
 };

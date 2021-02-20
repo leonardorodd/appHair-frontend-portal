@@ -6,6 +6,7 @@ import ReactDatePicker, {
     registerLocale,
 } from 'react-datepicker';
 import MaskedTextInput from 'react-text-mask';
+import ReactInputMask, { Props as ReactInputProps } from 'react-input-mask';
 import { useField } from '@unform/core';
 import 'react-datepicker/dist/react-datepicker.css';
 import pt from 'date-fns/locale/pt-BR';
@@ -18,7 +19,9 @@ interface Props extends Omit<ReactDatePickerProps, 'onChange'> {
 }
 const DatePicker: React.FC<Props> = ({ name, label, ...rest }) => {
     const datepickerRef = useRef(null);
-    const { fieldName, registerField, defaultValue, error } = useField(name);
+    const { fieldName, registerField, defaultValue = '', error } = useField(
+        name,
+    );
     const [date, setDate] = useState(defaultValue || null);
     useEffect(() => {
         registerField({
@@ -40,23 +43,7 @@ const DatePicker: React.FC<Props> = ({ name, label, ...rest }) => {
                 onChange={setDate}
                 locale="pt"
                 dateFormat="dd/MM/yyyy"
-                customInput={
-                    <MaskedTextInput
-                        type="text"
-                        mask={[
-                            /\d/,
-                            /\d/,
-                            '/',
-                            /\d/,
-                            /\d/,
-                            '/',
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                            /\d/,
-                        ]}
-                    />
-                }
+                customInput={<ReactInputMask mask="99/99/9999" />}
                 {...rest}
             />
         </Container>
