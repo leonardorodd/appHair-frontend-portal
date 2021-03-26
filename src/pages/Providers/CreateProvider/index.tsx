@@ -3,17 +3,13 @@
 /* eslint-disable react/jsx-curly-newline */
 import React, { useState, useRef, useEffect } from 'react';
 import { SubmitHandler, FormHandles, Scope } from '@unform/core';
-import { FaWhatsapp, FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
-import { IoLogoTiktok } from 'react-icons/io5';
 import { MdKeyboardArrowRight, MdKeyboardArrowDown } from 'react-icons/md';
 import * as Yup from 'yup';
 import { cpf, cnpj } from 'cpf-cnpj-validator';
-
 import Input from '../../../components/UnformFields/Input';
-import MaskedInput from '../../../components/UnformFields/InputMask';
+import MaskedInput from '../../../components/UnformFields/InputMaskd';
 import Select from '../../../components/UnformFields/Select';
-import DatePicker from '../../../components/UnformFields/DatePicker';
-import AvatarInput from '../../../components/UnformFields/AvatarInput';
+import FieldSet from '../../../components/FieldSet';
 import brasilStatesAndCities from '../../../utils/brazilianStates.json';
 import { cpfMask, cnpjMask } from '../../../utils/masks';
 
@@ -21,7 +17,6 @@ import {
     Container,
     CreateClientModal,
     CreateClientForm,
-    FieldSet,
     SectionButton,
 } from './styles';
 import '../../../styles/customreactselect.css';
@@ -254,52 +249,50 @@ const CreateProvider: React.FC = () => {
                         onSubmit={handleCreateClientSubmit}
                         ref={formRef}
                     >
-                        <FieldSet>Informações Básicas</FieldSet>
-                        <Input name="razaoSocial" label="Razão social" />
-                        <div id="group1">
-                            <Input
-                                name="numeroCPFouCNPJ"
-                                label="CPF/CNPJ"
-                                value={
-                                    tipoPessoa.length > 14
-                                        ? cnpjMask(tipoPessoa)
-                                        : cpfMask(tipoPessoa)
-                                }
-                                onChange={e => setTipoPessoa(e.target.value)}
-                            />
-                            <Input name="email" label="E-mail" />
-                            {/*  <MaskedInput
-                                name="inscricaoEstadual"
-                                label="Inscrição Estadual"
-                                mask="999.999.999/9999"
-                            /> */}
-                        </div>
+                        <FieldSet title="Informações Básicas">
+                            <Input name="razaoSocial" label="Razão social*" />
+                            <div id="group1">
+                                <Input
+                                    name="numeroCPFouCNPJ"
+                                    label="CPF/CNPJ*"
+                                    value={
+                                        tipoPessoa.length > 14
+                                            ? cnpjMask(tipoPessoa)
+                                            : cpfMask(tipoPessoa)
+                                    }
+                                    onChange={e =>
+                                        setTipoPessoa(e.target.value)
+                                    }
+                                />
+                                <Input name="email" label="E-mail" />
+                            </div>
 
-                        <div id="group3">
-                            <Input name="contato" label="Contato" />
-                            <MaskedInput
-                                mask="(99) 9999-9999"
-                                name="telefone"
-                                label="Telefone"
-                            />
-                            <MaskedInput
-                                mask="(99) 9 9999-9999"
-                                name="celular"
-                                label="Celular"
-                            />
-                        </div>
-                        <Input name="observacoes" label="Observações" />
-                        <FieldSet>Informações Bancárias</FieldSet>
-                        <div id="group2">
-                            <Input name="pix" label="Chave PIX" />
-                            <Input name="banco" label="Banco" />
-                            <Input name="agencia" label="Agência" />
-                            <Input
-                                name="contaCorrente"
-                                label="Conta Corrente"
-                            />
-                        </div>
-
+                            <div id="group3">
+                                <Input name="contato" label="Contato" />
+                                <MaskedInput
+                                    mask="(99) 9999-9999"
+                                    name="telefone"
+                                    label="Telefone"
+                                />
+                                <MaskedInput
+                                    mask="(99) 9 9999-9999"
+                                    name="celular"
+                                    label="Celular"
+                                />
+                            </div>
+                            <Input name="observacoes" label="Observações" />
+                        </FieldSet>
+                        <FieldSet title="Informações Bancárias">
+                            <div id="group2">
+                                <Input name="pix" label="Chave PIX" />
+                                <Input name="banco" label="Banco" />
+                                <Input name="agencia" label="Agência" />
+                                <Input
+                                    name="contaCorrente"
+                                    label="Conta Corrente"
+                                />
+                            </div>
+                        </FieldSet>
                         <SectionButton
                             type="button"
                             onClick={() =>
@@ -316,8 +309,7 @@ const CreateProvider: React.FC = () => {
                             )}
                         </SectionButton>
                         {showAddressContainer && (
-                            <>
-                                <FieldSet>Endereço</FieldSet>
+                            <FieldSet title="Endereço">
                                 <Scope path="address">
                                     <div id="group2">
                                         <MaskedInput
@@ -364,9 +356,12 @@ const CreateProvider: React.FC = () => {
                                                 label: 'Selecione',
                                                 value: 0,
                                             }}
-                                            onChange={value =>
-                                                setCurrentState(value?.value)
-                                            }
+                                            onChange={value => {
+                                                setCurrentState(value?.value);
+                                                formRef.current?.clearField(
+                                                    'address.cidade',
+                                                );
+                                            }}
                                             options={states}
                                             isSearchable={false}
                                             blurInputOnSelect
@@ -388,7 +383,7 @@ const CreateProvider: React.FC = () => {
                                         />
                                     </div>
                                 </Scope>
-                            </>
+                            </FieldSet>
                         )}
                     </CreateClientForm>
                 </CreateClientModal.Body>

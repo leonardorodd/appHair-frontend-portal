@@ -1,6 +1,6 @@
 import React from 'react';
 import ProviderCard from '../../components/ProviderCard';
-import AddProviderModal from './CreateService';
+import AddServiceModal from './CreateService';
 
 import {
     Container,
@@ -15,7 +15,7 @@ const Providers: React.FC = () => {
             <ClientSearchContainer>
                 <h1>Serviços</h1>
                 <div>
-                    <AddProviderModal />
+                    <AddServiceModal />
                     <div>
                         <input />
                         <button className="searchButton " type="button">

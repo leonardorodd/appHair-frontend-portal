@@ -1,9 +1,9 @@
 .react-select__control {
-  border-radius: 0px !important;
   border: none !important;
   box-shadow: none !important;
+  border-radius: 50px !important;
   cursor: pointer !important;
-  border-bottom: 1px solid var(--primary-border-color) !important;
+  border: 1px solid var(--primary-border-color) !important;
 }
 
 .css-1okebmr-indicatorSeparator{
@@ -17,6 +17,7 @@
 .css-yk16xz-control {
     height: 35px !important;
     min-height: 35px !important;
+    flex-wrap: inherit !important;
 }
 
 .css-1pahdxg-control {
@@ -26,11 +27,12 @@
 .css-26l3qy-menu {
     min-height: 35px !important;
     z-index: 5 !important;
+    color: var(--primary-text-color) !important;
 }
 
 .react-select__control--is-focused {
   height: 35px !important;
-  border-bottom: 1px solid var(--base-tertiary-color) !important;
+  border: 1px solid var(--base-tertiary-color) !important;
 }
 
 .react-select__single-value {
@@ -53,10 +55,24 @@
   margin-bottom: 0px !important;
 }
 
-.react-select__value-container {
-  height: 35px !important;
+.css-g1d714-ValueContainer {
+    position: relative !important;
+}
+
+.css-b8ldur-Input {
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
 }
 
 .react-select__value-container--error {
   border-color: red !important;
+}
+
+.css-g1d714-ValueContainer {
+  padding: 0px 12px !important;
+}
+
+
+.css-1pahdxg-control {
+    flex-wrap: inherit !important;
 }

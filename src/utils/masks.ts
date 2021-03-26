@@ -42,6 +42,13 @@ function rgMask(value: string): string {
         .replace(/(-\d{1})\d+?$/, '$1');
 }
 
+function brazilianCurrencyMask(value: number): string {
+    return value
+        .toFixed(2)
+        .replace('.', ',')
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+}
+
 function capitalizeString(value: string): string {
     return value
         .toLocaleLowerCase()
@@ -61,6 +68,7 @@ export {
     phoneMask,
     cepMask,
     rgMask,
+    brazilianCurrencyMask,
     capitalizeString,
     downcaseString,
 };

@@ -13,6 +13,7 @@ export const Container = styled.div`
         cursor: pointer;
         justify-content: center;
         align-items: center;
+        color: var(--primary-text-color);
 
         &:hover {
             opacity: 0.7;

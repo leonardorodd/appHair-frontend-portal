@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useRef, useState } from 'react';
-import { useField } from '@unform/core';
-import ReactInputMask, { Props as ReactInputProps } from 'react-input-mask';
-import { FaSpinner } from 'react-icons/fa';
+import React, { useRef, useEffect } from 'react';
+import ReactInputMask, { Props as InputProps } from 'react-input-mask';
 import { IconBaseProps } from 'react-icons';
+import { useField } from '@unform/core';
+import { FaSpinner } from 'react-icons/fa';
 import { MdErrorOutline } from 'react-icons/md';
 import { Container } from './styles';
 
-interface Props {
+interface Props extends InputProps {
     name: string;
     loading?: boolean;
     showLoadingIcon?: boolean;
@@ -17,8 +17,7 @@ interface Props {
     onChangeCallback?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-type InputProps = ReactInputProps & Props;
-const Input: React.FC<InputProps> = ({
+const Input: React.FC<Props> = ({
     name,
     label,
     loading,
@@ -30,20 +29,21 @@ const Input: React.FC<InputProps> = ({
 }) => {
     const inputRef = useRef(null);
     const { fieldName, registerField, defaultValue, error } = useField(name);
-    const [value, setValue] = useState<string>('');
 
     useEffect(() => {
         registerField({
             name: fieldName,
             ref: inputRef.current,
-            getValue() {
-                return value;
+            path: 'value',
+            setValue(ref: any, value: string) {
+                ref.setInputValue(value);
             },
-            clearValue() {
-                setValue('');
+            clearValue(ref: any) {
+                ref.setInputValue('');
             },
         });
-    }, [fieldName, registerField, value]);
+    }, [fieldName, registerField]);
+
     return (
         <Container
             textTransform={textTransform || 'capitalize'}
@@ -64,16 +64,13 @@ const Input: React.FC<InputProps> = ({
                 <ReactInputMask
                     ref={inputRef}
                     defaultValue={defaultValue}
-                    value={value}
-                    style={{ borderColor: error ? '#db3b21' : '' }}
-                    disabled={loading}
                     onChange={event => {
                         if (onChangeCallback) {
                             onChangeCallback(event);
                         }
-
-                        setValue(event.target.value);
                     }}
+                    style={{ borderColor: error ? '#db3b21' : '' }}
+                    disabled={loading}
                     {...rest}
                 />
                 {showLoadingIcon && loading && <FaSpinner id="loadingIcon" />}
@@ -87,4 +84,5 @@ const Input: React.FC<InputProps> = ({
         </Container>
     );
 };
+
 export default Input;

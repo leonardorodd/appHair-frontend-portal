@@ -46,6 +46,18 @@ export const CreateClientForm = styled(Form)`
     flex-direction: column;
     padding: 35px;
 
+    @media only screen and (max-width: 1000px) {
+        #group1,
+        #group2,
+        #group3 {
+            flex-direction: column;
+
+            > div {
+                width: 100% !important;
+            }
+        }
+    }
+
     #group1 {
         display: flex;
         > div {

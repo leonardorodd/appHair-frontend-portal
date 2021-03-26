@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import { darken } from 'polished';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default createGlobalStyle`
     :root {
@@ -13,7 +14,7 @@ export default createGlobalStyle`
         --primary-border-color: #eee;
         --secondary-border-color: #ddd;
         --primary-text-color: #7e7e7e;
-        --secondary-text-color: #414141;
+        --secondary-text-color: #585858;
         --tertiary-text-color: #292929;
     }
 
@@ -79,6 +80,25 @@ export default createGlobalStyle`
         }
     }
 
+    .twoFieldsGroup {
+        display: flex;
+        > div {
+            width: 50%;
+        }
+    }
+    .treeFieldsgroup {
+        display: flex;
+        > div {
+            width: 33.3%;
+        }
+    }
+    .fourFieldsGroup {
+        display: flex;
+        > div {
+            width: 25%;
+        }
+    }
+
     .baseModalStyle {
 
         .modal-content {
@@ -103,10 +123,13 @@ export default createGlobalStyle`
         }
 
         .modal-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             p {
-                display: inline;
-                margin-left: 6px;
+                margin: 0px;
+                font-weight: bold;
                 font-size: 18px;
             }
         }
@@ -117,6 +140,7 @@ export default createGlobalStyle`
             border-top: 0px;
 
             > :first-child {
+                border: 2px solid var(--primary-border-color);
                 background: none;
                 color: var(--primary-text-color);
 
@@ -131,6 +155,11 @@ export default createGlobalStyle`
                 justify-content: center;
                 align-items: center;
             }
+        }
+
+        .modal-90w {
+            width: 90%;
+            max-width: 1300px;
         }
     }
 

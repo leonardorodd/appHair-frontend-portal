@@ -1,5 +1,6 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
-/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/jsx-curly-newline */
 import React, { useState, useRef, useEffect } from 'react';
 import { SubmitHandler, FormHandles, Scope } from '@unform/core';
@@ -7,10 +8,12 @@ import { FaWhatsapp, FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
 import { IoLogoTiktok } from 'react-icons/io5';
 import { MdKeyboardArrowRight, MdKeyboardArrowDown } from 'react-icons/md';
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
+import { OptionTypeBase } from 'react-select';
 import { cpf, cnpj } from 'cpf-cnpj-validator';
-
+import FieldSet from '../../../components/FieldSet';
 import Input from '../../../components/UnformFields/Input';
-import MaskedInput from '../../../components/UnformFields/InputMask';
+import MaskedInput from '../../../components/UnformFields/InputMaskd';
 import Select from '../../../components/UnformFields/Select';
 import DatePicker from '../../../components/UnformFields/DatePicker';
 import AvatarInput from '../../../components/UnformFields/AvatarInput';
@@ -21,7 +24,6 @@ import {
     Container,
     CreateClientModal,
     CreateClientForm,
-    FieldSet,
     SectionButton,
 } from './styles';
 import '../../../styles/customreactselect.css';
@@ -41,6 +43,11 @@ interface IAddress {
     complemento: string;
     cidade: string;
     estado: string;
+}
+
+interface ICNPJ {
+    razao_social: string;
+    cep: string;
 }
 
 export interface IFormData {
@@ -74,77 +81,74 @@ interface IAddressapi {
     street: string;
 }
 
+interface IComboBox {
+    value: string;
+    label: string;
+}
+
 const CreateClient: React.FC<ICreateClientProps> = ({ saveClient }) => {
     const [show, setShow] = useState(false);
-    const [addressInfo, setAddressInfo] = useState<IAddressapi>();
-    const [loading, setLoading] = useState<boolean>(false);
+    const [cepLoading, setCepLoading] = useState<boolean>(false);
+    const [cnpjLoading, setCnpjLoading] = useState<boolean>(false);
     const formRef = useRef<FormHandles>(null);
     const [showPreferencesContainer, setShowPreferencesContainer] = useState(
         false,
     );
     const [showAddressContainer, setShowAddressContainer] = useState(false);
     const [tipoPessoa, setTipoPessoa] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [cepNumber, setCepNumber] = useState('');
-    const [rgNumber, setRgNumber] = useState('');
-
-    const [currentState, setCurrentState] = useState<string | null>(null);
+    const [currentUfAndCity, setCurrentUfAndCity] = useState({
+        uf: '',
+        city: '',
+    });
+    const [currentCity, setCurrentCity] = useState<string>();
+    const [citiesList, setCitiesList] = useState<Array<IComboBox>>();
 
     const affiliationOptions = [
         { value: 1, label: 'Masculino' },
         { value: 2, label: 'Feminino' },
     ];
 
-    const states = brasilStatesAndCities.estados.map(elem => ({
-        value: elem.nome,
-        label: elem.nome,
-        sigla: elem.sigla,
-    }));
-
-    const cities = brasilStatesAndCities.estados
-        .find(elem => elem.nome === currentState)
-        ?.cidades.map(elem => ({
-            value: elem,
-            label: elem,
-        }));
-
     function handleClose() {
         setShow(false);
+        setShowAddressContainer(false);
+        setShowPreferencesContainer(false);
     }
 
     function handleShow() {
         setShow(true);
     }
 
+    const ufsList = brasilStatesAndCities.estados.map(uf => ({
+        sigla: uf.sigla,
+        label: `${uf.sigla} - ${uf.nome}`,
+        value: uf.nome,
+    }));
+
     function getAddressInfo(cep: string) {
-        setLoading(true);
+        setCepLoading(true);
         apiClient
             .get<IAddressapi>(`https://brasilapi.com.br/api/cep/v1/${cep}`)
             .then(response => {
+                setCurrentUfAndCity({
+                    uf: response.data.state,
+                    city: response.data.city,
+                });
                 formRef.current?.setFieldError('address.cep', '');
                 formRef.current?.setData({
                     address: {
                         bairro: response.data.neighborhood,
                         logradouro: response.data.street,
-                        estado: states.filter(
-                            estado => estado.sigla === response.data.state,
-                        ),
-                        cidade: cities?.filter(
-                            cidade => cidade.label === response.data.city,
+                        estado: ufsList.find(
+                            uf => uf.sigla === response.data.state,
                         ),
                     },
                 });
-                setCurrentState(
-                    formRef.current?.getFieldValue('address.estado')[0].label,
-                );
             })
             .catch(error => {
-                let errorMessage = '';
+                let errorMessage = 'O preenchimento automático está offline';
 
                 if (error.status === 404) {
                     errorMessage = 'CEP não encontrado!';
-                } else {
-                    errorMessage = 'O preenchimento automático está offline';
                 }
 
                 formRef.current?.setData({
@@ -156,7 +160,42 @@ const CreateClient: React.FC<ICreateClientProps> = ({ saveClient }) => {
 
                 formRef.current?.setFieldError('address.cep', errorMessage);
             })
-            .finally(() => setLoading(false));
+            .finally(() => setCepLoading(false));
+    }
+
+    function getCNPJInfo(cnpjNumber: string) {
+        setCnpjLoading(true);
+        apiClient
+            .get<ICNPJ>(`https://brasilapi.com.br/api/cnpj/v1/${cnpjNumber}`)
+            .then(response => {
+                formRef.current?.setFieldError('numeroCPFouCNPJ', '');
+                console.log(formRef.current?.getFieldValue('address.cep'));
+                console.log(response.data.cep);
+                formRef.current?.setData({
+                    nome: response.data.razao_social,
+                    address: {
+                        cep: 121223321,
+                    },
+                });
+            })
+            .catch(error => {
+                let errorMessage = '';
+
+                if (error.status === 404) {
+                    errorMessage = 'CNPJ não encontrado!';
+                } else if (error.status === 400) {
+                    errorMessage = 'CNPJ inválido!';
+                } else {
+                    errorMessage = 'O preenchimento automático está offline';
+                }
+
+                formRef.current?.setData({
+                    nome: '',
+                });
+
+                formRef.current?.setFieldError('numeroCPFouCNPJ', errorMessage);
+            })
+            .finally(() => setCnpjLoading(false));
     }
 
     const handleCreateClientSubmit: SubmitHandler<IFormData> = async data => {
@@ -178,6 +217,16 @@ const CreateClient: React.FC<ICreateClientProps> = ({ saveClient }) => {
                     .required('O email é obrigatório!'),
                 whatsapp: Yup.string().required(
                     'O número de celular é obrigatório!',
+                ),
+                porcentagemDescontoServicos: Yup.string().test(
+                    'valid',
+                    'Porcentagem inválida',
+                    valor => !valor || Number.parseInt(valor, 10) <= 100,
+                ),
+                porcentagemDescontoProdutos: Yup.string().test(
+                    'valid',
+                    'Porcentagem inválida',
+                    valor => !valor || Number.parseInt(valor, 10) <= 100,
                 ),
                 numeroCPFouCNPJ: Yup.string()
                     .test(
@@ -235,96 +284,118 @@ const CreateClient: React.FC<ICreateClientProps> = ({ saveClient }) => {
                         onSubmit={handleCreateClientSubmit}
                         ref={formRef}
                     >
-                        <FieldSet>Informações Básicas</FieldSet>
-                        <div id="group1">
-                            <div>
-                                <Input name="nome" label="Nome Completo*" />
+                        <FieldSet title="Informações Básicas">
+                            <div id="group1">
                                 <div>
+                                    <Input
+                                        name="nome"
+                                        label="Nome Completo/Razão Social*"
+                                    />
                                     <div>
-                                        <DatePicker
-                                            label="Data de nascimento"
-                                            name="dataDeNascimento"
-                                        />
-                                        <Select
-                                            label="Sexo"
-                                            name="sexo"
-                                            classNamePrefix="react-select"
-                                            defaultValue={{
-                                                label: 'Selecione',
-                                                value: 0,
-                                            }}
-                                            options={affiliationOptions}
-                                            isSearchable={false}
-                                            blurInputOnSelect
-                                            openMenuOnFocus
-                                        />
-                                    </div>
-                                    <div>
-                                        <Input
-                                            textTransform="lowercase"
-                                            name="email"
-                                            label="E-mail"
-                                        />
-                                        <Input
-                                            name="numeroCPFouCNPJ"
-                                            label="CPF/CNPJ"
-                                            value={
-                                                tipoPessoa.length > 14
-                                                    ? cnpjMask(tipoPessoa)
-                                                    : cpfMask(tipoPessoa)
-                                            }
-                                            onChange={e =>
-                                                setTipoPessoa(e.target.value)
-                                            }
-                                        />
-                                        <MaskedInput
-                                            mask="99.999.999-9"
-                                            name="RG"
-                                            label="RG"
-                                        />
+                                        <div>
+                                            <DatePicker
+                                                label="Data de nascimento"
+                                                name="dataDeNascimento"
+                                            />
+                                            <Select
+                                                label="Sexo"
+                                                name="sexo"
+                                                classNamePrefix="react-select"
+                                                defaultValue={{
+                                                    label: 'Selecione',
+                                                    value: 0,
+                                                }}
+                                                options={affiliationOptions}
+                                                isSearchable={false}
+                                                blurInputOnSelect
+                                                openMenuOnFocus
+                                            />
+                                        </div>
+                                        <div>
+                                            <Input
+                                                textTransform="lowercase"
+                                                name="email"
+                                                label="E-mail*"
+                                            />
+                                            <Input
+                                                name="numeroCPFouCNPJ"
+                                                label="CPF/CNPJ*"
+                                                value={
+                                                    tipoPessoa.length > 14
+                                                        ? cnpjMask(tipoPessoa)
+                                                        : cpfMask(tipoPessoa)
+                                                }
+                                                onChange={event => {
+                                                    setTipoPessoa(
+                                                        event.target.value,
+                                                    );
+                                                    if (
+                                                        RegExp(
+                                                            /\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}/g,
+                                                        ).test(
+                                                            event.target.value,
+                                                        )
+                                                    ) {
+                                                        console.log('entrou');
+                                                        getCNPJInfo(
+                                                            event.target.value.replace(
+                                                                '/',
+                                                                '',
+                                                            ),
+                                                        );
+                                                    }
+                                                }}
+                                            />
+                                            <MaskedInput
+                                                mask="99.999.999-9"
+                                                name="RG"
+                                                label="RG"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
+                                <div>
+                                    <AvatarInput
+                                        name="avatarImage"
+                                        label="Foto do cliente"
+                                    />
+                                </div>
                             </div>
-                            <div>
-                                <AvatarInput
-                                    name="avatarImage"
-                                    label="Foto do cliente"
+                        </FieldSet>
+                        <FieldSet title="Redes Sociais">
+                            <div id="group4">
+                                <MaskedInput
+                                    mask="(99) 9 9999-9999"
+                                    name="whatsapp"
+                                    label="Whatsapp*"
+                                    labelIcon={FaWhatsapp}
+                                />
+                                <Input
+                                    textTransform="lowercase"
+                                    name="instagram"
+                                    labelIcon={FaInstagram}
+                                    label="Instagram"
+                                />
+                                <Input
+                                    textTransform="lowercase"
+                                    name="twitter"
+                                    labelIcon={FaTwitter}
+                                    label="Twitter"
+                                />
+                                <Input
+                                    textTransform="lowercase"
+                                    name="tiktok"
+                                    labelIcon={IoLogoTiktok}
+                                    label="TikTok"
+                                />
+                                <Input
+                                    textTransform="lowercase"
+                                    name="facebook"
+                                    labelIcon={FaFacebook}
+                                    label="Facebook"
                                 />
                             </div>
-                        </div>
-                        <FieldSet>Redes Sociais</FieldSet>
-                        <div id="group4">
-                            <MaskedInput
-                                mask="(99) 9 9999-9999"
-                                name="whatsapp"
-                                label="Whatsapp"
-                                labelIcon={FaWhatsapp}
-                            />
-                            <Input
-                                textTransform="lowercase"
-                                name="instagram"
-                                labelIcon={FaInstagram}
-                                label="Instagram"
-                            />
-                            <Input
-                                textTransform="lowercase"
-                                name="twitter"
-                                labelIcon={FaTwitter}
-                                label="Twitter"
-                            />
-                            <Input
-                                textTransform="lowercase"
-                                name="tiktok"
-                                labelIcon={IoLogoTiktok}
-                                label="TikTok"
-                            />
-                            <Input
-                                textTransform="lowercase"
-                                name="facebook"
-                                labelIcon={FaFacebook}
-                                label="Facebook"
-                            />
-                        </div>
+                        </FieldSet>
                         <SectionButton
                             type="button"
                             onClick={() =>
@@ -341,17 +412,16 @@ const CreateClient: React.FC<ICreateClientProps> = ({ saveClient }) => {
                             )}
                         </SectionButton>
                         {showAddressContainer && (
-                            <>
-                                <FieldSet>Endereço</FieldSet>
+                            <FieldSet title="Endereço">
                                 <Scope path="address">
                                     <div id="group2">
                                         <MaskedInput
                                             mask="99999-999"
                                             name="cep"
                                             showLoadingIcon
-                                            loading={loading}
+                                            loading={cepLoading}
                                             label="CEP"
-                                            disabled={loading}
+                                            disabled={cepLoading}
                                             onChangeCallback={event => {
                                                 if (
                                                     RegExp(
@@ -367,13 +437,13 @@ const CreateClient: React.FC<ICreateClientProps> = ({ saveClient }) => {
                                         <Input
                                             name="logradouro"
                                             label="Logradouro"
-                                            disabled={loading}
+                                            disabled={cepLoading}
                                         />
                                         <Input name="numero" label="Número" />
                                         <Input
                                             name="bairro"
                                             label="Bairro"
-                                            disabled={loading}
+                                            disabled={cepLoading}
                                         />
                                     </div>
                                     <div id="group3">
@@ -385,35 +455,69 @@ const CreateClient: React.FC<ICreateClientProps> = ({ saveClient }) => {
                                             label="Estado"
                                             name="estado"
                                             classNamePrefix="react-select"
-                                            defaultValue={{
-                                                label: 'Selecione',
+                                            /*  defaultValue={{
+                                                label: 'Selecione um estado',
                                                 value: 0,
+                                            }} */
+                                            onChange={value => {
+                                                console.log(value);
+                                                /*   setCurrentUf(
+                                                    value?.label.substring(
+                                                        0,
+                                                        2,
+                                                    ),
+                                                ); */
+                                                /*                                                 setCurrentCity(null);
+                                                 */
                                             }}
-                                            onChange={value =>
-                                                setCurrentState(value?.value)
-                                            }
-                                            options={states}
-                                            isSearchable={false}
+                                            options={ufsList}
+                                            isSearchable
                                             blurInputOnSelect
                                             openMenuOnFocus
                                         />
                                         <Select
                                             name="cidade"
                                             label="Cidade"
-                                            classNamePrefix="react-select"
+                                            isSearchable
                                             defaultValue={{
-                                                label: 'Selecione',
+                                                label: 'Selecione uma cidade',
                                                 value: 0,
                                             }}
-                                            isDisabled={currentState === ''}
-                                            options={cities}
-                                            isSearchable={false}
+                                            /* disabled={cities?.length === 0} */
+                                            noOptionsMessage={() =>
+                                                /* {
+                                                console.log(
+                                                    document.querySelector(
+                                                        'div.react-select__single-value.css-1uccc91-singleValue',
+                                                    ),
+                                                ); */
+
+                                                'Sem resultados'
+                                            }
+                                            classNamePrefix="react-select"
+                                            options={brasilStatesAndCities.estados
+                                                .find(
+                                                    elem =>
+                                                        elem.sigla ===
+                                                        currentUfAndCity.uf,
+                                                )
+                                                ?.cidades.map(elem => ({
+                                                    value: elem,
+                                                    label: elem,
+                                                }))}
+                                            /*  onChange={value =>
+                                                setCurrentCity(value)
+                                            }
+                                            value={
+                                                currentCity ||
+                                                (citiesList && citiesList[0])
+                                            } */
                                             blurInputOnSelect
                                             openMenuOnFocus
                                         />
                                     </div>
                                 </Scope>
-                            </>
+                            </FieldSet>
                         )}
                         <SectionButton
                             type="button"
@@ -433,17 +537,16 @@ const CreateClient: React.FC<ICreateClientProps> = ({ saveClient }) => {
                             )}
                         </SectionButton>
                         {showPreferencesContainer && (
-                            <>
-                                <FieldSet>Preferências</FieldSet>
+                            <FieldSet title="Preferências">
                                 <div id="group5">
                                     <Input
                                         name="idArtista1"
                                         label="Artista de Preferência 1"
                                     />
-                                    <Input
-                                        textTransform="capitalize"
+                                    <MaskedInput
+                                        mask="999"
                                         name="porcentagemDescontoProdutos"
-                                        label="Desconto em Produtos (%)"
+                                        label="Desconto em Produtos (0% - 100%)"
                                     />
                                     <Input
                                         name="indocadoPor"
@@ -460,9 +563,10 @@ const CreateClient: React.FC<ICreateClientProps> = ({ saveClient }) => {
                                         name="idArtista2"
                                         label="Artista de Preferência 2"
                                     />
-                                    <Input
+                                    <MaskedInput
+                                        mask="999"
                                         name="porcentagemDescontoServicos"
-                                        label="Desconto em Serviços (%)"
+                                        label="Desconto em Serviços (0% - 100%)"
                                     />
 
                                     <Input
@@ -474,7 +578,7 @@ const CreateClient: React.FC<ICreateClientProps> = ({ saveClient }) => {
                                         label="Tipo de Unha"
                                     />
                                 </div>
-                            </>
+                            </FieldSet>
                         )}
                     </CreateClientForm>
                 </CreateClientModal.Body>

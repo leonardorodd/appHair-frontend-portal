@@ -11,14 +11,11 @@ export const Container = styled.div`
         }
     }
 
-    > input {
-        padding: 10px;
-        border: 1px solid var(--primary-border-color);
-        border-radius: 5px;
-    }
-
     > label {
-        display: inline;
-        margin-bottom: 0px;
+        margin-left: 15px;
+        margin-bottom: 5px;
+        font-size: 13px;
+        font-weight: bold;
+        color: var(--primary-text-color);
     }
 `;

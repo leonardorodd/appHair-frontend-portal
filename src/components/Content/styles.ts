@@ -7,7 +7,6 @@ export const Container = styled.div`
     grid-column: 2;
     grid-row: 2;
     padding: 30px;
-    background: var(--base-background-color);
     height: calc(100vh - 54px);
     overflow-y: scroll;
 

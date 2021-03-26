@@ -46,6 +46,47 @@ export const CreateClientForm = styled(Form)`
     flex-direction: column;
     padding: 35px;
 
+    @media only screen and (max-width: 1000px) {
+        #group1 {
+            flex-direction: column-reverse;
+
+            > div {
+                width: 100% !important;
+            }
+
+            > :first-child {
+                > :last-child {
+                    > div {
+                        flex-direction: column;
+                        > div {
+                            width: 100% !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        #group2,
+        #group3 {
+            flex-direction: column;
+            > div {
+                width: 100% !important;
+            }
+        }
+    }
+    @media only screen and (max-width: 1200px) {
+        #group4,
+        #group5,
+        #group6 {
+            flex-direction: column;
+            > div {
+                width: 100% !important;
+            }
+        }
+    }
+
     #group1 {
         display: flex;
 

@@ -6,7 +6,9 @@ import Clientes from '../pages/Clients';
 import List from '../pages/List';
 import SignIn from '../pages/SignIn';
 import Providers from '../pages/Providers';
+import Products from '../pages/Products';
 import Services from '../pages/Services';
+import Artist from '../pages/Artist';
 
 const Routes: React.FC = () => (
     <Layout>
@@ -15,8 +17,10 @@ const Routes: React.FC = () => (
             <Route path="/signin" component={SignIn} exact />
             <Route path="/clients" component={Clientes} exact />
             <Route path="/providers" component={Providers} exact />
+            <Route path="/products" component={Products} exact />
             <Route path="/services" component={Services} exact />
             <Route path="/list/:type" component={List} exact />
+            <Route path="/artists" component={Artist} />
         </Switch>
     </Layout>
 );

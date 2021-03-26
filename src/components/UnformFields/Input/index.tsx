@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-newline */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useRef, useState } from 'react';
@@ -6,12 +7,11 @@ import { IconBaseProps } from 'react-icons';
 import { MdErrorOutline } from 'react-icons/md';
 import { Container } from './styles';
 
-import { capitalizeString } from '../../../utils/masks';
-
 interface Props {
     name: string;
     textTransform?: 'lowercase' | 'uppercase' | 'capitalize';
     label: string;
+    customMask?: (value: string) => string;
     labelIcon?: React.FC<IconBaseProps>;
 }
 
@@ -21,10 +21,12 @@ const Input: React.FC<InputProps> = ({
     name,
     label,
     textTransform,
+    customMask,
     labelIcon: LabelIcon,
     ...rest
 }) => {
     const inputRef = useRef<HTMLInputElement>(null);
+    const [value, setValue] = useState('');
     const {
         fieldName,
         defaultValue,
@@ -55,6 +57,10 @@ const Input: React.FC<InputProps> = ({
             <input
                 id={fieldName}
                 ref={inputRef}
+                value={customMask ? customMask(value) : undefined}
+                onChange={event =>
+                    customMask ? setValue(event.target.value) : undefined
+                }
                 style={{ borderColor: error ? '#db3b21' : '' }}
                 defaultValue={defaultValue}
                 {...rest}

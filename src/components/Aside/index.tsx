@@ -19,7 +19,10 @@ import {
     MdLiveHelp,
     MdStore,
     MdGroup,
+    MdPerson,
 } from 'react-icons/md';
+
+import { FaUserTie } from 'react-icons/fa';
 
 import {
     RiTruckFill,
@@ -28,9 +31,6 @@ import {
     RiHandSanitizerFill,
     RiTakeawayFill,
 } from 'react-icons/ri';
-
-import { BsCalendar } from 'react-icons/bs';
-import { FiEdit } from 'react-icons/fi';
 
 import { AiOutlineCodeSandbox } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -60,13 +60,14 @@ const Aside: React.FC = () => {
             icon: MdBorderColor,
             link: '/#',
             subItens: [
+                { title: 'Artistas', icon: MdPerson, link: '/artists' },
                 {
                     title: 'Clientes',
                     icon: MdGroup,
                     link: '/clients',
                     subItens: [
                         {
-                            title: 'buceta',
+                            title: 'teste2',
                             icon: MdEventNote,
                             link: '#',
                             subItens: [
@@ -89,7 +90,11 @@ const Aside: React.FC = () => {
                     icon: RiTruckFill,
                     link: '/providers',
                 },
-                { title: 'Produtos', icon: RiHandSanitizerFill, link: '#' },
+                {
+                    title: 'Produtos',
+                    icon: RiHandSanitizerFill,
+                    link: '/products',
+                },
                 { title: 'Serviços', icon: MdWork, link: '/services' },
             ],
         },
@@ -136,12 +141,8 @@ const Aside: React.FC = () => {
             ) as HTMLCollectionOf<HTMLElement>,
         );
 
-        console.log(menuItemList.length);
-
         menuItemList.forEach(item => {
             item.addEventListener('click', () => {
-                console.log('sdsd');
-
                 menuItemList.forEach(ele => {
                     const panel = ele.nextElementSibling as Element;
 

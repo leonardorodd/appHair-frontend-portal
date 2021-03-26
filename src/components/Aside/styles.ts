@@ -57,7 +57,7 @@ export const LogImg = styled.img`
     margin-right: 10px;
 `;
 export const MenuContainer = styled.nav`
-    height: 400px;
+    height: 300px;
     /*     background: blue;
  */
     /*  display: flex;

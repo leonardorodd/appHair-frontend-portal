@@ -30,8 +30,10 @@ export const Container = styled.div<IInputProps>`
         align-items: center;
 
         > label {
-            margin-bottom: 0px;
+            margin-left: 15px;
+            margin-bottom: 5px;
             font-size: 13px;
+            font-weight: bold;
             color: var(--primary-text-color);
         }
 
@@ -49,10 +51,10 @@ export const Container = styled.div<IInputProps>`
 
     > input {
         text-transform: ${props => props.textTransform};
-        border: 0px;
-        border-bottom: 1px solid var(--primary-border-color);
+        border-radius: 50px;
+        border: 1px solid var(--primary-border-color);
         height: 35px;
-        padding-left: 10px;
+        padding: 15px;
         color: var(--primary-text-color);
 
         &[disabled] {

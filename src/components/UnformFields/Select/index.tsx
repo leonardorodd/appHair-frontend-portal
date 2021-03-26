@@ -1,6 +1,7 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import ReactSelect, {
     OptionTypeBase,
     Props as SelectProps,
@@ -14,9 +15,10 @@ interface Props extends SelectProps<OptionTypeBase> {
     label?: string;
 }
 
-const Select: React.FC<Props> = ({ name, label, ...rest }) => {
+const Select: React.FC<Props> = ({ name, label, placeholder, ...rest }) => {
     const selectRef = useRef(null);
     const { fieldName, defaultValue, registerField, error } = useField(name);
+    const [value, setValue] = useState(defaultValue);
 
     useEffect(() => {
         registerField({
@@ -24,6 +26,9 @@ const Select: React.FC<Props> = ({ name, label, ...rest }) => {
             ref: selectRef.current,
             setValue: (ref, value) => {
                 ref.state.value = value;
+            },
+            clearValue: ref => {
+                ref.state.value = '';
             },
             getValue: ref => {
                 if (rest.isMulti) {
@@ -54,11 +59,14 @@ const Select: React.FC<Props> = ({ name, label, ...rest }) => {
             )}
 
             <ReactSelect
+                escapeClearsValue
                 id={fieldName}
                 className={error ? 'react-select__value-container--error' : ''}
                 style={{ borderColor: error ? '#db3b21' : '' }}
-                defaultValue={defaultValue}
+                value={value}
+                placeholder={placeholder}
                 ref={selectRef}
+                onChange={value => setValue(value)}
                 classNamePrefix="react-select"
                 {...rest}
             />
