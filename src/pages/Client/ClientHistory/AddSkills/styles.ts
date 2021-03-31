@@ -6,7 +6,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     > button {
-        width: 25%;
+        width: 20%;
     }
 `;
 export const AddSkillModal = styled(Modal)`

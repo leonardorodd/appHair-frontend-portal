@@ -48,11 +48,10 @@ const ImageInput: React.FC<InputProps> = ({ name, label, ...rest }) => {
 
     return (
         <Container>
-            <label htmlFor={fieldName}>
-                <img
-                    src={selectedFile ? URL.createObjectURL(selectedFile) : defaultValue}
-                    alt="profile"
-                />
+            <label
+                htmlFor={fieldName}
+                className="fibre-button fibre-button--cancel"
+            >
                 <input
                     type="file"
                     id={fieldName}
@@ -61,7 +60,7 @@ const ImageInput: React.FC<InputProps> = ({ name, label, ...rest }) => {
                     accept="image/*"
                     {...rest}
                 />
-                {label || ''}
+                {label}
             </label>
         </Container>
     );

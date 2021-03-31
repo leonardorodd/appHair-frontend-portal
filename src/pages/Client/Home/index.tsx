@@ -2,9 +2,9 @@
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable react/jsx-indent */
 import React, { useState } from 'react';
-import ClientCard from '../../components/ClientCard';
-import { convertToBrasilianDateFormat } from '../../utils/dateUtils';
-import AddClientModal, { IFormData } from './CreateClient';
+import ClientCard from '../../../components/ClientCard';
+import { convertToBrasilianDateFormat } from '../../../utils/dateUtils';
+import AddClientModal, { IFormData } from '../CreateClient';
 
 import {
     Container,

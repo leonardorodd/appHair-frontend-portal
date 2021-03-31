@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     margin-right: -25px;
+    z-index: 1;
 
     .dropbtn {
         border: none;

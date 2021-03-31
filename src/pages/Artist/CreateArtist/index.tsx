@@ -457,190 +457,209 @@ const CreateProvider: React.FC = () => {
                         </div>
                     </Scope>
                 </FieldSet>
-                <div>
-                    <FieldSet title="Habilidades">
-                        <Select
-                            label="Filtrar por categoria"
-                            name="categoria"
-                            classNamePrefix="react-select"
-                            placeholder="Selecione uma categoria"
-                            defaultValue={{
+                <FieldSet title="Horário de trabalho">
+                    <AddSkill />
+                    <DayScheduleItem>
+                        <CheckBox
+                            name="sabado"
+                            label="Informar um horário único"
+                        />
+                        <p>Horário</p>
+                        <div>
+                            <MaskedInput mask="99:99" name="value" />
+                            às
+                            <MaskedInput mask="99:99" name="value" />
+                        </div>
+                        <CheckBox
+                            name="sabado"
+                            label="Marcar todos os dias"
+                        />
+                    </DayScheduleItem>
+                    <WeekScheduleContainer>
+                        <DayScheduleItem>
+                            <CheckBox
+                                name="domingo"
+                                label="Domingo"
+                            />
+                            <p>Horário</p>
+                            <div>
+                                <MaskedInput mask="99:99" name="value" />
+                                às
+                                <MaskedInput mask="99:99" name="value" />
+                            </div>
+                        </DayScheduleItem>
+                        <DayScheduleItem>
+                            <CheckBox
+                                name="segunda"
+                                label="Segunda"
+                            />
+                            <p>Horário</p>
+                            <div>
+                                <MaskedInput mask="99:99" name="value" />
+                                às
+                                <MaskedInput mask="99:99" name="value" />
+                            </div>
+                        </DayScheduleItem>
+                        <DayScheduleItem>
+                            <CheckBox
+                                name="terca"
+                                label="Terça"
+                            />
+                            <p>Horário</p>
+                            <div>
+                                <MaskedInput mask="99:99" name="value" />
+                                às
+                                <MaskedInput mask="99:99" name="value" />
+                            </div>
+
+                        </DayScheduleItem>
+                        <DayScheduleItem>
+                            <CheckBox
+                                name="quarta"
+                                label="Quarta"
+                            />
+                            <p>Horário</p>
+                            <div>
+                                <MaskedInput mask="99:99" name="value" />
+                                às
+                                <MaskedInput mask="99:99" name="value" />
+                            </div>
+                        </DayScheduleItem>
+                        <DayScheduleItem>
+                            <CheckBox
+                                name="quinta"
+                                label="Quinta"
+                            />
+                            <p>Horário</p>
+                            <div>
+                                <MaskedInput mask="99:99" name="value" />
+                                às
+                                <MaskedInput mask="99:99" name="value" />
+                            </div>
+                        </DayScheduleItem>
+                        <DayScheduleItem>
+                            <CheckBox
+                                name="sexta"
+                                label="Sexta"
+                            />
+                            <p>Horário</p>
+                            <div>
+                                <MaskedInput mask="99:99" name="value" />
+                                às
+                                <MaskedInput mask="99:99" name="value" />
+                            </div>
+                        </DayScheduleItem>
+                        <DayScheduleItem>
+                            <CheckBox
+                                name="sabado"
+                                label="Sábado"
+                            />
+                            <p>Horário</p>
+                            <div>
+                                <MaskedInput mask="99:99" name="value" />
+                                às
+                                <MaskedInput mask="99:99" name="value" />
+                            </div>
+                        </DayScheduleItem>
+                    </WeekScheduleContainer>
+                </FieldSet>
+                <FieldSet title="Habilidades">
+                    <Select
+                        label="Filtrar por categoria"
+                        name="categoria"
+                        classNamePrefix="react-select"
+                        placeholder="Selecione uma categoria"
+                        defaultValue={{
                                 label: 'Selecione uma categoria',
                                 value: 0,
                             }}
-                            options={skillsList}
-                            isSearchable={false}
-                            blurInputOnSelect
-                            openMenuOnFocus
-                        />
-                        <Table responsive="sm">
-                            <thead>
-                                <tr>
-                                    <th> </th>
-                                    <th>Nome do serviço</th>
-                                    <th>Tempo de serviço</th>
-                                    <th>Tipo de comissão</th>
-                                    <th>
-                                        Margem de comissão
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <CheckBox
-                                            name="quinta"
-                                        />
-                                    </td>
-                                    <td>Barba com pezinho</td>
-                                    <td>45min</td>
-                                    <td>
-                                        <Select
-                                            name="tipoDeComissao"
-                                            classNamePrefix="react-select"
-                                            defaultValue={{
-                                                label: 'Selecione o tipo de Comissão',
-                                                value: 0,
-                                            }}
-                                            options={comissionTypeOptions}
-                                            blurInputOnSelect
-                                            openMenuOnFocus
-                                        />
-                                    </td>
-                                    <td>
-                                        <MaskedInput name="valorComissão" mask="R$ 9.99" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <CheckBox
-                                            name="quinta"
-                                        />
-                                    </td>
-                                    <td>Barba completa</td>
-                                    <td>40min</td>
-                                    <td>
-                                        <Select
-                                            name="tipoDeComissao"
-                                            classNamePrefix="react-select"
-                                            defaultValue={{
-                                                label: 'Selecione o tipo de comissão',
-                                                value: 0,
-                                            }}
-                                            options={comissionTypeOptions}
-                                            blurInputOnSelect
-                                            openMenuOnFocus
-                                        />
-
-                                    </td>
-                                    <td>
-                                        <MaskedInput name="valorComissão" mask="R$ 9.99" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <CheckBox
-                                            name="quinta"
-                                        />
-                                    </td>
-                                    <td>Barba desenhada</td>
-                                    <td>40min</td>
-                                    <td>
-                                        <Select
-                                            name="tipoDeComissao"
-                                            classNamePrefix="react-select"
-                                            defaultValue={{
-                                                label: 'Selecione o tipo de comissão',
-                                                value: 0,
-                                            }}
-                                            options={comissionTypeOptions}
-                                            blurInputOnSelect
-                                            openMenuOnFocus
-                                        />
-                                    </td>
-                                    <td>
-                                        <MaskedInput name="valorComissão" mask="R$ 9.99" />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </Table>
-                    </FieldSet>
-                    <FieldSet title="Horário de trabalho">
-                        <WeekScheduleContainer>
-                            <AddSkill />
-                            <DayScheduleItem>
-                                <CheckBox
-                                    name="domingo"
-                                    label="Domingo"
-                                />
-
-                                <MaskedInput mask="99:99" name="value" />
-                                ás
-                                <MaskedInput mask="99:99" name="value" />
-                            </DayScheduleItem>
-                            <DayScheduleItem>
-                                <CheckBox
-                                    name="segunda"
-                                    label="Segunda"
-                                />
-
-                                <MaskedInput mask="99:99" name="value" />
-                                ás
-                                <MaskedInput mask="99:99" name="value" />
-                            </DayScheduleItem>
-                            <DayScheduleItem>
-                                <CheckBox
-                                    name="terca"
-                                    label="Terça"
-                                />
-
-                                <MaskedInput mask="99:99" name="value" />
-                                ás
-                                <MaskedInput mask="99:99" name="value" />
-                            </DayScheduleItem>
-                            <DayScheduleItem>
-                                <CheckBox
-                                    name="quarta"
-                                    label="Quarta"
-                                />
-
-                                <MaskedInput mask="99:99" name="value" />
-                                ás
-                                <MaskedInput mask="99:99" name="value" />
-                            </DayScheduleItem>
-                            <DayScheduleItem>
-                                <CheckBox
-                                    name="quinta"
-                                    label="Quinta"
-                                />
-
-                                <MaskedInput mask="99:99" name="value" />
-                                ás
-                                <MaskedInput mask="99:99" name="value" />
-                            </DayScheduleItem>
-                            <DayScheduleItem>
-                                <CheckBox
-                                    name="sexta"
-                                    label="Sexta"
-                                />
-
-                                <MaskedInput mask="99:99" name="value" />
-                                ás
-                                <MaskedInput mask="99:99" name="value" />
-                            </DayScheduleItem>
-                            <DayScheduleItem>
-                                <CheckBox
-                                    name="sabado"
-                                    label="Sábado"
-                                />
-
-                                <MaskedInput mask="99:99" name="value" />
-                                ás
-                                <MaskedInput mask="99:99" name="value" />
-                            </DayScheduleItem>
-                        </WeekScheduleContainer>
-                    </FieldSet>
-                </div>
+                        options={skillsList}
+                        isSearchable={false}
+                        blurInputOnSelect
+                        openMenuOnFocus
+                    />
+                    <Table responsive>
+                        <thead>
+                            <tr>
+                                <th> </th>
+                                <th>Nome do serviço</th>
+                                <th>Tempo de serviço</th>
+                                <th>Tipo de comissão</th>
+                                <th>
+                                    Margem de comissão
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <CheckBox
+                                        name="quinta"
+                                    />
+                                </td>
+                                <td>Barba com pezinho</td>
+                                <td>45min</td>
+                                <td>
+                                    <Select
+                                        name="tipoDeComissao"
+                                        classNamePrefix="react-select"
+                                        defaultValue={comissionTypeOptions[0]}
+                                        options={comissionTypeOptions}
+                                        blurInputOnSelect
+                                        openMenuOnFocus
+                                    />
+                                </td>
+                                <td>
+                                    <MaskedInput name="valorComissão" mask="R$ 9.99" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <CheckBox
+                                        name="quinta"
+                                    />
+                                </td>
+                                <td>Barba completa</td>
+                                <td>40min</td>
+                                <td>
+                                    <Select
+                                        name="tipoDeComissao"
+                                        classNamePrefix="react-select"
+                                        defaultValue={comissionTypeOptions[0]}
+                                        options={comissionTypeOptions}
+                                        blurInputOnSelect
+                                        openMenuOnFocus
+                                    />
+                                </td>
+                                <td>
+                                    <MaskedInput name="valorComissão" mask="R$ 9.99" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <CheckBox
+                                        name="quinta"
+                                    />
+                                </td>
+                                <td>Barba desenhada</td>
+                                <td>40min</td>
+                                <td>
+                                    <Select
+                                        name="tipoDeComissao"
+                                        classNamePrefix="react-select"
+                                        defaultValue={comissionTypeOptions[0]}
+                                        options={comissionTypeOptions}
+                                        blurInputOnSelect
+                                        openMenuOnFocus
+                                    />
+                                </td>
+                                <td>
+                                    <MaskedInput name="valorComissão" mask="R$ 9.99" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                </FieldSet>
             </CreateArtistForm>
             <PageFooter>
 

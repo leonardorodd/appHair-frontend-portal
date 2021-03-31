@@ -17,7 +17,7 @@ export const ClientListHeader = styled.li`
     }
 
     > :last-child {
-        width: 5%;
+        width: 8%;
         justify-content: center;
         align-items: center;
     }

@@ -3,6 +3,18 @@ import { Form } from '@unform/web';
 
 export const Container = styled.div`
     border-radius: 10px;
+
+    > form > :nth-child(4) {
+        justify-content: center;
+        align-items: center;
+
+        > :nth-child(2) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+    }
 `;
 
 export const PageFooter = styled.div`
@@ -69,50 +81,45 @@ export const SectionButton = styled.button`
 
 export const WeekScheduleContainer = styled.div`
     display: flex;
-    flex-direction: column;
-    width: 35%;
-
-    > :first-child {
-        margin-bottom: 20px;
-    }
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const DayScheduleItem = styled.div`
     display: flex;
-    margin: 2px;
+    flex-direction: column;
+    margin: 15px;
     border-radius: 10px;
     align-items: center;
+    justify-content: center;
+    padding-bottom: 5px;
     color: var(--primary-text-color);
     border: 1px solid var(--primary-border-color);
-    /*   > button {
-        background: none;
-        color: var(--base-tertiary-color);
-        border: 2px solid #fd854b;
-        font-size: 10px;
-        padding: 5px;
-        margin: 5px;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-    } */
-    > input {
-        background: red;
+    height: max-content;
+    width: 140px;
+
+    > p {
+        margin-bottom: 0px;
+        font-weight: bold;
+        margin-top: -8px;
     }
 
-    > div {
-        > div > input {
+    > :nth-child(3) {
+        display: flex;
+        align-items: center;
+
+        > div > div > input {
             width: 68px;
         }
-    }
-
-    > :first-child {
-        width: 50%;
     }
 `;
 
 export const CreateArtistForm = styled(Form)`
     display: flex;
     flex-direction: column;
+
     > :first-child {
         display: flex;
         flex-direction: row;
@@ -127,17 +134,16 @@ export const CreateArtistForm = styled(Form)`
     }
 
     > :last-child {
-        display: flex;
-
-        > div {
-            width: 50%;
-        }
-    }
-
-    > :last-child {
         > :first-child {
-            > :first-child {
-                margin-bottom: 40px;
+            margin-bottom: 30px;
+        }
+        > :last-child {
+            > div {
+                background-color: red;
+            }
+
+            > table {
+                color: var(--primary-text-color);
             }
         }
     }

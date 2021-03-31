@@ -1,6 +1,6 @@
 import React from 'react';
-import { MdDelete, MdEdit } from 'react-icons/md';
-
+import { MdDelete, MdEdit, MdHistory } from 'react-icons/md';
+import { useHistory } from 'react-router-dom';
 import { Container } from './styles';
 
 interface IClientCardProps {
@@ -20,6 +20,8 @@ const ClientCard: React.FC<IClientCardProps> = ({
     clientIndex,
     deleteClient,
 }) => {
+    const history = useHistory();
+
     return (
         <Container>
             <div>
@@ -36,6 +38,7 @@ const ClientCard: React.FC<IClientCardProps> = ({
             </div>
             <div>
                 <MdEdit />
+                <MdHistory onClick={() => history.push('/clients/history')} />
                 <MdDelete onClick={() => deleteClient(clientIndex)} />
             </div>
         </Container>

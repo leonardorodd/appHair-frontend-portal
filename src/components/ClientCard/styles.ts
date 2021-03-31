@@ -17,8 +17,7 @@ export const Container = styled.li`
     transition: all 0.3s;
 
     &:hover {
-        /*         transform: translateX(5px);
- */
+        transform: translateX(3px);
     }
 
     > div {
@@ -28,7 +27,7 @@ export const Container = styled.li`
     }
 
     > :last-child {
-        width: 5%;
+        width: 8%;
         justify-content: space-between;
         align-items: center;
 
@@ -36,6 +35,7 @@ export const Container = styled.li`
             cursor: pointer;
             width: 20px;
             height: 20px;
+
             &:hover {
                 color: var(--base-tertiary-color);
             }

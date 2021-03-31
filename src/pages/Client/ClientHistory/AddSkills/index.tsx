@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Input from '../../../../components/UnformFields/Input';
 import Select from '../../../../components/UnformFields/Select';
+import DatePicker from '../../../../components/UnformFields/DatePicker';
 import { Container, AddSkillModal } from './styles';
 
 const AddSkills: React.FC = () => {
@@ -27,7 +28,7 @@ const AddSkills: React.FC = () => {
                 type="button"
                 onClick={handleShow}
             >
-                Repetir horários de outro profissional
+                Gerar relatório do cliente
             </button>
             <AddSkillModal
                 show={show}
@@ -38,11 +39,12 @@ const AddSkills: React.FC = () => {
             >
                 <AddSkillModal.Header>
                     <AddSkillModal.Title>
-                        <p>Profissionais</p>
+                        <p>Relatório - Histórico do cliente</p>
                     </AddSkillModal.Title>
                 </AddSkillModal.Header>
                 <AddSkillModal.Body>
-                    <Input name="pesquisarHabilidade" label="Pesquisar" />
+                    <DatePicker label="Data inicial" name="dataInicial" />
+                    <DatePicker label="Data final" name="dataFinal" />
                 </AddSkillModal.Body>
                 <AddSkillModal.Footer>
                     <button
@@ -57,7 +59,7 @@ const AddSkills: React.FC = () => {
                         type="submit"
                         form="form"
                     >
-                        Salvar
+                        Gerar
                     </button>
                 </AddSkillModal.Footer>
             </AddSkillModal>

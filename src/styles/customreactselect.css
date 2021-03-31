@@ -26,7 +26,7 @@
 
 .css-26l3qy-menu {
     min-height: 35px !important;
-    z-index: 5 !important;
+    z-index: 1 !important;
     color: var(--primary-text-color) !important;
 }
 
