@@ -13,6 +13,16 @@ export const Container = styled.div`
     padding: 0px 20px;
     /*     border-bottom: 1px solid ${props => props.theme.color.gray};
  */
+
+    > button {
+        display: none;
+        background: none;
+        width: 20px;
+
+        svg {
+            color: var(--primary-text-color);
+        }
+    }
 `;
 
 export const Profile = styled.div`

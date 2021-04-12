@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsPeopleCircle } from 'react-icons/bs';
+import { MdMenu } from 'react-icons/md';
 import Toggle from '../Toggle';
 import { Container, Profile, Welcome } from './styles';
 import Dropdown from '../Dropdown';
@@ -28,6 +29,9 @@ const MainHeader: React.FC = () => {
         <Container>
             {/*             <Toggle />
              */}
+            <button id="toggleMenu" type="button">
+                <MdMenu size={22} onClick={() => ''} />
+            </button>
             <div />
             <Profile>
                 {/*                 <BsPeopleCircle size={25} />

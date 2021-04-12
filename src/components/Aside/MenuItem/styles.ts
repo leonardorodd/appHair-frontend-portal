@@ -45,7 +45,6 @@ export const Container = styled.div`
     }
 
     .itemContent {
-        background-color: white;
         max-height: 0;
         padding-left: 7px;
         overflow: hidden;

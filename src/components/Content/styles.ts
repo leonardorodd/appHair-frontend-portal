@@ -6,6 +6,7 @@ export const Container = styled.div`
     color: ${props => props.theme.color.white};
     grid-column: 2;
     grid-row: 2;
+    width: auto;
     padding: 30px;
     height: calc(100vh - 54px);
     overflow-y: scroll;

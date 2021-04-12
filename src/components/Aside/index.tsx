@@ -172,7 +172,7 @@ const Aside: React.FC = () => {
     }, []);
 
     return (
-        <Container>
+        <Container id="sideMenu">
             <div>
                 <Header>
                     <LogImg src={Logo} alt="Logo" />

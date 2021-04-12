@@ -4,7 +4,6 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     margin: 5px;
-    z-index: 1;
 
     &:focus-within {
         > label {

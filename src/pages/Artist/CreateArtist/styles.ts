@@ -120,6 +120,76 @@ export const CreateArtistForm = styled(Form)`
     display: flex;
     flex-direction: column;
 
+    @media only screen and (max-width: 1100px) {
+        > :first-child {
+            flex-direction: column-reverse !important;
+            > div {
+                width: 100% !important;
+                > div {
+                    flex-direction: column !important;
+                    > div {
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
+
+        > :nth-child(2) {
+            > div {
+                width: 100% !important;
+                display: flex;
+                flex-direction: column !important;
+
+                > div {
+                    display: flex;
+                    width: 100% !important;
+                }
+            }
+        }
+
+        > :nth-child(3) {
+            > div {
+                display: flex;
+                flex-direction: column !important;
+
+                > div {
+                    width: 100% !important;
+                }
+            }
+        }
+
+        > :nth-child(4) {
+            > :first-child {
+                > button {
+                    width: 100%;
+                }
+            }
+
+            > div {
+                display: flex;
+                flex-direction: column !important;
+            }
+        }
+
+        /* > :first-child {
+            display: flex;
+
+            > :first-child {
+                width: 100% !important;
+
+                > div {
+                    flex-direction: column !important;
+                    > div {
+                        width: 100% !important;
+                        > div {
+                            width: 100% !important;
+                        }
+                    }
+                }
+            }
+        } */
+    }
+
     > :first-child {
         display: flex;
         flex-direction: row;
