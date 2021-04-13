@@ -3,7 +3,7 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
     height: 100vh;
-    width: auto;
+    width: 100%;
     overflow-y: hidden;
     grid-column: 1;
     display: flex;
@@ -15,6 +15,16 @@ export const Container = styled.div`
     /*     border-right: 1px solid ${props => props.theme.color.gray};
  */
     background: var(--base-primary-color);
+
+    > button {
+        display: block;
+        background: none;
+        width: 20px;
+
+        svg {
+            color: #ffff;
+        }
+    }
 `;
 
 export const Header = styled.header`

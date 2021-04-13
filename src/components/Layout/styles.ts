@@ -7,7 +7,7 @@ export const Container = styled.div`
     height: 100vh;
 
     @media only screen and (max-width: 700px) {
-        grid-template-columns: 0px;
+        grid-template-columns: 0px auto;
 
         > :nth-child(1) {
             > button {
@@ -17,11 +17,6 @@ export const Container = styled.div`
 
         > :nth-child(2) {
             width: 0%;
-            overflow: hidden;
-            -webkit-transition: width 1s ease-in-out;
-            -moz-transition: width 1s ease-in-out;
-            -o-transition: width 1s ease-in-out;
-            transition: width 1s ease-in-out;
         }
     }
 `;

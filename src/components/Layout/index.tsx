@@ -13,44 +13,14 @@ const Layout: React.FC = ({ children }) => {
 
         toggleMenuButton.addEventListener('click', () => {
             const sideMenu = document.getElementById('sideMenu') as Element;
+            sideMenu.setAttribute('style', 'width:100vw;z-index:1;');
 
-            if (sideMenu.classList.contains('active')) {
-                panel.removeAttribute('style');
+            /*  if (sideMenu.classList.contains('active')) {
                 item.classList.remove('active');
-                item.classList.remove('openAnimation');
-                item.classList.add('closeAnimation');
             } else {
                 panel.setAttribute('style', 'max-height:500px');
                 item.classList.add('active');
-                item.classList.remove('closeAnimation');
-                item.classList.add('openAnimation');
-            }
-
-            /* menuItemList.forEach(ele => {
-                    const panel = ele.nextElementSibling as Element;
-
-                    if (ele !== item && ele.classList.contains('active')) {
-                        panel.removeAttribute('style');
-                        ele.classList.remove('active');
-                        ele.classList.remove('openAnimation');
-                        ele.classList.add('closeAnimation');
-                    }
-                });
-
-                const panel = item.nextElementSibling as Element;
-
-                if (item.classList.contains('active')) {
-                    panel.removeAttribute('style');
-                    item.classList.remove('active');
-                    item.classList.remove('openAnimation');
-                    item.classList.add('closeAnimation');
-                } else {
-                    panel.setAttribute('style', 'max-height:500px');
-                    item.classList.add('active');
-                    item.classList.remove('closeAnimation');
-                    item.classList.add('openAnimation');
-                }
-            }); */
+            } */
         });
     }, []);
 

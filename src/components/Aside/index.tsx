@@ -20,6 +20,7 @@ import {
     MdStore,
     MdGroup,
     MdPerson,
+    MdClear,
 } from 'react-icons/md';
 
 import { FaUserTie } from 'react-icons/fa';
@@ -173,6 +174,9 @@ const Aside: React.FC = () => {
 
     return (
         <Container id="sideMenu">
+            <button type="button">
+                <MdClear size={22} onClick={() => ''} />
+            </button>
             <div>
                 <Header>
                     <LogImg src={Logo} alt="Logo" />
