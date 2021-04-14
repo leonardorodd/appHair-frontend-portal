@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 export const Container = styled.div`
-    height: 100vh;
     width: 100%;
+    height: 100vh;
     overflow-y: hidden;
     grid-column: 1;
     display: flex;
@@ -17,7 +17,10 @@ export const Container = styled.div`
     background: var(--base-primary-color);
 
     > button {
-        display: block;
+        position: absolute;
+        left: 17px;
+        top: 9px;
+        display: none;
         background: none;
         width: 20px;
 

@@ -17,6 +17,9 @@ export const Container = styled.div`
 
         > :nth-child(2) {
             width: 0%;
+            > button {
+                display: block;
+            }
         }
     }
 `;

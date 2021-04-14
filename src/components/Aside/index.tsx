@@ -174,8 +174,8 @@ const Aside: React.FC = () => {
 
     return (
         <Container id="sideMenu">
-            <button type="button">
-                <MdClear size={22} onClick={() => ''} />
+            <button className="toggleMenu" type="button">
+                <MdClear size={22} />
             </button>
             <div>
                 <Header>

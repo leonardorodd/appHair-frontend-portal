@@ -29,8 +29,8 @@ const MainHeader: React.FC = () => {
         <Container>
             {/*             <Toggle />
              */}
-            <button id="toggleMenu" type="button">
-                <MdMenu size={22} onClick={() => ''} />
+            <button className="toggleMenu" type="button">
+                <MdMenu size={22} />
             </button>
             <div />
             <Profile>

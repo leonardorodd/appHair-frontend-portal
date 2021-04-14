@@ -7,20 +7,23 @@ import MainHeader from '../MainHeader';
 
 const Layout: React.FC = ({ children }) => {
     useEffect(() => {
-        const toggleMenuButton = document.getElementById(
-            'toggleMenu',
-        ) as HTMLButtonElement;
+        const toggleMenuButtons = Array.from(
+            document.getElementsByClassName(
+                'toggleMenu',
+            ) as HTMLCollectionOf<HTMLElement>,
+        );
 
-        toggleMenuButton.addEventListener('click', () => {
-            const sideMenu = document.getElementById('sideMenu') as Element;
-            sideMenu.setAttribute('style', 'width:100vw;z-index:1;');
+        toggleMenuButtons.forEach(element => {
+            element.addEventListener('click', () => {
+                const sideMenu = document.getElementById('sideMenu') as Element;
 
-            /*  if (sideMenu.classList.contains('active')) {
-                item.classList.remove('active');
-            } else {
-                panel.setAttribute('style', 'max-height:500px');
-                item.classList.add('active');
-            } */
+                if (sideMenu.hasAttribute('style')) {
+                    sideMenu.removeAttribute('style');
+                } else {
+                    sideMenu.classList.add('openAnimation');
+                    sideMenu.setAttribute('style', 'width:100vw;z-index:1;');
+                }
+            });
         });
     }, []);
 
