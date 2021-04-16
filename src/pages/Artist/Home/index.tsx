@@ -19,12 +19,14 @@ const Providers: React.FC = () => {
             <ClientSearchContainer>
                 <h1>Artistas</h1>
                 <div>
-                    <button
-                        type="button"
-                        onClick={() => history.push('/artists/create')}
-                    >
-                        Adicionar
-                    </button>
+                    <div>
+                        <button
+                            type="button"
+                            onClick={() => history.push('/artists/create')}
+                        >
+                            Adicionar
+                        </button>
+                    </div>
                     <div>
                         <input />
                         <button className="searchButton " type="button">

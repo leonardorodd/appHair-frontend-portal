@@ -47,19 +47,19 @@ const Aside: React.FC = () => {
         {
             title: 'Agenda',
             icon: MdEventNote,
-            link: '#',
+            link: 'off',
             subItens: [],
         },
         {
             title: 'Dashboard',
             icon: MdDashboard,
-            link: '/dashboard',
+            link: '/off',
             subItens: [],
         },
         {
             title: 'Cadastros',
             icon: MdBorderColor,
-            link: '/#',
+            link: '#',
             subItens: [
                 { title: 'Artistas', icon: MdPerson, link: '/artists' },
                 {
@@ -75,7 +75,7 @@ const Aside: React.FC = () => {
                                 {
                                     title: 'teste',
                                     icon: RiTruckFill,
-                                    link: '/#',
+                                    link: '#',
                                 },
                             ],
                         },
@@ -99,15 +99,15 @@ const Aside: React.FC = () => {
                 { title: 'Serviços', icon: MdWork, link: '/services' },
             ],
         },
-        { title: 'Financeiro', icon: MdAttachMoney, link: '/#', subItens: [] },
+        { title: 'Financeiro', icon: MdAttachMoney, link: 'off', subItens: [] },
         {
             title: 'Estoque',
             icon: AiOutlineCodeSandbox,
-            link: '/#',
+            link: 'off',
             subItens: [],
         },
-        { title: 'Estabelecimento', icon: MdStore, link: '/#', subItens: [] },
-        { title: 'Ajuda', icon: MdLiveHelp, link: '/#', subItens: [] },
+        { title: 'Estabelecimento', icon: MdStore, link: 'off', subItens: [] },
+        { title: 'Ajuda', icon: MdLiveHelp, link: 'off', subItens: [] },
         /*  { title: 'Entradas', icon: MdArrowUpward, link: '/list/entry-balance' },
         // eslint-disable-next-line prettier/prettier
         { title: 'Saídas', icon: MdArrowDownward, link:'/list/exit-balance' }, */
@@ -135,6 +135,8 @@ const Aside: React.FC = () => {
             ) as HTMLCollectionOf<HTMLElement>,
         );
 
+        const sidenavEl = document.getElementById('sideMenu') as HTMLElement;
+
         menuItemList.forEach(item => {
             item.addEventListener('click', () => {
                 menuItemList.forEach(ele => {
@@ -160,6 +162,23 @@ const Aside: React.FC = () => {
                     item.classList.add('active');
                     item.classList.remove('closeAnimation');
                     item.classList.add('openAnimation');
+                }
+
+                function toggleClassName(el: Element, className: string) {
+                    if (el.classList.contains(className)) {
+                        el.classList.remove(className);
+                    } else {
+                        el.classList.add(className);
+                    }
+                }
+
+                console.log(item.getAttribute('href'));
+
+                if (
+                    item.hasAttribute('href') &&
+                    item.getAttribute('href') !== '/off'
+                ) {
+                    toggleClassName(sidenavEl, 'active');
                 }
             });
         });

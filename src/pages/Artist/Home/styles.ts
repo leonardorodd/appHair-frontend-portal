@@ -29,6 +29,26 @@ export const ClientSearchContainer = styled.div`
         color: var(--base-secondary-color);
     }
 
+    @media only screen and (max-width: 1100px) {
+        > :last-child {
+            align-items: center;
+            display: flex;
+            flex-direction: column-reverse;
+
+            > :first-child {
+                width: 150%;
+                > button {
+                    align-self: flex-start;
+                    margin-top: 10px;
+                }
+            }
+
+            > :last-child {
+                width: 150%;
+            }
+        }
+    }
+
     > h1::after {
         content: '';
         display: block;
