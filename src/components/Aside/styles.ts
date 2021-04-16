@@ -2,19 +2,47 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 export const Container = styled.div`
-    width: 100%;
-    height: 100vh;
+    /* display: flex;
+    flex-direction: column;
+    grid-area: sidebar;
     overflow-y: hidden;
-    grid-column: 1;
+    justify-content: space-between; */
+
+    grid-area: sidebar;
     display: flex;
     flex-direction: column;
+    height: 100%;
     justify-content: space-between;
-    grid-row: 1 / span 2;
+    width: 250px;
+    position: fixed;
+    overflow-y: hidden;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+    background-color: #394263;
+    transform: translateX(-252px);
+    transition: all 0.6s ease-in-out;
+
     /*     background-color: ${props => props.theme.color.secondary};
  */
     /*     border-right: 1px solid ${props => props.theme.color.gray};
  */
     background: var(--base-primary-color);
+
+    /* @media only screen and (min-width: 46.875em) {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: space-between;
+    } */
+
+    @media only screen and (min-width: 46.875em) {
+        position: relative;
+        transform: translateX(0);
+
+        #close-icon {
+            visibility: hidden;
+        }
+    }
 
     > button {
         position: absolute;
@@ -71,7 +99,7 @@ export const LogImg = styled.img`
     margin-right: 10px;
 `;
 export const MenuContainer = styled.nav`
-    height: 300px;
+    height: 200px;
     /*     background: blue;
  */
     /*  display: flex;

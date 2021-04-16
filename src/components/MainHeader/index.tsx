@@ -29,9 +29,9 @@ const MainHeader: React.FC = () => {
         <Container>
             {/*             <Toggle />
              */}
-            <button className="toggleMenu" type="button">
+            {/*  <button className="toggleMenu" type="button">
                 <MdMenu size={22} />
-            </button>
+            </button> */}
             <div />
             <Profile>
                 {/*                 <BsPeopleCircle size={25} />

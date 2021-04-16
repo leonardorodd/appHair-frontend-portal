@@ -4,11 +4,8 @@ export const Container = styled.div`
     /*     background-color: ${props => props.theme.color.primary};
  */
     color: ${props => props.theme.color.white};
-    grid-column: 2;
-    grid-row: 2;
-    width: auto;
+    grid-area: main;
     padding: 30px;
-    height: calc(100vh - 54px);
     overflow-y: scroll;
 
     ::-webkit-scrollbar {

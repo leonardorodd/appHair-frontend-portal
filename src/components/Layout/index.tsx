@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { ClassType, useEffect } from 'react';
+import { MdMenu } from 'react-icons/md';
 import { Container } from './styles';
 
 import Aside from '../Aside';
@@ -7,28 +8,38 @@ import MainHeader from '../MainHeader';
 
 const Layout: React.FC = ({ children }) => {
     useEffect(() => {
-        const toggleMenuButtons = Array.from(
-            document.getElementsByClassName(
-                'toggleMenu',
-            ) as HTMLCollectionOf<HTMLElement>,
-        );
+        const menuIconEl = document.getElementById('menu-icon') as HTMLElement;
+        const sidenavEl = document.getElementById('sideMenu') as HTMLElement;
+        const menuContainer = document.getElementById(
+            'menuContainer',
+        ) as HTMLElement;
 
-        toggleMenuButtons.forEach(element => {
-            element.addEventListener('click', () => {
-                const sideMenu = document.getElementById('sideMenu') as Element;
+        const sidenavCloseEl = document.getElementById(
+            'close-icon',
+        ) as HTMLElement;
 
-                if (sideMenu.hasAttribute('style')) {
-                    sideMenu.removeAttribute('style');
-                } else {
-                    sideMenu.classList.add('openAnimation');
-                    sideMenu.setAttribute('style', 'width:100vw;z-index:1;');
-                }
-            });
+        function toggleClassName(el: Element, className: string) {
+            if (el.classList.contains(className)) {
+                el.classList.remove(className);
+            } else {
+                el.classList.add(className);
+            }
+        }
+
+        menuIconEl.addEventListener('click', () => {
+            toggleClassName(sidenavEl, 'active');
+        });
+
+        sidenavCloseEl.addEventListener('click', () => {
+            toggleClassName(sidenavEl, 'active');
         });
     }, []);
 
     return (
         <Container>
+            <div id="menu-icon">
+                <MdMenu size={22} />
+            </div>
             <MainHeader />
             <Aside />
             <Content>{children}</Content>

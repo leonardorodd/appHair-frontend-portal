@@ -5,22 +5,26 @@ export const Container = styled.div`
  */
     background-color: var(--base-quaternary-color);
     border-bottom: 1px solid var(--primary-border-color);
-    grid-column: 2;
-    grid-row: 1;
+    grid-area: header;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0px 20px;
+    justify-content: space-between;
+    padding: 0 16px;
     /*     border-bottom: 1px solid ${props => props.theme.color.gray};
  */
 
     > button {
-        display: none;
+        display: block;
         background: none;
         width: 20px;
-
         svg {
             color: var(--primary-text-color);
+        }
+    }
+
+    @media only screen and (min-width: 46.875em) {
+        > button {
+            display: none;
         }
     }
 `;

@@ -129,13 +129,6 @@ const Aside: React.FC = () => {
     }
 
     useEffect(() => {
-        /* $('#menu .item').click(event => {
-            $(event.target)
-                .addClass('highlight')
-                .siblings('.item')
-                .removeClass('highlight');
-        }); */
-
         const menuItemList = Array.from(
             document.getElementsByClassName(
                 'item',
@@ -174,9 +167,9 @@ const Aside: React.FC = () => {
 
     return (
         <Container id="sideMenu">
-            <button className="toggleMenu" type="button">
+            <div id="close-icon">
                 <MdClear size={22} />
-            </button>
+            </div>
             <div>
                 <Header>
                     <LogImg src={Logo} alt="Logo" />
@@ -196,7 +189,7 @@ const Aside: React.FC = () => {
                             />
                     ))}
                     </MenuContainer> */}
-                    <MenuContainer>
+                    <MenuContainer id="menuContainer">
                         {MenuItens.map(item =>
                             item.title
                                 .toLocaleUpperCase()
