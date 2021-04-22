@@ -32,7 +32,7 @@ const MenuItem: React.FC<IMenuItemProps> = ({
                 {subItens?.length !== 0 ? (
                     subItens?.map(subItem => (
                         <SubMenuItemLink
-                            /*                             className="item" */
+                            className="subItem"
                             key={subItem.title}
                             to={subItem.link || ''}
                         >

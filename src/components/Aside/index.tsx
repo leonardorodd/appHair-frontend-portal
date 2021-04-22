@@ -137,7 +137,29 @@ const Aside: React.FC = () => {
             ) as HTMLCollectionOf<HTMLElement>,
         );
 
+        const subMenuItemList = Array.from(
+            document.getElementsByClassName(
+                'subItem',
+            ) as HTMLCollectionOf<HTMLElement>,
+        );
+
         const sidenavEl = document.getElementById('sideMenu') as HTMLElement;
+
+        subMenuItemList.forEach(item => {
+            item.addEventListener('click', () => {
+                function toggleClassName(el: Element, className: string) {
+                    if (el.classList.contains(className)) {
+                        el.classList.remove(className);
+                    } else {
+                        el.classList.add(className);
+                    }
+                }
+
+                if (item.getAttribute('href') !== '/off') {
+                    toggleClassName(sidenavEl, 'active');
+                }
+            });
+        });
 
         menuItemList.forEach(item => {
             item.addEventListener('click', () => {
