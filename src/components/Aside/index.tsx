@@ -23,15 +23,7 @@ import {
     MdClear,
 } from 'react-icons/md';
 
-import { FaUserTie } from 'react-icons/fa';
-
-import {
-    RiTruckFill,
-    RiLuggageCartFill,
-    RiScissorsFill,
-    RiHandSanitizerFill,
-    RiTakeawayFill,
-} from 'react-icons/ri';
+import { RiTruckFill, RiHandSanitizerFill } from 'react-icons/ri';
 
 import { AiOutlineCodeSandbox } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -47,19 +39,19 @@ const Aside: React.FC = () => {
         {
             title: 'Agenda',
             icon: MdEventNote,
-            link: 'off',
+            link: '/agenda',
             subItens: [],
         },
         {
             title: 'Dashboard',
             icon: MdDashboard,
-            link: '/off',
+            link: '/dashboard',
             subItens: [],
         },
         {
             title: 'Cadastros',
             icon: MdBorderColor,
-            link: '#',
+            link: '/off',
             subItens: [
                 { title: 'Artistas', icon: MdPerson, link: '/artists' },
                 {
@@ -99,15 +91,25 @@ const Aside: React.FC = () => {
                 { title: 'Serviços', icon: MdWork, link: '/services' },
             ],
         },
-        { title: 'Financeiro', icon: MdAttachMoney, link: 'off', subItens: [] },
+        {
+            title: 'Financeiro',
+            icon: MdAttachMoney,
+            link: '/financeiro',
+            subItens: [],
+        },
         {
             title: 'Estoque',
             icon: AiOutlineCodeSandbox,
-            link: 'off',
+            link: '/estoque',
             subItens: [],
         },
-        { title: 'Estabelecimento', icon: MdStore, link: 'off', subItens: [] },
-        { title: 'Ajuda', icon: MdLiveHelp, link: 'off', subItens: [] },
+        {
+            title: 'Estabelecimento',
+            icon: MdStore,
+            link: '/estabelecimento',
+            subItens: [],
+        },
+        { title: 'Ajuda', icon: MdLiveHelp, link: '/ajuda', subItens: [] },
         /*  { title: 'Entradas', icon: MdArrowUpward, link: '/list/entry-balance' },
         // eslint-disable-next-line prettier/prettier
         { title: 'Saídas', icon: MdArrowDownward, link:'/list/exit-balance' }, */
@@ -164,6 +166,7 @@ const Aside: React.FC = () => {
                     item.classList.add('openAnimation');
                 }
 
+                // Close sidemenu on click
                 function toggleClassName(el: Element, className: string) {
                     if (el.classList.contains(className)) {
                         el.classList.remove(className);
@@ -172,12 +175,7 @@ const Aside: React.FC = () => {
                     }
                 }
 
-                console.log(item.getAttribute('href'));
-
-                if (
-                    item.hasAttribute('href') &&
-                    item.getAttribute('href') !== '/off'
-                ) {
+                if (item.getAttribute('href') !== '/off') {
                     toggleClassName(sidenavEl, 'active');
                 }
             });

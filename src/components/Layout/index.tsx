@@ -10,9 +10,6 @@ const Layout: React.FC = ({ children }) => {
     useEffect(() => {
         const menuIconEl = document.getElementById('menu-icon') as HTMLElement;
         const sidenavEl = document.getElementById('sideMenu') as HTMLElement;
-        const menuContainer = document.getElementById(
-            'menuContainer',
-        ) as HTMLElement;
 
         const sidenavCloseEl = document.getElementById(
             'close-icon',
