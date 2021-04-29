@@ -31,7 +31,10 @@ export const Container = styled.div<IInputProps>`
         align-items: center;
 
         > label {
+            margin-left: 15px;
+            margin-bottom: 5px;
             font-size: 13px;
+            font-weight: bold;
             color: var(--primary-text-color);
         }
 
@@ -49,10 +52,10 @@ export const Container = styled.div<IInputProps>`
 
     > textarea {
         text-transform: ${props => props.textTransform};
-        border: 0px;
-        border-bottom: 1px solid var(--primary-border-color);
-        height: 35px;
-        padding-left: 10px;
+        border-radius: 18px;
+        border: 1px solid var(--primary-border-color);
+        min-height: 60px;
+        padding: 15px;
         color: var(--primary-text-color);
 
         &[disabled] {

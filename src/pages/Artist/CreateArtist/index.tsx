@@ -8,7 +8,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { SubmitHandler, FormHandles, Scope } from '@unform/core';
 import * as Yup from 'yup';
 import { cpf, cnpj } from 'cpf-cnpj-validator';
-import {Table} from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
+import { MdKeyboardArrowDown, MdKeyboardArrowRight } from 'react-icons/md';
 import Input from '../../../components/UnformFields/Input';
 import MaskedInput from '../../../components/UnformFields/InputMaskd';
 import DatePicker from '../../../components/UnformFields/DatePicker';
@@ -20,7 +21,7 @@ import AddSkill from './AddSkills';
 import brasilStatesAndCities from '../../../utils/brazilianStates.json';
 import { cpfMask, cnpjMask } from '../../../utils/masks';
 
-import { Container, CreateArtistForm, WeekScheduleContainer, DayScheduleItem, PageTitle, PageFooter } from './styles';
+import { Container, CreateArtistForm, WeekScheduleContainer, DayScheduleItem, PageTitle, PageFooter, SectionButton } from './styles';
 import '../../../styles/customreactselect.css';
 import '../../../styles/customreactdatepicker.css';
 import { convertToISO8601UTCDateFormat } from '../../../utils/dateUtils';
@@ -91,8 +92,7 @@ const CreateProvider: React.FC = () => {
     const [showPreferencesContainer, setShowPreferencesContainer] = useState(
         false,
     );
-        const [currentUf, setCurrentUf] = useState<string | undefined>();
-
+    const [currentUf, setCurrentUf] = useState<string | undefined>();
     const [showAddressContainer, setShowAddressContainer] = useState(false);
     const [tipoPessoa, setTipoPessoa] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');

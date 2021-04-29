@@ -9,6 +9,7 @@ import Providers from '../pages/Providers';
 import Products from '../pages/Products';
 import Services from '../pages/Services';
 import Artist from '../pages/Artist';
+import Establishment from '../pages/Establishment';
 
 const Routes: React.FC = () => (
     <Layout>
@@ -17,6 +18,7 @@ const Routes: React.FC = () => (
             <Route path="/signin" component={SignIn} exact />
             <Route path="/clients" component={Client} />
             <Route path="/providers" component={Providers} exact />
+            <Route path="/establishment" component={Establishment} exact />
             <Route path="/products" component={Products} exact />
             <Route path="/services" component={Services} exact />
             <Route path="/list/:type" component={List} exact />

@@ -106,7 +106,7 @@ const Aside: React.FC = () => {
         {
             title: 'Estabelecimento',
             icon: MdStore,
-            link: '/estabelecimento',
+            link: '/establishment',
             subItens: [],
         },
         { title: 'Ajuda', icon: MdLiveHelp, link: '/ajuda', subItens: [] },

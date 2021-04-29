@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -11,7 +13,6 @@ import React, {
 
 import { useField } from '@unform/core';
 import { Container } from './styles';
-import imagePlaceholder from '../../../assets/images/imagePlaceholder.png';
 
 interface Props {
     name: string;
@@ -20,9 +21,9 @@ interface Props {
 
 type InputProps = JSX.IntrinsicElements['input'] & Props;
 
-const ImageInput: React.FC<InputProps> = ({ name, label, ...rest }) => {
-    const inputRef = useRef<HTMLInputElement>(null);
-    const { fieldName, registerField, defaultValue = imagePlaceholder, error } = useField(name);
+const FileInput: React.FC<InputProps> = ({ name, label, ...rest }) => {
+     const inputRef = useRef<HTMLInputElement>(null);
+    const { fieldName, registerField, defaultValue, error } = useField(name);
     const [selectedFile, setSelectedFile] = useState<File | null>();
 
     const handlePreview = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -50,22 +51,30 @@ const ImageInput: React.FC<InputProps> = ({ name, label, ...rest }) => {
     return (
         <Container>
             <label htmlFor={fieldName}>
-                <img
-                    src={selectedFile ? URL.createObjectURL(selectedFile) : defaultValue}
-                    alt="profile"
-                />
+                {label && <p>{label}</p>}
+                {selectedFile && (selectedFile.type.includes('image') ? (
+                    <img
+                        src={URL.createObjectURL(selectedFile)}
+                        alt="imagem"
+                    />
+                ) : (
+                    <video
+                        id="video"
+                        src={URL.createObjectURL(selectedFile)}
+                        controls
+                    />
+                ))}
                 <input
                     type="file"
                     id={fieldName}
                     ref={inputRef}
                     onChange={handlePreview}
-                    accept="image/*"
+                    accept="image/*, video/*"
                     {...rest}
                 />
-                {label || ''}
             </label>
         </Container>
     );
 };
 
-export default ImageInput;
+export default FileInput;
