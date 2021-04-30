@@ -68,11 +68,11 @@ const Expenses: React.FC = () => {
                     <Input
                         textTransform="capitalize"
                         name="nomeDaCampanha"
-                        label="Nome da campanha"
+                        label="Nome da campanha*"
                     />
                     <div className="twoFieldsGroup">
-                        <DatePicker label="Data inicial" name="dataInicial" />
-                        <DatePicker label="Data final" name="dataFinal" />
+                        <DatePicker label="Data inicial*" name="dataInicial" />
+                        <DatePicker label="Data final*" name="dataFinal" />
                     </div>
                     <div className="treeFieldsgroup">
                         <CheckBox

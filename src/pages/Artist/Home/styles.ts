@@ -1,9 +1,31 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    padding: 15px;
+    height: 100%;
     border-radius: 10px;
     color: var(--primary-text-color);
+
+    table {
+        color: var(--primary-text-color);
+
+        > thead > tr {
+            > :last-child {
+                width: 7%;
+            }
+        }
+
+        > tbody {
+            svg {
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+
+                &:hover {
+                    color: var(--base-tertiary-color);
+                }
+            }
+        }
+    }
 `;
 
 export const ClientList = styled.div``;
@@ -29,24 +51,75 @@ export const ClientSearchContainer = styled.div`
         color: var(--base-secondary-color);
     }
 
-    @media only screen and (max-width: 1100px) {
+    > :last-child {
+        display: flex;
+        > button {
+            > svg {
+                display: none;
+            }
+        }
+
+        > div {
+            > button {
+                > svg {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 900px) {
         > :last-child {
+            margin: 25px 0px;
+            padding: 0px;
+            > button {
+                width: 18%;
+                > span {
+                    display: none;
+                }
+                > svg {
+                    display: block;
+                }
+            }
+
+            > div {
+                > input {
+                    width: 100%;
+                }
+
+                > button {
+                    width: 40%;
+
+                    > span {
+                        display: none;
+                    }
+                    > svg {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        /* > :last-child {
             align-items: center;
             display: flex;
             flex-direction: column-reverse;
 
             > :first-child {
-                width: 150%;
+                background-color: red;
+                width: 100%;
                 > button {
                     align-self: flex-start;
                     margin-top: 10px;
+                    width: 100%;
+                    font-size: 9px !important;
                 }
             }
 
             > :last-child {
                 width: 150%;
             }
-        }
+        } */
     }
 
     > h1::after {
@@ -71,7 +144,8 @@ export const ClientSearchContainer = styled.div`
                 padding: 10px;
                 margin-bottom: 10px;
                 border: 1px solid #eeee;
-                border-radius: 5px;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
             }
 
             .searchButton {

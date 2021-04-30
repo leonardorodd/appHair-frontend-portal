@@ -54,7 +54,7 @@ export const CreateEstablismentForm = styled(Form)`
         > :nth-child(5) {
             > :first-child {
                 > button {
-                    width: 30%;
+                    width: 45%;
                 }
             }
         }

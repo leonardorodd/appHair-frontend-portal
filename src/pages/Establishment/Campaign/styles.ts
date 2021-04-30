@@ -6,8 +6,10 @@ export const Container = styled.div`
     display: flex;
     justify-content: flex-end;
 
-    > button {
-        width: 15%;
+    @media only screen and (max-width: 1100px) {
+        > button {
+            width: 42%;
+        }
     }
     margin-top: -15px;
     margin-bottom: 10px;

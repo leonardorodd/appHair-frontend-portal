@@ -38,6 +38,15 @@ export default createGlobalStyle`
         -webkit-font-smoothing: antialiased;
     }
 
+
+    @media only screen and (max-width: 600px) {
+
+        body, input, button {
+            font-size:  11px !important;
+        }
+
+    }
+
     body, input, button {
         font-family: 'Roboto Slab',  serif;
         color: var(--primary-text-color);
