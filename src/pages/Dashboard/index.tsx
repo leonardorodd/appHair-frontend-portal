@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chart, Pie, Bar } from 'react-chartjs-2';
+import { Chart, Pie, Bar, Doughnut } from 'react-chartjs-2';
 import { MdAttachMoney } from 'react-icons/md';
 import ContentHeader from '../../components/ContentHeader';
 import SelectInput from '../../components/SelectInput';
@@ -147,7 +147,7 @@ const Dashboard: React.FC = () => {
                     <div className="header">
                         <span className="title">Despesas do mês</span>
                     </div>
-                    <Pie
+                    <Doughnut
                         height={100}
                         width={100}
                         type=""

@@ -65,6 +65,16 @@ export const ChartsContainer = styled.div`
     justify-content: space-around;
     color: var(--secondary-text-color);
     margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+
+    @media only screen and (max-width: 1100px) {
+        flex-direction: column;
+
+        > :first-child {
+            width: 100%;
+        }
+    }
 `;
 
 export const CardsContainer = styled.div`
