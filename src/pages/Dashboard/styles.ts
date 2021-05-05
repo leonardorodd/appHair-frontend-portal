@@ -72,7 +72,8 @@ export const ChartsContainer = styled.div`
         flex-direction: column;
 
         > :first-child {
-            width: 100%;
+            width: 105%;
+            height: 100%;
         }
     }
 `;
@@ -80,10 +81,17 @@ export const ChartsContainer = styled.div`
 export const CardsContainer = styled.div`
     margin-top: 10px;
     display: flex;
-    flex-direction: row;
+
+    /*  flex-direction: row;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
     margin-bottom: 20px;
+
+    @media only screen and (max-width: 1100px) {
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+    }
 `;
 
 export const CardsContainer2 = styled.div`
@@ -142,10 +150,10 @@ export const Card = styled.div`
         > svg {
             position: absolute;
             object-fit: cover;
-            margin-top: 20px;
-            height: 100px;
-            left: 110px;
-            width: 150px;
+            margin-top: 15px;
+            height: 150px;
+            left: 152px;
+            width: 100px;
             opacity: 0.4;
         }
     }

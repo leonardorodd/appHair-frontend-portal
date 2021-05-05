@@ -1,6 +1,6 @@
 import React from 'react';
 import { Chart, Pie, Bar, Doughnut } from 'react-chartjs-2';
-import { MdAttachMoney } from 'react-icons/md';
+import { MdAttachMoney, MdTimeline } from 'react-icons/md';
 import ContentHeader from '../../components/ContentHeader';
 import SelectInput from '../../components/SelectInput';
 import {
@@ -41,6 +41,30 @@ const Dashboard: React.FC = () => {
             'Nov',
             'Dez',
         ],
+        /*  datasets: [
+            {
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
+                barOptions: {},
+            },
+        ], */
         datasets: [
             {
                 label: 'Receita',
@@ -67,6 +91,7 @@ const Dashboard: React.FC = () => {
                     callback(value: string) {
                         return `R$ ${value}`;
                     },
+                    beginAtZero: true,
                 },
             },
             x: {
@@ -159,15 +184,24 @@ const Dashboard: React.FC = () => {
                     <span>Previsão de ganhos</span>
                     <Card>
                         <p>Hoje</p>
-                        <div>R$ 250,00</div>
+                        <div>
+                            <p>R$ 250,00</p>
+                            <MdTimeline />
+                        </div>
                     </Card>
                     <Card>
                         <p>Semana</p>
-                        <div>R$ 1250,00</div>
+                        <div>
+                            <p>R$ 1250,00</p>
+                            <MdTimeline />
+                        </div>
                     </Card>
                     <Card>
                         <p>Mês</p>
-                        <div>R$ 5000,00</div>
+                        <div>
+                            <p>R$ 5000,00</p>
+                            <MdTimeline />
+                        </div>
                     </Card>
                 </CardsContainer2>
             </ChartsContainer>
