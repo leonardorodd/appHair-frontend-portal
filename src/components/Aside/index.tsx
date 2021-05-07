@@ -46,7 +46,23 @@ const Aside: React.FC = () => {
             title: 'Dashboard',
             icon: MdDashboard,
             link: '/dashboard',
-            subItens: [],
+            subItens: [
+                { title: 'Vendas', icon: MdPerson, link: '/' },
+                { title: 'Previsões', icon: MdPerson, link: '/' },
+                { title: 'Pendências', icon: MdPerson, link: '/' },
+                { title: 'Despesas', icon: MdPerson, link: '/' },
+                { title: 'Lucro', icon: MdPerson, link: '/' },
+                { title: 'Comissões', icon: MdPerson, link: '/' },
+                { title: 'Rateio', icon: MdPerson, link: '/' },
+                { title: 'Vales', icon: MdPerson, link: '/' },
+                { title: 'Débitos', icon: MdPerson, link: '/' },
+                { title: 'Compras', icon: MdPerson, link: '/' },
+                { title: 'Fixo', icon: MdPerson, link: '/' },
+                { title: 'Top 10 Artistas', icon: MdPerson, link: '/' },
+                { title: 'Top 10 Clientes', icon: MdPerson, link: '/' },
+                { title: 'Top 10 Produtos', icon: MdPerson, link: '/' },
+                { title: 'Top 10 Serviços', icon: MdPerson, link: '/' },
+            ],
         },
         {
             title: 'Cadastros',
@@ -94,8 +110,19 @@ const Aside: React.FC = () => {
         {
             title: 'Financeiro',
             icon: MdAttachMoney,
-            link: '/financeiro',
-            subItens: [],
+            link: '/off',
+            subItens: [
+                {
+                    title: 'Entradas, recebimentos e vouchers',
+                    icon: MdArrowUpward,
+                    link: '/financial/inputs',
+                },
+                {
+                    title: 'Saídas, retiradas e vales',
+                    icon: MdArrowDownward,
+                    link: '/financial/outputs',
+                },
+            ],
         },
         {
             title: 'Estoque',

@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import DataTable from 'react-data-table-component';
 import { SubmitHandler, FormHandles, Scope } from '@unform/core';
 import { Table } from 'react-bootstrap';
 import { MdDelete } from 'react-icons/md';
@@ -110,6 +111,27 @@ const Establishment: React.FC = () => {
             .finally(() => setCepLoading(false));
     }
 
+    const data = [{ id: 1, nome: 'Aluguel', ano: '1982', vencimento: 'Dia 5' }];
+    const columns = [
+        {
+            name: 'Nome',
+            selector: 'nome',
+            sortable: true,
+        },
+        {
+            name: 'Ano',
+            selector: 'ano',
+            sortable: true,
+            right: true,
+        },
+        {
+            name: 'Vencimento',
+            selector: 'vencimento',
+            sortable: true,
+            right: true,
+        },
+    ];
+
     return (
         <Container>
             <PageTitle>
@@ -170,7 +192,7 @@ const Establishment: React.FC = () => {
                 <FieldSet title="Horário de funcionamento">
                     <DayScheduleItem>
                         <CheckBox
-                            name="sabado"
+                            name="unico"
                             label="Informar um horário único"
                         />
                         <p>Horário</p>
@@ -443,6 +465,12 @@ const Establishment: React.FC = () => {
                         </tbody>
                     </Table>
                 </FieldSet>
+                <DataTable
+                    title="Despesas Fixas"
+                    columns={columns}
+                    data={data}
+                    pagination
+                />
             </CreateEstablismentForm>
             <PageFooter>
                 <button

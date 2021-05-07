@@ -3,7 +3,8 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "es6"
     ],
     "outDir": "./dist",
     "rootDir": "./src",
@@ -24,7 +25,9 @@
     "jsx": "react-jsx",
     "target": "es5",
     "noEmit": true,
-    "incremental": false
+    "incremental": false,
+    "noImplicitThis": true,
+    "strictNullChecks": true
   },
   "include": [
     "src"
