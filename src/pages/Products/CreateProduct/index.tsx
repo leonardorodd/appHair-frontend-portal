@@ -2,6 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { SubmitHandler, FormHandles } from '@unform/core';
 import { MdKeyboardArrowRight, MdKeyboardArrowDown } from 'react-icons/md';
+import { FaPlus } from 'react-icons/fa';
 import { brazilianCurrencyMask } from '../../../utils/masks';
 import Input from '../../../components/UnformFields/Input';
 import CheckBox from '../../../components/UnformFields/CheckBox';
@@ -128,7 +129,8 @@ const CreateClient: React.FC = () => {
                 type="button"
                 onClick={handleShow}
             >
-                Novo Produto
+                <span>Adicionar</span>
+                <FaPlus />
             </button>
             <CreateClientModal
                 show={show}

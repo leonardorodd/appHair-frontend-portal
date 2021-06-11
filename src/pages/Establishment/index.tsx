@@ -130,6 +130,12 @@ const Establishment: React.FC = () => {
             sortable: true,
             right: true,
         },
+        {
+            name: 'Vencimento',
+            selector: 'vencimento',
+            sortable: true,
+            right: true,
+        },
     ];
 
     return (

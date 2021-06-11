@@ -1,8 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 import { darken } from 'polished';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default createGlobalStyle`
     :root {
@@ -42,7 +42,7 @@ export default createGlobalStyle`
     @media only screen and (max-width: 600px) {
 
         body, input, button {
-            font-size:  11px !important;
+            font-size:  12px !important;
         }
 
     }

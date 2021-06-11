@@ -7,9 +7,9 @@ import { Table } from 'react-bootstrap';
 import { MdDelete } from 'react-icons/md';
 import EmptyList from '../../../components/EmptyList';
 import { convertToBrasilianDateFormat } from '../../../utils/dateUtils';
-import AddClientModal, { IFormData } from '../CreateClient';
+import AddProviderModal, { IFormData } from '../CreateProvider';
 
-import { Container, ClientHeaderContainer } from './styles';
+import { Container, ProviderHeaderContainer } from './styles';
 
 const Clients: React.FC = () => {
     const initialData = [
@@ -17,6 +17,7 @@ const Clients: React.FC = () => {
             nome: 'Matheus da Silva',
             dataDeNascimento: '10/10/1995',
             sexo: 'Masculino',
+            contato: 'Fulano',
             email: 'matheus@hotmail.com',
             numeroCPFouCNPJ: '702.415.258.85',
             RG: '61.24.258',
@@ -47,6 +48,7 @@ const Clients: React.FC = () => {
             nome: 'Matheus da Silva',
             dataDeNascimento: '10/10/1995',
             sexo: 'Masculino',
+            contato: 'Fulano',
             email: 'matheus@hotmail.com',
             numeroCPFouCNPJ: '702.415.258.85',
             RG: '61.24.258',
@@ -77,6 +79,7 @@ const Clients: React.FC = () => {
             nome: 'Matheus da Silva',
             dataDeNascimento: '10/10/1995',
             sexo: 'Masculino',
+            contato: 'Fulano',
             email: 'matheus@hotmail.com',
             numeroCPFouCNPJ: '702.415.258.85',
             RG: '61.24.258',
@@ -107,6 +110,7 @@ const Clients: React.FC = () => {
             nome: 'Matheus da Silva',
             dataDeNascimento: '10/10/1995',
             sexo: 'Masculino',
+            contato: 'Fulano',
             email: 'matheus@hotmail.com',
             numeroCPFouCNPJ: '702.415.258.85',
             RG: '61.24.258',
@@ -136,66 +140,60 @@ const Clients: React.FC = () => {
     ];
 
     const [searchTerm, setSearchTerm] = useState('');
-    const [clientsList, setClientsList] = useState<Array<IFormData>>(
+    const [providersList, setProvidersList] = useState<Array<IFormData>>(
         initialData,
     );
 
-    function searchClient(e: React.ChangeEvent<HTMLInputElement>) {
+    function searchProvider(e: React.ChangeEvent<HTMLInputElement>) {
         setSearchTerm(e.target.value);
     }
 
     return (
         <Container>
-            <ClientHeaderContainer>
-                <h1>Clientes</h1>
+            <ProviderHeaderContainer>
+                <h1>Fornecedores</h1>
                 <div>
-                    <AddClientModal
-                        saveClient={clientData => {
-                            setClientsList([...clientsList, clientData]);
-                        }}
-                    />
+                    <AddProviderModal />
                     <div>
                         <FaSearch />
-                        <input placeholder="Pesquisar cliente" />
+                        <input placeholder="Pesquisar fornecedor" />
                     </div>
                 </div>
-            </ClientHeaderContainer>
-            {clientsList.length > 0 ? (
+            </ProviderHeaderContainer>
+            {providersList.length > 0 ? (
                 <Table responsive>
                     <thead>
                         <tr>
                             <th>Nome</th>
+                            <th>CPF/CNPJ</th>
+                            <th>Contato</th>
                             <th>Telefone</th>
-                            <th>Sexo</th>
-                            <th>Data de Nascimento</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {clientsList.map((client, index) => (
+                        {providersList.map((provider, index) => (
                             /* Object.values(client).some(value =>
 		                    value
 		                        .toLocaleUpperCase()
 		                        .startsWith(searchTerm.toLocaleUpperCase()),
 		                ) ? ( */
                             <tr>
-                                <td>{client.nome}</td>
-                                <td>{client.whatsapp}</td>
-                                <td>{client.sexo}</td>
-                                <td>
-                                    {convertToBrasilianDateFormat(
-                                        new Date(client.dataDeNascimento),
-                                    )}
-                                </td>
+                                <td>{provider.nome}</td>
+                                <td>{provider.numeroCPFouCNPJ}</td>
+                                <td>{provider.contato}</td>
+                                <td>{provider.whatsapp}</td>
                                 <td>
                                     <MdDelete
                                         onClick={() => {
-                                            const updatedClientList = clientsList.filter(
-                                                (_, clientIndex) =>
-                                                    clientIndex !== index,
+                                            const updatedProviderList = providersList.filter(
+                                                (_, providerIndex) =>
+                                                    providerIndex !== index,
                                             );
 
-                                            setClientsList(updatedClientList);
+                                            setProvidersList(
+                                                updatedProviderList,
+                                            );
                                         }}
                                     />
                                 </td>
@@ -205,8 +203,8 @@ const Clients: React.FC = () => {
                 </Table>
             ) : (
                 <EmptyList
-                    title="Não foram encontrados clientes cadastrados"
-                    subtitle='Adicione um novo cliente clicando no botão "+"'
+                    title="Não foram encontrados fornecedores cadastrados"
+                    subtitle='Adicione um novo fornecedor clicando no botão "+"'
                 />
             )}
         </Container>

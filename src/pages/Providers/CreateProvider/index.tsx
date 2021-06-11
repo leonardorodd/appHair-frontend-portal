@@ -6,6 +6,7 @@ import { SubmitHandler, FormHandles, Scope } from '@unform/core';
 import { MdKeyboardArrowRight, MdKeyboardArrowDown } from 'react-icons/md';
 import * as Yup from 'yup';
 import { cpf, cnpj } from 'cpf-cnpj-validator';
+import { FaPlus } from 'react-icons/fa';
 import Input from '../../../components/UnformFields/Input';
 import MaskedInput from '../../../components/UnformFields/InputMaskd';
 import Select from '../../../components/UnformFields/Select';
@@ -43,6 +44,7 @@ export interface IFormData {
     dataDeNascimento: string;
     sexo: string;
     email: string;
+    contato: string;
     numeroCPFouCNPJ: string;
     RG?: string;
     avatarImage?: string;
@@ -229,7 +231,8 @@ const CreateProvider: React.FC = () => {
                 type="button"
                 onClick={handleShow}
             >
-                Novo Fornecedor
+                <span>Adicionar</span>
+                <FaPlus />
             </button>
             <CreateClientModal
                 show={show}

@@ -9,7 +9,7 @@ export const Container = styled.div`
         'main';
     height: 100vh;
 
-    @media only screen and (min-width: 46.875em) {
+    @media only screen and (min-width: 800px) {
         grid-template-columns: 250px 1fr; /* Show the side nav for non-mobile screens */
         grid-template-areas:
             'sidebar header'

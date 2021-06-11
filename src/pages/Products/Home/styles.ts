@@ -28,7 +28,7 @@ export const Container = styled.div`
     }
 `;
 
-export const ArtistHeaderContainer = styled.div`
+export const ProviderHeaderContainer = styled.div`
     > h1 {
         font-size: 18px;
         color: var(--base-tertiary-color);
@@ -39,9 +39,9 @@ export const ArtistHeaderContainer = styled.div`
         justify-content: space-between;
         margin: 25px 0px;
 
-        > button {
-            > svg {
-                display: none;
+        > :first-child {
+            svg {
+                margin-left: 5px;
             }
         }
 
@@ -76,17 +76,20 @@ export const ArtistHeaderContainer = styled.div`
 
     @media only screen and (max-width: 800px) {
         > :last-child {
-            > button {
+            > :first-child {
                 width: 15%;
-                > span {
-                    display: none;
-                }
-                > svg {
-                    display: block;
+                > button {
+                    width: 100%;
+                    > span {
+                        display: none;
+                    }
+                    > svg {
+                        display: block;
+                    }
                 }
             }
 
-            > div {
+            > :last-child {
                 width: 60%;
 
                 > svg {

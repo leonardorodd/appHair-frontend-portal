@@ -4,12 +4,16 @@
 /* eslint-disable react/jsx-curly-newline */
 import React, { useState, useRef, useEffect } from 'react';
 import { SubmitHandler, FormHandles, Scope } from '@unform/core';
-import { FaWhatsapp, FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
+import {
+    FaWhatsapp,
+    FaInstagram,
+    FaFacebook,
+    FaTwitter,
+    FaPlus,
+} from 'react-icons/fa';
 import { IoLogoTiktok } from 'react-icons/io5';
 import { MdKeyboardArrowRight, MdKeyboardArrowDown } from 'react-icons/md';
 import * as Yup from 'yup';
-import { toast } from 'react-toastify';
-import { OptionTypeBase } from 'react-select';
 import { cpf, cnpj } from 'cpf-cnpj-validator';
 import FieldSet from '../../../components/FieldSet';
 import Input from '../../../components/UnformFields/Input';
@@ -264,7 +268,8 @@ const CreateClient: React.FC<ICreateClientProps> = ({ saveClient }) => {
                 type="button"
                 onClick={handleShow}
             >
-                Novo Cliente
+                <span>Adicionar</span>
+                <FaPlus />
             </button>
             <CreateClientModal
                 show={show}

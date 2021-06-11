@@ -18,7 +18,6 @@ export const Container = styled.div`
     overflow-y: hidden;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     z-index: 2;
-    background-color: #394263;
     transform: translateX(-252px);
     transition: all 0.6s ease-in-out;
 
@@ -27,15 +26,7 @@ export const Container = styled.div`
     /*     border-right: 1px solid ${props => props.theme.color.gray};
  */
     background: var(--base-primary-color);
-
-    /* @media only screen and (min-width: 46.875em) {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        justify-content: space-between;
-    } */
-
-    @media only screen and (min-width: 46.875em) {
+    @media only screen and (min-width: 800px) {
         position: relative;
         transform: translateX(0);
 

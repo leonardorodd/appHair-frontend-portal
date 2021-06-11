@@ -119,8 +119,8 @@ const AddOutputs: React.FC = () => {
                                 openMenuOnFocus
                             />
                             <Select
-                                label="Tipo de despesa*"
-                                name="tipoDespesa"
+                                label="Tipo de saída*"
+                                name="tipoReceita"
                                 classNamePrefix="react-select"
                                 defaultValue={expensesOptions[1]}
                                 options={expensesOptions}
@@ -129,7 +129,16 @@ const AddOutputs: React.FC = () => {
                                 openMenuOnFocus
                             />
                         </div>
-                        <Input name="fornecedor" label="Fornecedor" />
+                        <Select
+                            label="Fornecedor"
+                            name="fornecedor"
+                            classNamePrefix="react-select"
+                            defaultValue={expensesOptions[1]}
+                            options={expensesOptions}
+                            isSearchable={false}
+                            blurInputOnSelect
+                            openMenuOnFocus
+                        />
                         <TextArea name="descricao" label="Descrição*" />
                     </CreateInputForm>
                 </AddSkillModal.Body>

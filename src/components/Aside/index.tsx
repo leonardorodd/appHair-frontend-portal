@@ -39,7 +39,7 @@ const Aside: React.FC = () => {
         {
             title: 'Agenda',
             icon: MdEventNote,
-            link: '/agenda',
+            link: '/schedule',
             subItens: [],
         },
         {

@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { SubmitHandler, FormHandles } from '@unform/core';
 import { MdKeyboardArrowRight, MdKeyboardArrowDown } from 'react-icons/md';
+import { FaPlus } from 'react-icons/fa';
 import Input from '../../../components/UnformFields/Input';
 import TextArea from '../../../components/UnformFields/TextArea';
 import CheckBox from '../../../components/UnformFields/CheckBox';
@@ -22,6 +23,42 @@ interface CheckboxOption {
     id: string;
     value: string;
     label: string;
+}
+interface IAddress {
+    cep: string;
+    logradouro: string;
+    numero?: string;
+    bairro: string;
+    complemento: string;
+    cidade: string;
+    estado: string;
+}
+
+export interface IFormData {
+    nome: string;
+    dataDeNascimento: string;
+    sexo: string;
+    email: string;
+    valor: string;
+    categoria: string;
+    tempoDeExecucao: string;
+    contato: string;
+    numeroCPFouCNPJ: string;
+    RG?: string;
+    avatarImage?: string;
+    endereco: IAddress;
+    whatsapp: string;
+    instagram?: string;
+    twitter?: string;
+    facebook?: string;
+    porcentagemDescontoProdutos?: string;
+    porcentagemDescontoServicos?: string;
+    indocadoPor?: string;
+    idArtista1?: string;
+    idArtista2?: string;
+    coloracaoCabelo?: string;
+    tipoDePele?: string;
+    tipoDeUnha?: string;
 }
 
 const CreateClient: React.FC = () => {
@@ -75,27 +112,6 @@ const CreateClient: React.FC = () => {
         },
     ];
 
-    interface IAddress {
-        cep: string;
-        logradouro: string;
-        numero: string;
-        bairro: string;
-        complemento: string;
-        cidade: string;
-        estado: string;
-    }
-
-    interface IFormData {
-        numeroCPFouCNPJ: string;
-        razaoSocial: string;
-        contato: string;
-        telefone: string;
-        email: string;
-        celular: string;
-        observacoes: string;
-        endereco: IAddress;
-    }
-
     function handleClose() {
         setShowDiferentPriceContainer(false);
         setShow(false);
@@ -116,7 +132,8 @@ const CreateClient: React.FC = () => {
                 type="button"
                 onClick={handleShow}
             >
-                Novo Serviço
+                <span>Adicionar</span>
+                <FaPlus />
             </button>
             <CreateClientModal
                 show={show}

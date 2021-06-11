@@ -117,8 +117,8 @@ const AddInputs: React.FC = () => {
                                 openMenuOnFocus
                             />
                             <Select
-                                label="Tipo de despesa*"
-                                name="tipoDespesa"
+                                label="Tipo de receita*"
+                                name="tipoReceita"
                                 classNamePrefix="react-select"
                                 defaultValue={expensesOptions[1]}
                                 options={expensesOptions}
@@ -129,7 +129,7 @@ const AddInputs: React.FC = () => {
                         </div>
                         <div className="treeFieldsgroup">
                             <Select
-                                label="Tipo documento*"
+                                label="Tipo documento"
                                 name="tipoDespesa"
                                 classNamePrefix="react-select"
                                 defaultValue={documentOptions[0]}
@@ -142,7 +142,16 @@ const AddInputs: React.FC = () => {
                                 name="numeroDocumento"
                                 label="Número do documento"
                             />
-                            <Input name="colaborador" label="Colaborador" />
+                            <Select
+                                name="colaborador"
+                                label="Colaborador"
+                                classNamePrefix="react-select"
+                                defaultValue={documentOptions[0]}
+                                options={documentOptions}
+                                isSearchable={false}
+                                blurInputOnSelect
+                                openMenuOnFocus
+                            />
                         </div>
                         <TextArea name="descricao" label="Descrição*" />
                     </CreateInputForm>

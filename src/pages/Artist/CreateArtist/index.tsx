@@ -18,6 +18,7 @@ import CheckBox from '../../../components/UnformFields/CheckBox';
 import FieldSet from '../../../components/FieldSet';
 import AvatarInput from '../../../components/UnformFields/AvatarInput';
 import AddSkill from './AddSkills';
+import WebCam from '../../../components/WebcamCapture';
 import brasilStatesAndCities from '../../../utils/brazilianStates.json';
 import { cpfMask, cnpjMask } from '../../../utils/masks';
 

@@ -98,8 +98,9 @@ export const CardsContainer2 = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    height: 320px;
+    margin-top: 20px;
+
     > span {
         font-weight: bold;
         color: var(--secondary-text-color);
