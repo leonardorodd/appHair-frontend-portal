@@ -12,6 +12,8 @@ export const FilterContainer = styled.div`
     }
 `;
 
+export const EventContainer = styled.div``;
+
 export const Container = styled.div`
     > h1 {
         font-size: 18px;
@@ -155,6 +157,10 @@ export const Container = styled.div`
     .rs-drawer-footer {
         height: 80px !important;
     }
+
+    .rbc-event {
+        height: auto !important;
+    }
 `;
 
 export const ResourceHeader = styled.div`
@@ -187,11 +193,49 @@ interface StyledEventProps {
 }
 
 export const Event = styled.div<StyledEventProps>`
-    height: 100%;
     width: 100%;
+    height: auto;
     color: var(--primary-text-color);
+    border-radius: 5px;
+    display: flex;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
-    > :first-child {
+    > p {
+        margin-bottom: 10px;
+    }
+
+    > ul {
+        margin-top: 8px;
+    }
+
+    background: ${props => {
+        switch (props.status) {
+            case 'Agendado':
+                return '#ffd8b7';
+                break;
+            case 'Alterado':
+                return '#fcfcdc';
+                break;
+            case 'Confirmado':
+                return '#d4eef9';
+                break;
+            case 'Cliente chegou':
+                return '#e0f4da';
+                break;
+            case 'Finalizado':
+                return '#f2f2f2';
+                break;
+            default:
+                return '';
+        }
+    }};
+
+    /* > :first-child {
         height: 60px;
         width: 100%;
         padding-top: 40px;
@@ -200,26 +244,26 @@ export const Event = styled.div<StyledEventProps>`
         justify-content: center;
         flex-direction: column;
         background: ${props => {
-            switch (props.status) {
-                case 'Agendado':
-                    return '#ffd8b7';
-                    break;
-                case 'Alterado':
-                    return '#fcfcdc';
-                    break;
-                case 'Confirmado':
-                    return '#d4eef9';
-                    break;
-                case 'Cliente chegou':
-                    return '#e0f4da';
-                    break;
-                case 'Finalizado':
-                    return '#f2f2f2';
-                    break;
-                default:
-                    return '';
-            }
-        }};
+        switch (props.status) {
+            case 'Agendado':
+                return '#ffd8b7';
+                break;
+            case 'Alterado':
+                return '#fcfcdc';
+                break;
+            case 'Confirmado':
+                return '#d4eef9';
+                break;
+            case 'Cliente chegou':
+                return '#e0f4da';
+                break;
+            case 'Finalizado':
+                return '#f2f2f2';
+                break;
+            default:
+                return '';
+        }
+    }};
 
         > img {
             top: 9px;
@@ -271,7 +315,7 @@ export const Event = styled.div<StyledEventProps>`
                 }
             }
         }
-    }
+    } */
 `;
 
 export const CalendarContainer = styled.div`
@@ -306,18 +350,21 @@ export const CalendarContainer = styled.div`
 
 export const MenuContainer = styled.div`
     display: flex;
-    border-top: 1px solid var(--primary-border-color);
     justify-content: space-evenly;
-    width: 100%;
+    width: 90%;
     padding: 10px;
 
     > svg {
-        width: 22px;
-        height: 22px;
+        width: 23px;
+        height: 23px;
 
         &:hover {
             color: var(--base-tertiary-color);
         }
+    }
+
+    .rs-modal-backdrop.in {
+        opacity: 0.08 !important;
     }
 `;
 

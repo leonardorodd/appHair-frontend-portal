@@ -1,0 +1,77 @@
+.rs-modal-backdrop.in {
+    opacity: 0.05;
+}
+
+.rs-modal-body > img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.rs-modal-body {
+   display: flex;
+   margin-top: 20px;
+   padding-bottom: 20px;
+}
+
+.rs-modal-body > :nth-child(2) {
+  width: 100%;
+  margin-left: 10px;
+}
+
+.rs-modal-body > :nth-child(2) > p {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.rs-modal-body > :nth-child(2) > ul {
+  margin-top: 6px;
+}
+
+.rs-modal-body > :nth-child(2) > div {
+  display: flex;
+}
+
+.rs-modal-body > :nth-child(2) > div {
+  display: flex;
+  margin-top: 15px;
+}
+
+.rs-modal-body > :nth-child(2) > div > div {
+  margin-right: 5px;
+  align-items: center;
+  display: flex;
+}
+
+.rs-modal-wrapper {
+    top: calc(100vh/4);
+}
+
+.rs-modal-content {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.rs-modal-body > img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.rs-modal-header .rs-modal-header-close{
+    top: 7px;
+}
+
+.rs-modal-content {
+    padding:15px;
+}
+
+.rs-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rs-modal-sm {
+    width: 380px;
+}

@@ -33,13 +33,16 @@ import {
     MdInfoOutline,
     MdPlayCircleOutline,
 } from 'react-icons/md';
+import { RiMoneyDollarCircleLine } from 'react-icons/ri';
 import {
+    BiStopCircle,
     BiCalendarCheck,
     BiCalendarX,
     BiCalendarEdit,
     BiCalendarExclamation,
 } from 'react-icons/bi';
-import { Button, ButtonToolbar, Drawer, Popover, Whisper } from 'rsuite';
+
+import { Button, ButtonToolbar, Drawer, Popover, Whisper, Modal } from 'rsuite';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { SubmitHandler, FormHandles } from '@unform/core';
 import DatePicker from 'react-datepicker';
@@ -47,10 +50,11 @@ import ComboBox from 'react-select';
 import Button1 from 'react-bootstrap/Button';
 import Input from '../../components/UnformFields/Input';
 import FieldSet from '../../components/FieldSet';
+
 import 'rsuite/dist/styles/rsuite-default.css';
 import MaskedInput from '../../components/UnformFields/InputMaskd';
 import Select from '../../components/UnformFields/Select';
-
+import './customModal.css';
 import '../../styles/customreactdatepicker.css';
 
 import {
@@ -63,6 +67,7 @@ import {
     CreateEventForm,
     ButtonContainer,
     FilterContainer,
+    EventContainer,
 } from './styles';
 
 interface IResource {
@@ -78,6 +83,7 @@ interface IEventService {
 }
 
 interface IEvent {
+    id: number;
     title: string;
     status: string;
     resourceId: string;
@@ -112,7 +118,12 @@ const localizer = momentLocalizer(moment);
 
 const Schedule: React.FC = () => {
     const [show, setShow] = useState(false);
+    const [showEventModal, setShowEventModal] = useState(false);
+    const [showAttendanceModal, setShowAttendanceEventModal] = useState(false);
+    const [focusedEvent, setFocusedEvent] = useState({});
+
     const [eventData, setEventData] = useState<IEvent>({
+        id: 0,
         title: '',
         status: '',
         resourceId: '',
@@ -128,6 +139,7 @@ const Schedule: React.FC = () => {
     const [events, setEvents] = useState([
         {
             title: 'Corte cabelo',
+
             resourceId: 'Luciano',
             client: 'Juliana',
             status: 'Agendado',
@@ -286,6 +298,22 @@ const Schedule: React.FC = () => {
 
     function handleShow() {
         setShow(true);
+    }
+
+    function handleCloseEventModal() {
+        setShowEventModal(false);
+    }
+
+    function handleShowEventModal() {
+        setShowEventModal(true);
+    }
+
+    function handleCloseStopAttendanceModal() {
+        setShowEventModal(false);
+    }
+
+    function handleShowStopAttendanceModal() {
+        setShowEventModal(true);
     }
 
     const clients = [
@@ -471,6 +499,35 @@ const Schedule: React.FC = () => {
         );
 
         EventList.forEach(item => {
+            const { left, width, height } = item.style;
+            const siblings =
+                item.parentElement &&
+                Array.from(item.parentElement.children)
+                    .filter(c => c !== item)
+                    .map(item => item as HTMLElement);
+
+            item.addEventListener('mouseover', () => {
+                siblings?.forEach(item => {
+                    item.style.display = 'none';
+                });
+                item.style.height = 'auto';
+                item.style.width = '100%';
+                item.style.left = '0';
+                item.style.zIndex = '999';
+            });
+
+            item.addEventListener('mouseout', () => {
+                siblings?.forEach(item => {
+                    item.style.display = 'block';
+                });
+                item.style.height = height;
+                item.style.width = width;
+                item.style.left = left;
+                item.style.zIndex = '';
+            });
+        });
+
+        /*   EventList.forEach(item => {
             const size = item.style.height;
 
             item.addEventListener('mouseover', () => {
@@ -479,7 +536,7 @@ const Schedule: React.FC = () => {
             item.addEventListener('mouseout', () => {
                 item.style.height = size;
             });
-        });
+        }); */
 
         /* return () => {}; */
 
@@ -512,6 +569,7 @@ const Schedule: React.FC = () => {
 
     const speakerEdit = <Popover title="Editar" />;
     const speakerPlay = <Popover title="Iniciar atendimento" />;
+    const speakerStop = <Popover title="Finalizar atendimento" />;
     const speakerConfirm = <Popover title="Confirmar agendamento" />;
     const speakerCancel = <Popover title="Cancelar horário de atendimento" />;
     const speakerClientIsHere = <Popover title="Cliente chegou" />;
@@ -712,52 +770,23 @@ const Schedule: React.FC = () => {
                             let total = 0;
 
                             return (
-                                <Event status={status}>
-                                    <div>
-                                        <p>
-                                            {/*                                             <MdAlarm />
-                                             */}
-                                            {`${moment(start, 'HHmmss').format(
-                                                'HH:mm',
-                                            )} - ${moment(end, 'HHmmss').format(
-                                                'HH:mm',
-                                            )} -> `}
-                                            {status}
-                                        </p>
-                                        {/* <p>
-                                            <MdInfoOutline />
-                                            {status}
-                                        </p> */}
-                                        <img src={img} alt="avatar" />
-                                    </div>
-                                    <div>
+                                <EventContainer>
+                                    <Event
+                                        status={status}
+                                        onClick={handleShowEventModal}
+                                    >
                                         <p>{client}</p>
-                                        <ul>
+                                        {`${moment(start, 'HHmmss').format(
+                                            'HH:mm',
+                                        )} - ${moment(end, 'HHmmss').format(
+                                            'HH:mm',
+                                        )} -> `}
+                                        {status}
+                                        {/*  <ul>
                                             {servicos.map(service => (
                                                 <li>{service.descricao}</li>
                                             ))}
-                                        </ul>
-                                        <div>
-                                            <div>
-                                                <MdAccessTime />
-                                                <span>
-                                                    {`${duration.hours()}h:${duration.minutes()}min`}
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <MdAttachMoney />
-                                                <span>
-                                                    {servicos.forEach(
-                                                        service => {
-                                                            total += parseInt(
-                                                                service.preco,
-                                                            );
-                                                        },
-                                                    )}
-                                                    {total}
-                                                </span>
-                                            </div>
-                                        </div>
+                                        </ul> */}
                                         <MenuContainer>
                                             <Whisper
                                                 placement="bottom"
@@ -795,8 +824,111 @@ const Schedule: React.FC = () => {
                                                 <MdPlayCircleOutline />
                                             </Whisper>
                                         </MenuContainer>
-                                    </div>
-                                </Event>
+                                    </Event>
+                                    <Modal
+                                        show={showEventModal}
+                                        onHide={handleCloseEventModal}
+                                        overflow
+                                    >
+                                        <Modal.Header>
+                                            <Modal.Title>
+                                                {`${moment(
+                                                    start,
+                                                    'HHmmss',
+                                                ).format('HH:mm')} - ${moment(
+                                                    end,
+                                                    'HHmmss',
+                                                ).format('HH:mm')} -> `}
+                                                {status}
+                                            </Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <img src={img} alt="avatar" />
+                                            <div>
+                                                <p>{client}</p>
+                                                <ul>
+                                                    {servicos.map(service => (
+                                                        <li>
+                                                            {service.descricao}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                                <div>
+                                                    <div>
+                                                        <MdAccessTime />
+                                                        <span>
+                                                            {`${duration.hours()}h:${duration.minutes()}min`}
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <RiMoneyDollarCircleLine />
+                                                        <span>
+                                                            {servicos.forEach(
+                                                                service => {
+                                                                    total += parseInt(
+                                                                        service.preco,
+                                                                    );
+                                                                },
+                                                            )}
+                                                            {total}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                            <MenuContainer>
+                                                <Whisper
+                                                    placement="bottom"
+                                                    trigger="hover"
+                                                    speaker={speakerCancel}
+                                                >
+                                                    <BiCalendarX />
+                                                </Whisper>
+                                                <Whisper
+                                                    placement="bottom"
+                                                    trigger="hover"
+                                                    speaker={
+                                                        speakerClientIsHere
+                                                    }
+                                                >
+                                                    <BiCalendarExclamation />
+                                                </Whisper>
+                                                <Whisper
+                                                    placement="bottom"
+                                                    trigger="hover"
+                                                    speaker={speakerEdit}
+                                                >
+                                                    <BiCalendarEdit />
+                                                </Whisper>
+                                                <Whisper
+                                                    placement="bottom"
+                                                    trigger="hover"
+                                                    speaker={speakerConfirm}
+                                                >
+                                                    <BiCalendarCheck />
+                                                </Whisper>
+                                                <Whisper
+                                                    placement="bottom"
+                                                    trigger="hover"
+                                                    speaker={speakerPlay}
+                                                >
+                                                    <MdPlayCircleOutline />
+                                                </Whisper>
+                                                <Whisper
+                                                    placement="bottom"
+                                                    trigger="hover"
+                                                    speaker={speakerStop}
+                                                    onClick={
+                                                        handleShowStopAttendanceModal
+                                                    }
+                                                >
+                                                    <BiStopCircle />
+                                                </Whisper>
+                                            </MenuContainer>
+                                        </Modal.Footer>
+                                    </Modal>
+                                </EventContainer>
                             );
                         },
                     }}
@@ -818,7 +950,21 @@ const Schedule: React.FC = () => {
                     defaultDate={new Date(2021, 4, 24)}
                 />
             </CalendarContainer>
-            {console.log(eventData)}
+            <Modal
+                show={showAttendanceModal}
+                onHide={handleCloseStopAttendanceModal}
+                overflow
+            >
+                <Modal.Header>
+                    <Modal.Title />
+                </Modal.Header>
+                <Modal.Body>
+                    <h1>fff</h1>
+                </Modal.Body>
+                <Modal.Footer />
+            </Modal>
+
+            {console.log(showAttendanceModal)}
         </Container>
     );
 };
