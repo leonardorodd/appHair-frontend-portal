@@ -51,8 +51,10 @@ import Button1 from 'react-bootstrap/Button';
 import Input from '../../components/UnformFields/Input';
 import FieldSet from '../../components/FieldSet';
 
-import 'rsuite/dist/styles/rsuite-default.css';
-import MaskedInput from '../../components/UnformFields/InputMaskd';
+import 'rsuite/src/styles/themes/default/index.less';
+
+/* import 'rsuite/dist/styles/rsuite-default.css';
+ */ import MaskedInput from '../../components/UnformFields/InputMaskd';
 import Select from '../../components/UnformFields/Select';
 import './customModal.css';
 import '../../styles/customreactdatepicker.css';

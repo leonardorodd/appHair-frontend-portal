@@ -21,6 +21,7 @@ import {
     MdGroup,
     MdPerson,
     MdClear,
+    MdInsertDriveFile,
 } from 'react-icons/md';
 
 import { RiTruckFill, RiHandSanitizerFill } from 'react-icons/ri';
@@ -121,6 +122,11 @@ const Aside: React.FC = () => {
                     title: 'Saídas, retiradas e vales',
                     icon: MdArrowDownward,
                     link: '/financial/outputs',
+                },
+                {
+                    title: 'Comandas',
+                    icon: MdInsertDriveFile,
+                    link: '/financial/comandas',
                 },
             ],
         },

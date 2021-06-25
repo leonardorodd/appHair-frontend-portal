@@ -1,7 +1,11 @@
-import React, { useRef } from 'react';
+/* eslint-disable prettier/prettier */
+import React, { useRef, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import DatePicker from 'react-datepicker';
+import { MdInsertDriveFile, MdDelete, MdRemoveRedEye } from 'react-icons/md';
 import { SubmitHandler, FormHandles, Scope } from '@unform/core';
 import { Table } from 'react-bootstrap';
+import AddComandaModal, { IFormData } from './CreateComanda';
 
 /* import AddComandaModal from './CreateComanda';
  */ import Select from '../../../components/UnformFields/Select';
@@ -25,27 +29,106 @@ const servicesList = [
     { value: 3, label: 'Manícure e pedícure' },
 ];
 
-export interface IFormData {
-    nome: string;
-    dataDeNascimento: string;
-    sexo: string;
-    email: string;
-    numeroCPFouCNPJ: string;
-    RG?: string;
-    avatarImage?: string;
-}
-
 const Comandas: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
+    const [date, setDate] = useState(new Date());
     const handleCreateComandaSubmit: SubmitHandler<IFormData> = async data =>
         '';
+    const [comandasList, setComandasList] = useState<Array<IFormData> | null>(
+        null,
+    );
 
     return (
         <Container>
             <ComandaHeaderContainer>
                 <h1>Comandas do dia</h1>
+                <div>
+                    <DatePicker
+                        selected={date}
+                        onChange={(selectedDate: Date) =>
+                            selectedDate && setDate(selectedDate)}
+                    />
+                    <div>
+                        <FaSearch />
+                        <input placeholder="Pesquisar comanda" />
+                    </div>
+                </div>
             </ComandaHeaderContainer>
-            <CreateComandaForm onSubmit={() => ''} id="form">
+            <Table responsive>
+                <thead>
+                    <tr>
+                        <th>Número da comanda</th>
+                        <th>Cliente</th>
+                        <th>Profissional</th>
+                        <th>Valor Pago</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1465</td>
+                        <td>Marcia</td>
+                        <td>Marcela</td>
+                        <td>R$ 50,00</td>
+                        <td>
+                            <div>
+                                <AddComandaModal
+                                    saveComanda={comanda => {
+                                    if (comandasList) {
+                                        setComandasList([...comandasList, comanda]);
+                                    } else {
+                                        setComandasList([comanda]);
+                                    }
+                                }}
+                                />
+                                <MdDelete />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1465</td>
+                        <td>Marcia</td>
+                        <td>Marcela</td>
+                        <td>R$ 50,00</td>
+                        <td>
+                            <div>
+                                <AddComandaModal
+                                    saveComanda={comanda => {
+                                    if (comandasList) {
+                                        setComandasList([...comandasList, comanda]);
+                                    } else {
+                                        setComandasList([comanda]);
+                                    }
+                                }}
+                                />
+                                <MdDelete />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1465</td>
+                        <td>Marcia</td>
+                        <td>Marcela</td>
+                        <td>R$ 50,00</td>
+                        <td>
+                            <div>
+                                <AddComandaModal
+                                    saveComanda={comanda => {
+                                    if (comandasList) {
+                                        setComandasList([...comandasList, comanda]);
+                                    } else {
+                                        setComandasList([comanda]);
+                                    }
+                                }}
+                                />
+                                <MdDelete />
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </Table>
+
+            {/*        <CreateComandaForm onSubmit={() => ''} id="form">
                 <AddComandaMenu>
                     <Select
                         label="Serviço"
@@ -108,7 +191,7 @@ const Comandas: React.FC = () => {
                         </tr>
                     </tbody>
                 </Table>
-            </CreateComandaForm>
+            </CreateComandaForm> */}
         </Container>
     );
 };
