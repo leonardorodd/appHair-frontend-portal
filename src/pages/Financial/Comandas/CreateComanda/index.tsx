@@ -42,6 +42,8 @@ import {
     PaymentContainer,
     ConfigurePaymentForm,
     PendingValue,
+    Form1,
+    Form2,
 } from './styles';
 import '../../../../styles/customreactselect.css';
 import '../../../../styles/customreactdatepicker.css';

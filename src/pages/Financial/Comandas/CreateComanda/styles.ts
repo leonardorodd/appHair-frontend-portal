@@ -6,6 +6,10 @@ export const Container = styled.div`
     display: flex;
 `;
 
+export const Form1 = styled.div``;
+
+export const Form2 = styled.div``;
+
 export const TotalValue = styled.div`
     margin-top: 20px;
     display: flex;
