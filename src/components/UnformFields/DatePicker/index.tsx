@@ -16,13 +16,22 @@ registerLocale('pt', pt);
 interface Props extends Omit<ReactDatePickerProps, 'onChange'> {
     name: string;
     label?: string;
+    initialDate?: string;
 }
-const DatePicker: React.FC<Props> = ({ name, label, ...rest }) => {
+const DatePicker: React.FC<Props> = ({ name, label, initialDate, ...rest }) => {
     const datepickerRef = useRef(null);
-    const { fieldName, registerField, defaultValue = '', error } = useField(
-        name,
-    );
-    const [date, setDate] = useState(defaultValue || null);
+    const {
+        fieldName,
+        registerField,
+        defaultValue = initialDate
+            ? new Date(
+                  initialDate.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'),
+              )
+            : '',
+        error,
+    } = useField(name);
+    const [date, setDate] = useState(defaultValue);
+
     useEffect(() => {
         registerField({
             name: fieldName,
@@ -33,6 +42,7 @@ const DatePicker: React.FC<Props> = ({ name, label, ...rest }) => {
             },
         });
     }, [fieldName, registerField]);
+
     return (
         <Container>
             {label && <label htmlFor={fieldName}>{label}</label>}
@@ -43,7 +53,7 @@ const DatePicker: React.FC<Props> = ({ name, label, ...rest }) => {
                 onChange={setDate}
                 locale="pt"
                 dateFormat="dd/MM/yyyy"
-                customInput={<ReactInputMask mask="99/99/9999" />}
+                /*  customInput={<ReactInputMask mask="99/99/9999" />} */
                 {...rest}
             />
         </Container>

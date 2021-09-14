@@ -89,13 +89,40 @@ export default createGlobalStyle`
         }
     }
 
+    .buttonStyle {
+        cursor: pointer;
+        background: none;
+        border: none;
+        border-radius: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        font-size: 11px;
+        height: 35px;
+        transition: background 0.3s;
+        color: var(--base-quaternary-color);
+        background: var(--base-tertiary-color);
+
+        &:hover {
+            background: ${darken(0.04, '#fd5c0e')};
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+
     .twoFieldsGroup {
         display: flex;
         > div {
             width: 50%;
         }
     }
-    .treeFieldsgroup {
+    .treeFieldsGroup {
         display: flex;
         > div {
             width: 33.3%;
@@ -105,6 +132,20 @@ export default createGlobalStyle`
         display: flex;
         > div {
             width: 25%;
+        }
+    }
+
+    .fiveFieldsGroup {
+        display: flex;
+        > div {
+            width: 20%;
+        }
+    }
+
+    .sixFieldsGroup {
+        display: flex;
+        > div {
+            width: 16.67%;
         }
     }
 

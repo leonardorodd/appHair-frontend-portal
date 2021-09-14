@@ -41,12 +41,7 @@ const MenuItem: React.FC<IMenuItemProps> = ({
                         </SubMenuItemLink>
                     ))
                 ) : (
-                    <>
-                        <p>sss</p>
-                        <p>sss</p>
-                        <p>sss</p>
-                        <p>sss</p>
-                    </>
+                    <></>
                 )}
             </div>
         </Container>

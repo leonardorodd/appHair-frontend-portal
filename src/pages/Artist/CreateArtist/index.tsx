@@ -43,6 +43,13 @@ interface IAddress {
     estado: string;
 }
 
+const artistsGroup = [
+    { value: 1, label: 'Diário' },
+    { value: 2, label: 'Semanal' },
+    { value: 3, label: 'Quinzenal' },
+    { value: 4, label: 'Mensal' },
+];
+
 export interface IFormData {
     nome: string;
     apelido: string;
@@ -332,6 +339,15 @@ const CreateProvider: React.FC = () => {
                         <DatePicker
                             label="Início do trabalho"
                             name="dataDeNascimento"
+                        />
+                        <Select
+                            name="group"
+                            label="Grupo de rateio"
+                            classNamePrefix="react-select"
+                            defaultValue={artistsGroup[2]}
+                            options={artistsGroup}
+                            blurInputOnSelect
+                            openMenuOnFocus
                         />
                         <DatePicker
                             label="Término do trabalho"

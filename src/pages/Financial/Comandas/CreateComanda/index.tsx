@@ -1,8 +1,11 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-shadow */
 /* eslint-disable no-useless-escape */
 /* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-curly-newline */
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, BaseSyntheticEvent } from 'react';
 import { SubmitHandler, FormHandles, Scope } from '@unform/core';
 import {
     FaWhatsapp,
@@ -33,8 +36,7 @@ import brasilStatesAndCities from '../../../../utils/brazilianStates.json';
 import { cpfMask, cnpjMask } from '../../../../utils/masks';
 import {
     Container,
-    CreateClientModal,
-    CreateClientForm,
+    CreateComandaModal,
     CreateComandaForm,
     SectionButton,
     AddComandaMenu,
@@ -42,13 +44,19 @@ import {
     PaymentContainer,
     ConfigurePaymentForm,
     PendingValue,
-    Form1,
-    Form2,
+    ProductFormContainer,
+    ServiceFormContainer,
+    CustomInput,
 } from './styles';
 import '../../../../styles/customreactselect.css';
 import '../../../../styles/customreactdatepicker.css';
 import { convertToISO8601UTCDateFormat } from '../../../../utils/dateUtils';
 import apiClient from '../../../../services/apiClient';
+
+export enum discountType {
+    'value',
+    'percentage',
+}
 
 interface ICreateComandaProps {
     saveComanda: (comanda: IFormData) => void;
@@ -75,6 +83,11 @@ const types = [
     { value: 2, label: 'Serviço' },
 ];
 
+const discountTypes = [
+    { value: 1, label: 'R$' },
+    { value: 2, label: '%' },
+];
+
 const paymentOptions = [
     { value: 1, label: 'Cartão' },
     { value: 2, label: 'Dinheiro' },
@@ -95,7 +108,9 @@ const CreateClient: React.FC<ICreateComandaProps> = ({ saveComanda }) => {
     });
     const [showPaymentContainer, setShowPaymentContainer] = useState(false);
     const formRef = useRef<FormHandles>(null);
-
+    const [discountType, setDiscountType] = useState<OptionTypeBase>(
+        discountTypes[1],
+    );
     const affiliationOptions = [
         { value: 1, label: 'Masculino' },
         { value: 2, label: 'Feminino' },
@@ -107,6 +122,10 @@ const CreateClient: React.FC<ICreateComandaProps> = ({ saveComanda }) => {
 
     function handleShow() {
         setShow(true);
+    }
+
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+        console.log(e.target);
     }
 
     const handleCreateClientSubmit: SubmitHandler<IFormData> = async data => {
@@ -156,19 +175,19 @@ const CreateClient: React.FC<ICreateComandaProps> = ({ saveComanda }) => {
     return (
         <Container>
             <MdRemoveRedEye onClick={handleShow} />
-            <CreateClientModal
+            <CreateComandaModal
                 show={show}
                 onHide={handleClose}
                 className="baseModalStyle"
                 size="lg"
                 backdrop="static"
             >
-                <CreateClientModal.Header>
-                    <CreateClientModal.Title>
+                <CreateComandaModal.Header>
+                    <CreateComandaModal.Title>
                         <p>Detalhes da Comanda - Márcia Soares</p>
-                    </CreateClientModal.Title>
-                </CreateClientModal.Header>
-                <CreateClientModal.Body>
+                    </CreateComandaModal.Title>
+                </CreateComandaModal.Header>
+                <CreateComandaModal.Body>
                     <PendingValue>
                         <div>Pendente de pagamento:</div>
                         <div>R$ 00,00</div>
@@ -291,18 +310,14 @@ const CreateClient: React.FC<ICreateComandaProps> = ({ saveComanda }) => {
                                     <td>Hidratação</td>
                                     <td>Marcela</td>
                                     <td>R$ 50,00</td>
-                                    <td>-</td>
-                                    <td>R$ 10,00</td>
+                                    <td
+                                        contentEditable="true"
+                                        onInput={(event: BaseSyntheticEvent) =>
+                                            console.log(event.target.innerText)
+                                        }
+                                    />
+                                    <td contentEditable="true">R$ 10,00</td>
                                     <td>R$ 40,00</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Máscara Capilar</td>
-                                    <td>Marcela</td>
-                                    <td>R$ 20,00</td>
-                                    <td>1</td>
-                                    <td>R$ 0,00</td>
-                                    <td>R$ 20,00</td>
                                 </tr>
                             </tbody>
                         </Table>
@@ -365,11 +380,6 @@ const CreateClient: React.FC<ICreateComandaProps> = ({ saveComanda }) => {
                                         </tbody>
                                     </Table>
                                     <div>
-                                        <MaskedInput
-                                            label="Desconto"
-                                            mask="99%"
-                                            name="value"
-                                        />
                                         <div>
                                             <Checkbox
                                                 name="possibilitaEncaixe"
@@ -380,12 +390,71 @@ const CreateClient: React.FC<ICreateComandaProps> = ({ saveComanda }) => {
                                                 label="Guardar troco como crédito"
                                             />
                                         </div>
+                                        <div>
+                                            <CustomInput>
+                                                <label>Valor da comanda</label>
+                                                <Input
+                                                    textTransform="lowercase"
+                                                    name="qtd"
+                                                    value="50,00"
+                                                    disabled
+                                                />
+                                            </CustomInput>
+                                            <CustomInput>
+                                                <label> (-) Desconto</label>
+                                                <div>
+                                                    <Select
+                                                        name="discountType"
+                                                        classNamePrefix="react-select"
+                                                        defaultValue={
+                                                            discountTypes[1]
+                                                        }
+                                                        options={discountTypes}
+                                                        blurInputOnSelect
+                                                        openMenuOnFocus
+                                                        onChange={option => {
+                                                            option &&
+                                                                setDiscountType(
+                                                                    option,
+                                                                );
+                                                        }}
+                                                    />
+                                                    <MaskedInput
+                                                        label="&#8205;"
+                                                        mask={
+                                                            discountType.value ===
+                                                            1
+                                                                ? 'R$ 9.99'
+                                                                : '%99'
+                                                        }
+                                                        name="value"
+                                                    />
+                                                </div>
+                                            </CustomInput>
+
+                                            <div>
+                                                <label>(=) Total a pagar</label>
+                                                <Input
+                                                    textTransform="lowercase"
+                                                    name="qtd"
+                                                    value="50,00"
+                                                    disabled
+                                                />
+                                            </div>
+                                            <label>Troco</label>
+                                            <Input
+                                                textTransform="lowercase"
+                                                name="qtd"
+                                                value="50,00"
+                                                disabled
+                                            />
+                                        </div>
                                     </div>
                                 </ConfigurePaymentForm>
                             </PaymentContainer>
                         )}
                     </div>
-                    <TotalValue>
+                    {/* <TotalValue>
                         <div>Valor da Comanda:</div>
                         <div>R$ 60,00</div>
                         <div>-</div>
@@ -394,9 +463,9 @@ const CreateClient: React.FC<ICreateComandaProps> = ({ saveComanda }) => {
                         <div>=</div>
                         <div>Total a pagar:</div>
                         <div>R$ 60,00</div>
-                    </TotalValue>
-                </CreateClientModal.Body>
-                <CreateClientModal.Footer>
+                    </TotalValue> */}
+                </CreateComandaModal.Body>
+                <CreateComandaModal.Footer>
                     <button
                         className="fibre-button fibre-button--cancel"
                         type="button"
@@ -411,8 +480,8 @@ const CreateClient: React.FC<ICreateComandaProps> = ({ saveComanda }) => {
                     >
                         Fechar comanda
                     </button>
-                </CreateClientModal.Footer>
-            </CreateClientModal>
+                </CreateComandaModal.Footer>
+            </CreateComandaModal>
         </Container>
     );
 };

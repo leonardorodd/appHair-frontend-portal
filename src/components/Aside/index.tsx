@@ -23,11 +23,12 @@ import {
     MdClear,
     MdInsertDriveFile,
 } from 'react-icons/md';
-
+import { IoMdCalculator } from 'react-icons/io';
 import { RiTruckFill, RiHandSanitizerFill } from 'react-icons/ri';
 
 import { AiOutlineCodeSandbox } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { FaCashRegister, FaMoneyCheckAlt } from 'react-icons/fa';
 import MenuItemLink, { IMenuItemProps } from './MenuItem';
 
 import { Container, Header, MenuContainer, LogImg, Footer } from './styles';
@@ -128,12 +129,27 @@ const Aside: React.FC = () => {
                     icon: MdInsertDriveFile,
                     link: '/financial/comandas',
                 },
+                {
+                    title: 'Caixa',
+                    icon: FaCashRegister,
+                    link: '/financial/cash',
+                },
+                {
+                    title: 'Contas a pagar',
+                    icon: FaMoneyCheckAlt,
+                    link: '/financial/accounts_payable',
+                },
+                {
+                    title: 'Comissões',
+                    icon: IoMdCalculator,
+                    link: '/financial/commissions',
+                },
             ],
         },
         {
             title: 'Estoque',
             icon: AiOutlineCodeSandbox,
-            link: '/estoque',
+            link: '/stock/management',
             subItens: [],
         },
         {
@@ -262,8 +278,8 @@ const Aside: React.FC = () => {
                     ))}
                     </MenuContainer> */}
                     <MenuContainer id="menuContainer">
-                        {MenuItens.map(item =>
-                            item.title
+                        {MenuItens.map(item => (
+                            /*  item.title
                                 .toLocaleUpperCase()
                                 .startsWith(searchTerm) ||
                             (item.subItens &&
@@ -271,19 +287,19 @@ const Aside: React.FC = () => {
                                     subItem.title
                                         .toLocaleUpperCase()
                                         .startsWith(searchTerm),
-                                )) ? (
-                                <MenuItemLink
-                                    key={item.title}
-                                    title={item.title}
-                                    icon={item.icon}
-                                    link={item.link}
-                                    grouppedItem
-                                    subItens={item.subItens}
-                                />
-                            ) : (
+                                )) ? ( */
+                            <MenuItemLink
+                                key={item.title}
+                                title={item.title}
+                                icon={item.icon}
+                                link={item.link}
+                                grouppedItem
+                                subItens={item.subItens}
+                            />
+                            /* ) : (
                                 []
-                            ),
-                        )}
+                            ), */
+                        ))}
                     </MenuContainer>
                 </PerfectScrollbar>
             </div>

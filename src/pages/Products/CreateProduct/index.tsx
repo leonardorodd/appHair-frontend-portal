@@ -179,6 +179,10 @@ const CreateClient: React.FC = () => {
                                         name="tempodeentrega"
                                         label="Tempo médio de Entrega (dias)"
                                     />
+                                    <Input
+                                        name="codigoDoFornecedor"
+                                        label="Código do fornecedor"
+                                    />
                                 </FieldSet>
                             </div>
                             <div>

@@ -1,13 +1,28 @@
+/* eslint-disable react/jsx-curly-newline */
 import React, { useState, useRef } from 'react';
 import * as Yup from 'yup';
 import { FaPlus } from 'react-icons/fa';
+import {
+    MdEdit,
+    MdKeyboardArrowDown,
+    MdKeyboardArrowRight,
+} from 'react-icons/md';
 import { SubmitHandler, FormHandles, Scope } from '@unform/core';
+import { Table } from 'react-bootstrap';
 import Input from '../../../../components/UnformFields/Input';
 import Select from '../../../../components/UnformFields/Select';
 import TextArea from '../../../../components/UnformFields/TextArea';
 
 import MaskedInput from '../../../../components/UnformFields/InputMaskd';
-import { Container, AddSkillModal, CreateInputForm } from './styles';
+import {
+    Container,
+    AddSkillModal,
+    CreateInputForm,
+    SectionButton,
+    PaymentContainer,
+    ConfigurePaymentForm,
+} from './styles';
+import DatePicker from '../../../../components/UnformFields/DatePicker';
 
 export interface IFormData {
     valor: string;
@@ -22,6 +37,7 @@ export interface IFormData {
 const AddOutputs: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const [show, setShow] = useState(false);
+    const [showPaymentContainer, setShowPaymentContainer] = useState(false);
 
     function handleClose() {
         setShow(false);
@@ -90,14 +106,7 @@ const AddOutputs: React.FC = () => {
 
     return (
         <Container>
-            <button
-                className="fibre-button fibre-button--default"
-                type="button"
-                onClick={handleShow}
-            >
-                <span>Adicionar</span>
-                <FaPlus />
-            </button>
+            <MdEdit onClick={handleShow} />
             <AddSkillModal
                 show={show}
                 onHide={handleClose}
@@ -107,7 +116,7 @@ const AddOutputs: React.FC = () => {
             >
                 <AddSkillModal.Header>
                     <AddSkillModal.Title>
-                        <p>Registro de saída</p>
+                        <p>Editar pagamento</p>
                     </AddSkillModal.Title>
                 </AddSkillModal.Header>
                 <AddSkillModal.Body>
@@ -116,28 +125,22 @@ const AddOutputs: React.FC = () => {
                         onSubmit={handleCreateClientSubmit}
                         ref={formRef}
                     >
-                        <div className="treeFieldsgroup">
+                        <div className="twoFieldsGroup">
                             <MaskedInput
                                 mask="R$ 9.999"
                                 name="valor"
                                 label="Valor*"
                             />
+                            <DatePicker
+                                label="Data de vencimento"
+                                name="dataDeVencimento"
+                            />
                             <Select
-                                label="Forma de pagamento*"
+                                label="Forma de pagamento"
                                 name="tipoPagamento"
                                 classNamePrefix="react-select"
                                 defaultValue={paymentOptions[1]}
                                 options={paymentOptions}
-                                isSearchable={false}
-                                blurInputOnSelect
-                                openMenuOnFocus
-                            />
-                            <Select
-                                label="Tipo de saída*"
-                                name="tipoReceita"
-                                classNamePrefix="react-select"
-                                defaultValue={expensesOptions[1]}
-                                options={expensesOptions}
                                 isSearchable={false}
                                 blurInputOnSelect
                                 openMenuOnFocus
@@ -166,6 +169,101 @@ const AddOutputs: React.FC = () => {
                             />
                         </div>
                         <TextArea name="descricao" label="Descrição*" />
+                        <SectionButton
+                            type="button"
+                            onClick={() =>
+                                setShowPaymentContainer(!showPaymentContainer)
+                            }
+                        >
+                            {showPaymentContainer
+                                ? 'Ocultar Quitação'
+                                : 'Mostrar Quitação'}
+                            {showPaymentContainer ? (
+                                <MdKeyboardArrowDown />
+                            ) : (
+                                <MdKeyboardArrowRight />
+                            )}
+                        </SectionButton>
+                        {showPaymentContainer && (
+                            <PaymentContainer>
+                                <div className="twoFieldsGroup">
+                                    <Input
+                                        label="Valor pago"
+                                        textTransform="lowercase"
+                                        name="qtd"
+                                        value="50,00"
+                                    />
+                                    <Input
+                                        label="Valor pendente"
+                                        textTransform="lowercase"
+                                        name="qtd"
+                                        value="10,00"
+                                    />
+                                    <Input
+                                        label="Juros"
+                                        textTransform="lowercase"
+                                        name="qtd"
+                                        value="10,00"
+                                    />
+                                </div>
+                                <div className="twoFieldsGroup">
+                                    <Input
+                                        label="Desconto"
+                                        textTransform="lowercase"
+                                        name="qtd"
+                                        value="50,00"
+                                    />
+                                    <DatePicker
+                                        label="Data de quitação"
+                                        name="dataDeVencimento"
+                                        value="10/06/2021"
+                                    />
+                                </div>
+                                <div>Inserir pagamento</div>
+                                <ConfigurePaymentForm
+                                    onSubmit={() => ''}
+                                    id="form2"
+                                >
+                                    <div>
+                                        <Select
+                                            label="Forma de pagamento"
+                                            name="type"
+                                            classNamePrefix="react-select"
+                                            defaultValue={paymentOptions[1]}
+                                            options={paymentOptions}
+                                            blurInputOnSelect
+                                            openMenuOnFocus
+                                        />
+                                        <MaskedInput
+                                            label="Valor (R$)"
+                                            mask="R$ 99.999"
+                                            name="value"
+                                        />
+                                        <button type="button">
+                                            <FaPlus />
+                                        </button>
+                                    </div>
+                                    <Table responsive>
+                                        <thead>
+                                            <tr>
+                                                <th>Forma de pagamento </th>
+                                                <th>Valor (R$) </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Dinheiro</td>
+                                                <td>R$ 50,00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Voucher</td>
+                                                <td>R$ 10,00</td>
+                                            </tr>
+                                        </tbody>
+                                    </Table>
+                                </ConfigurePaymentForm>
+                            </PaymentContainer>
+                        )}
                     </CreateInputForm>
                 </AddSkillModal.Body>
                 <AddSkillModal.Footer>

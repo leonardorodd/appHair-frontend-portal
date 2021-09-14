@@ -127,11 +127,7 @@ const CreateClient: React.FC = () => {
 
     return (
         <Container>
-            <button
-                className="fibre-button fibre-button--default"
-                type="button"
-                onClick={handleShow}
-            >
+            <button type="button" onClick={handleShow}>
                 <span>Adicionar</span>
                 <FaPlus />
             </button>

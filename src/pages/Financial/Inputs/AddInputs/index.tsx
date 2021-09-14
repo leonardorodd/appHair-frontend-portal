@@ -1,6 +1,8 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useRef } from 'react';
 import { SubmitHandler, FormHandles, Scope } from '@unform/core';
 import * as Yup from 'yup';
+import { OptionTypeBase } from 'react-select';
 import { FaPlus } from 'react-icons/fa';
 import Input from '../../../../components/UnformFields/Input';
 import Select from '../../../../components/UnformFields/Select';
@@ -21,6 +23,7 @@ export interface IFormData {
 const AddInputs: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const [show, setShow] = useState(false);
+    const [showClientInput, setShowClientInput] = useState(false);
 
     function handleClose() {
         setShow(false);
@@ -30,6 +33,7 @@ const AddInputs: React.FC = () => {
         { value: 1, label: 'Cartão' },
         { value: 2, label: 'Dinheiro' },
         { value: 3, label: 'Pix' },
+        { value: 4, label: 'Voucher' },
     ];
 
     const expensesOptions = [
@@ -113,6 +117,12 @@ const AddInputs: React.FC = () => {
                                 defaultValue={paymentOptions[1]}
                                 options={paymentOptions}
                                 isSearchable={false}
+                                onChange={(option: OptionTypeBase | null) => {
+                                   if(option && option.label === 'Voucher'){
+                                       setShowClientInput(true);
+                                   }else {
+                                       setShowClientInput(false);
+                                   }}}
                                 blurInputOnSelect
                                 openMenuOnFocus
                             />
@@ -127,6 +137,20 @@ const AddInputs: React.FC = () => {
                                 openMenuOnFocus
                             />
                         </div>
+                        <>
+                            {showClientInput && (
+                            <Select
+                                label="Nome do cliente"
+                                name="nomeCliente"
+                                classNamePrefix="react-select"
+                                defaultValue={expensesOptions[1]}
+                                options={expensesOptions}
+                                isSearchable={false}
+                                blurInputOnSelect
+                                openMenuOnFocus
+                            />
+                            )}
+                        </>
                         <div className="treeFieldsgroup">
                             <Select
                                 label="Tipo documento"

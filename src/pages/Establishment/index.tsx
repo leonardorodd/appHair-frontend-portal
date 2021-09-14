@@ -10,6 +10,7 @@ import Select from '../../components/UnformFields/Select';
 import apiClient from '../../services/apiClient';
 import { cpfMask, cnpjMask } from '../../utils/masks';
 import CardOperator from './CardOperator';
+import PaymentOptions from './PaymentOptions';
 import Expenses from './Expenses';
 import Campaign from './Campaign';
 import Input from '../../components/UnformFields/Input';
@@ -386,6 +387,45 @@ const Establishment: React.FC = () => {
                                 <td>10%</td>
                                 <td>10%</td>
                                 <td>30</td>
+                                <td>
+                                    <MdDelete onClick={() => ''} />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                </FieldSet>
+                <FieldSet title="Opções de pagamento">
+                    <PaymentOptions />
+                    <Table responsive>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Valor (R$)</th>
+                                <th>Vencimento</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Aluguel</td>
+                                <td>800,00</td>
+                                <td>Dia 5</td>
+                                <td>
+                                    <MdDelete onClick={() => ''} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Energia</td>
+                                <td>350,00</td>
+                                <td>Dia 12</td>
+                                <td>
+                                    <MdDelete onClick={() => ''} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Água</td>
+                                <td>200,00</td>
+                                <td>Dia 10</td>
                                 <td>
                                     <MdDelete onClick={() => ''} />
                                 </td>

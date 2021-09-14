@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import * as Yup from 'yup';
 import { FaPlus } from 'react-icons/fa';
+import { MdEdit } from 'react-icons/md';
 import { SubmitHandler, FormHandles, Scope } from '@unform/core';
 import Input from '../../../../components/UnformFields/Input';
 import Select from '../../../../components/UnformFields/Select';
@@ -8,6 +9,7 @@ import TextArea from '../../../../components/UnformFields/TextArea';
 
 import MaskedInput from '../../../../components/UnformFields/InputMaskd';
 import { Container, AddSkillModal, CreateInputForm } from './styles';
+import DatePicker from '../../../../components/UnformFields/DatePicker';
 
 export interface IFormData {
     valor: string;
@@ -107,7 +109,7 @@ const AddOutputs: React.FC = () => {
             >
                 <AddSkillModal.Header>
                     <AddSkillModal.Title>
-                        <p>Registro de saída</p>
+                        <p>Novo pagamento</p>
                     </AddSkillModal.Title>
                 </AddSkillModal.Header>
                 <AddSkillModal.Body>
@@ -116,28 +118,22 @@ const AddOutputs: React.FC = () => {
                         onSubmit={handleCreateClientSubmit}
                         ref={formRef}
                     >
-                        <div className="treeFieldsgroup">
+                        <div className="twoFieldsGroup">
                             <MaskedInput
                                 mask="R$ 9.999"
                                 name="valor"
                                 label="Valor*"
                             />
+                            <DatePicker
+                                label="Data de vencimento"
+                                name="dataDeVencimento"
+                            />
                             <Select
-                                label="Forma de pagamento*"
+                                label="Forma de pagamento"
                                 name="tipoPagamento"
                                 classNamePrefix="react-select"
                                 defaultValue={paymentOptions[1]}
                                 options={paymentOptions}
-                                isSearchable={false}
-                                blurInputOnSelect
-                                openMenuOnFocus
-                            />
-                            <Select
-                                label="Tipo de saída*"
-                                name="tipoReceita"
-                                classNamePrefix="react-select"
-                                defaultValue={expensesOptions[1]}
-                                options={expensesOptions}
                                 isSearchable={false}
                                 blurInputOnSelect
                                 openMenuOnFocus

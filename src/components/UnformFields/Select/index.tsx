@@ -25,10 +25,12 @@ const Select: React.FC<Props> = ({ name, label, placeholder, ...rest }) => {
             name: fieldName,
             ref: selectRef.current,
             setValue: (ref, value) => {
-                ref.state.value = value;
+                /*                 ref.state.value = value;
+                 */ setValue(value);
             },
             clearValue: ref => {
-                ref.state.value = '';
+                /*                 ref.state.value = '';
+                 */ setValue('');
             },
             getValue: ref => {
                 if (rest.isMulti) {

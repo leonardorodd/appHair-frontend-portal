@@ -10,7 +10,7 @@ import { Container } from './styles';
 interface Props {
     name: string;
     textTransform?: 'lowercase' | 'uppercase' | 'capitalize';
-    label: string;
+    label?: string;
     customMask?: (value: string) => string;
     labelIcon?: React.FC<IconBaseProps>;
 }
