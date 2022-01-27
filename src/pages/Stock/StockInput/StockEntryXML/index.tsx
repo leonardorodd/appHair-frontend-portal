@@ -4,12 +4,12 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { FaPlus } from 'react-icons/fa';
 import { SubmitHandler, FormHandles, Scope } from '@unform/core';
 import { Table } from 'react-bootstrap';
-import { cpfMask, cnpjMask } from '../../../utils/masks';
-import Input from '../../../components/UnformFields/Input';
-import FieldSet from '../../../components/FieldSet';
-import Select from '../../../components/UnformFields/Select';
-import DatePicker from '../../../components/UnformFields/DatePicker';
-import brasilStatesAndCities from '../../../utils/brazilianStates.json';
+import { cpfMask, cnpjMask } from '../../../../utils/masks';
+import Input from '../../../../components/UnformFields/Input';
+import FieldSet from '../../../../components/FieldSet';
+import Select from '../../../../components/UnformFields/Select';
+import DatePicker from '../../../../components/UnformFields/DatePicker';
+import brasilStatesAndCities from '../../../../utils/brazilianStates.json';
 import { Container, StockHeaderContainer, CreateNoteForm } from './styles';
 
 interface IStateProps {

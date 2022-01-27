@@ -3,6 +3,7 @@ import { darken } from 'polished';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import colapsibleCustomIcon from '../assets/svg/colapsibleIcon.svg';
 
 export default createGlobalStyle`
     :root {
@@ -213,4 +214,34 @@ export default createGlobalStyle`
         }
     }
 
+    .accordion-button {
+        color: var(--primary-text-color);
+        font-size: 14px !important;
+        padding: 30px;
+        &:hover {
+            background: var(--base-background-color);
+        }
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: var(--base-tertiary-color);
+        background-color: var(--base-background-color);
+    }
+
+    .accordion-button:focus {
+        border-color: red !important;
+        box-shadow: none;
+    }
+
+    .accordion-button:not(.collapsed)::after{
+        background-image:url(${colapsibleCustomIcon});
+    }
+
+    .accordion-body {
+        color: var(--primary-text-color);
+    }
+
+    .leaf_bb9a._bottom_3425 .cssLeaf_a623, .leaf_bb9a._left_927f .cssLeaf_a623, .leaf_bb9a._right_3d21 .cssLeaf_a623 {
+        display: none !important;
+    }
 `;

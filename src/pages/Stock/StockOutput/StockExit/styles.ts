@@ -2,7 +2,16 @@ import styled from 'styled-components';
 import Modal from 'react-bootstrap/Modal';
 import { Form } from '@unform/web';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+    > :last-child {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        > :first-child {
+            margin-right: 10px;
+        }
+    }
+`;
 
 export const AddSkillModal = styled(Modal)`
     @media only screen and (max-width: 1100px) {
@@ -43,14 +52,20 @@ export const ConfigurePaymentForm = styled(Form)`
     display: flex;
     flex-direction: column;
 
+    > :nth-child(2) > :nth-child(2) {
+        width: 7%;
+    }
+
+    > :last-child {
+        margin-top: 20px;
+    }
+
     > :nth-child(2) {
         display: flex;
         align-items: center;
 
         > :last-child {
-            margin-top: 22px;
-            margin-left: 10px;
-            width: 150px;
+            margin-top: 20px;
         }
 
         /*  > :last-child {
@@ -107,6 +122,7 @@ export const ConfigurePaymentForm = styled(Form)`
 
 export const Total = styled.div`
     font-weight: bold;
+    color: var(--primary-text-color);
     display: flex;
     justify-content: space-between;
 `;
@@ -117,8 +133,29 @@ export const PaymentConfig = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: red;
+    color: var(--primary-text-color);
+
+    > label {
+        margin-right: 5px;
+        font-weight: bold;
+    }
+
     > div {
         width: 50%;
+    }
+`;
+
+export const StockHeaderContainer = styled.div`
+    margin-bottom: 25px;
+    > h1 {
+        font-size: 18px;
+        color: var(--base-tertiary-color);
+    }
+
+    > h1::after {
+        content: '';
+        display: block;
+        width: 55px;
+        border-bottom: 3px solid var(--base-tertiary-color);
     }
 `;

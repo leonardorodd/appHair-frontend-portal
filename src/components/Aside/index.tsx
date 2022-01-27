@@ -22,11 +22,19 @@ import {
     MdPerson,
     MdClear,
     MdInsertDriveFile,
+    MdLocalGroceryStore,
+    MdChat,
 } from 'react-icons/md';
-import { IoMdCalculator } from 'react-icons/io';
-import { RiTruckFill, RiHandSanitizerFill } from 'react-icons/ri';
-
-import { AiOutlineCodeSandbox } from 'react-icons/ai';
+import { BsQuestionCircle } from 'react-icons/bs';
+import { IoMdCalculator, IoMdPricetags } from 'react-icons/io';
+import {
+    RiTruckFill,
+    RiHandSanitizerFill,
+    RiInboxArchiveLine,
+    RiInboxUnarchiveLine,
+} from 'react-icons/ri';
+import { FiYoutube } from 'react-icons/fi';
+import { AiOutlineCodeSandbox, AiOutlineYoutube } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { FaCashRegister, FaMoneyCheckAlt } from 'react-icons/fa';
 import MenuItemLink, { IMenuItemProps } from './MenuItem';
@@ -149,8 +157,29 @@ const Aside: React.FC = () => {
         {
             title: 'Estoque',
             icon: AiOutlineCodeSandbox,
-            link: '/stock/management',
-            subItens: [],
+            link: '/off',
+            subItens: [
+                {
+                    title: 'Entrada',
+                    icon: RiInboxArchiveLine,
+                    link: '/stock/management/input',
+                },
+                {
+                    title: 'Saída',
+                    icon: RiInboxUnarchiveLine,
+                    link: '/stock/management/output',
+                },
+                {
+                    title: 'Sugestão de promoção',
+                    icon: IoMdPricetags,
+                    link: '/stock/promotions',
+                },
+                {
+                    title: 'Sugestão de compras',
+                    icon: MdLocalGroceryStore,
+                    link: '/stock/purchases',
+                },
+            ],
         },
         {
             title: 'Estabelecimento',
@@ -158,7 +187,30 @@ const Aside: React.FC = () => {
             link: '/establishment',
             subItens: [],
         },
-        { title: 'Ajuda', icon: MdLiveHelp, link: '/ajuda', subItens: [] },
+        {
+            title: 'Ajuda',
+            icon: MdLiveHelp,
+            link: '/ajuda',
+            subItens: [
+                {
+                    title: 'Chat suporte',
+                    icon: MdChat,
+                    link: '/',
+                },
+                {
+                    title: 'Perguntas Frequentes',
+                    icon: BsQuestionCircle,
+                    link: '/help/questions',
+                },
+                {
+                    title: 'Canal Youtube',
+                    icon: FiYoutube,
+                    link:
+                        'https://www.youtube.com/channel/UCxX8CSPae6OZIJf8uDc7dMg',
+                    externalLink: true,
+                },
+            ],
+        },
         /*  { title: 'Entradas', icon: MdArrowUpward, link: '/list/entry-balance' },
         // eslint-disable-next-line prettier/prettier
         { title: 'Saídas', icon: MdArrowDownward, link:'/list/exit-balance' }, */

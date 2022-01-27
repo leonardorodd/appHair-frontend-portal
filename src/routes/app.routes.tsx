@@ -11,6 +11,7 @@ import Services from '../pages/Services';
 import Schedule from '../pages/Schedule';
 import Financial from '../pages/Financial';
 import Stock from '../pages/Stock';
+import Help from '../pages/Help';
 import Artist from '../pages/Artist';
 import Establishment from '../pages/Establishment';
 
@@ -29,6 +30,7 @@ const Routes: React.FC = () => (
             <Route path="/stock" component={Stock} />
             <Route path="/schedule" component={Schedule} />
             <Route path="/artists" component={Artist} />
+            <Route path="/help" component={Help} />
         </Switch>
     </Layout>
 );

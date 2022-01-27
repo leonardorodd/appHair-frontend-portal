@@ -7,7 +7,6 @@ import { FaSearch, FaSpinner } from 'react-icons/fa';
 import { RiFileUploadLine } from 'react-icons/ri';
 import parser from 'fast-xml-parser';
 
-import StockEntry from './StockEntry';
 import { Container, StockHeaderContainer, UploadXML } from './styles';
 
 const Management: React.FC = () => {
@@ -41,7 +40,7 @@ const Management: React.FC = () => {
                 .then(str => {
                     setLoading(false);
                     history.push({
-                        pathname: '/stock/new-entry',
+                        pathname: '/stock/new-auto-entry',
                         state: parser.parse(str, options),
                     });
                 })
@@ -103,13 +102,14 @@ const Management: React.FC = () => {
                                 />
                             </label>
                         </UploadXML>
-                        <StockEntry />
-                        {/*  <button
+                        <button
                             type="button"
-                            onClick={() => history.push('/stock/new-entry')}
+                            onClick={() =>
+                                history.push('/stock/new-manual-entry')
+                            }
                         >
-                            Importar XML
-                        </button> */}
+                            Entrada manual
+                        </button>
                     </div>
                     <div>
                         <FaSearch />

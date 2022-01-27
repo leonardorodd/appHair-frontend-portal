@@ -57,10 +57,10 @@ const Input: React.FC<InputProps> = ({
             <input
                 id={fieldName}
                 ref={inputRef}
-                value={customMask ? customMask(value) : undefined}
+                /*   value={customMask ? customMask(value) : undefined}
                 onChange={event =>
                     customMask ? setValue(event.target.value) : undefined
-                }
+                } */
                 style={{ borderColor: error ? '#db3b21' : '' }}
                 defaultValue={defaultValue}
                 {...rest}

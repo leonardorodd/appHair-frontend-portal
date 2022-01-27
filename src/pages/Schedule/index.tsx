@@ -972,3 +972,5 @@ const Schedule: React.FC = () => {
 };
 
 export default Schedule;
+
+/* https://react-bootstrap.github.io/components/offcanvas/ */

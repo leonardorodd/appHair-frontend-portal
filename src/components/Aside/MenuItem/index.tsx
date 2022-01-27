@@ -9,6 +9,7 @@ export interface IMenuItemProps {
     grouppedItem?: boolean;
     icon: React.FC<IconBaseProps>;
     title: string;
+    externalLink?: boolean;
     subItens?: Array<IMenuItemProps>;
 }
 
@@ -18,10 +19,15 @@ const MenuItem: React.FC<IMenuItemProps> = ({
     title,
     subItens,
     grouppedItem,
+    externalLink,
 }) => {
     return (
         <Container>
-            <MenuItemLink to={link || ''} className="item">
+            <MenuItemLink
+                to={externalLink ? { pathname: link } : link || ''}
+                className="item"
+                target={externalLink ? '_blank' : ''}
+            >
                 <div>
                     <Icon />
                     {title}
@@ -34,7 +40,12 @@ const MenuItem: React.FC<IMenuItemProps> = ({
                         <SubMenuItemLink
                             className="subItem"
                             key={subItem.title}
-                            to={subItem.link || ''}
+                            to={
+                                subItem.externalLink
+                                    ? { pathname: subItem.link }
+                                    : subItem.link || ''
+                            }
+                            target={subItem.externalLink ? '_blank' : ''}
                         >
                             <subItem.icon />
                             {subItem.title}
