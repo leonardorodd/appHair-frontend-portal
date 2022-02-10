@@ -283,7 +283,6 @@ const CreateClient: React.FC<ICreateComandaProps> = ({ saveComanda }) => {
                                         />
                                     </>
                                 )}
-
                                 <button
                                     className="fibre-button fibre-button--cancel"
                                     type="button"
@@ -420,7 +419,6 @@ const CreateClient: React.FC<ICreateComandaProps> = ({ saveComanda }) => {
                                                         }}
                                                     />
                                                     <MaskedInput
-                                                        label="&#8205;"
                                                         mask={
                                                             discountType.value ===
                                                             1
@@ -431,16 +429,13 @@ const CreateClient: React.FC<ICreateComandaProps> = ({ saveComanda }) => {
                                                     />
                                                 </div>
                                             </CustomInput>
-
-                                            <div>
-                                                <label>(=) Total a pagar</label>
-                                                <Input
-                                                    textTransform="lowercase"
-                                                    name="qtd"
-                                                    value="50,00"
-                                                    disabled
-                                                />
-                                            </div>
+                                            <label>(=) Total a pagar</label>
+                                            <Input
+                                                textTransform="lowercase"
+                                                name="qtd"
+                                                value="50,00"
+                                                disabled
+                                            />
                                             <label>Troco</label>
                                             <Input
                                                 textTransform="lowercase"

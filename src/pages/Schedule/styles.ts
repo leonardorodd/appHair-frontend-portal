@@ -10,6 +10,14 @@ export const FilterContainer = styled.div`
         width: 100%;
         margin-right: 15px;
     }
+
+    @media only screen and (max-width: 768px) {
+        flex-direction: column;
+
+        > div {
+            margin-bottom: 10px;
+        }
+    }
 `;
 
 export const EventContainer = styled.div``;

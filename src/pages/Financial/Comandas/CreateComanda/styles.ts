@@ -39,6 +39,14 @@ export const CreateComandaForm = styled(Form)`
     align-items: flex-end;
     width: 100%;
 
+    @media only screen and (max-width: 768px) {
+        flex-direction: column;
+
+        > div {
+            width: 100% !important;
+        }
+    }
+
     > div {
         width: 25%;
     }
@@ -49,8 +57,6 @@ export const CreateComandaForm = styled(Form)`
 `;
 
 export const CustomInput = styled.div`
-    display: flex;
-
     > label {
         font-weight: bold;
     }
@@ -79,15 +85,27 @@ export const ConfigurePaymentForm = styled(Form)`
         align-items: center;
         justify-content: space-evenly;
 
-        > :first-child {
+        > :last-child {
+            > :nth-child(2) {
+                display: flex;
+                flex-direction: column;
+                > div {
+                    display: flex;
+                    > :first-child {
+                        width: 25%;
+                    }
+                }
+            }
+
+            /*  > :first-child {
             width: 30%;
         }
 
         > :last-child {
             width: 70%;
-            display: flex;
+            display: flex; */
 
-            > :nth-child(2) {
+            /*  > :nth-child(2) {
                 display: flex;
 
                 > :first-child {
@@ -100,7 +118,7 @@ export const ConfigurePaymentForm = styled(Form)`
 
             > :last-child {
                 display: flex;
-            }
+            } */
         }
     }
 `;
