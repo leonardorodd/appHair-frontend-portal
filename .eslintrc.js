@@ -1,4 +1,4 @@
-{
+module.exports = {
     "env": {
         "browser": true,
         "es2021": true
@@ -20,7 +20,7 @@
     },
     "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier", "import"],
     "rules": {
-        "prettier/prettier": "warn",
+        "prettier/prettier": "error",
         "react/jsx-indent-props": ["warn", 4],
         "react/jsx-indent": ["warn", 4],
         "react/prop-types" : 0,
@@ -45,5 +45,5 @@
                  "alwaysTryTypes": true
             }
         }
-    }
+    },
 }
